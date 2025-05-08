@@ -21,10 +21,6 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-
-    // Add CORS headers
-    config.headers['Access-Control-Allow-Origin'] = 'https://temporary-yb8p.vercel.app';
-    config.headers['Access-Control-Allow-Credentials'] = 'true';
     
     return config;
   },

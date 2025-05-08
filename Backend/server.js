@@ -24,13 +24,34 @@ app.use(cors({
   origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://temporary-9v8q.onrender.com', 'https://temporary-yb8p.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+    'Accept',
+    'Origin',
+    'Access-Control-Allow-Origin',
+    'Access-Control-Allow-Credentials'
+  ],
   exposedHeaders: ['Content-Range', 'X-Content-Range'],
   maxAge: 86400 // 24 hours
 }));
 
 // Additional CORS headers for preflight requests
-app.options('*', cors());
+app.options('*', cors({
+  origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://temporary-9v8q.onrender.com', 'https://temporary-yb8p.vercel.app'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+    'Accept',
+    'Origin',
+    'Access-Control-Allow-Origin',
+    'Access-Control-Allow-Credentials'
+  ]
+}));
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -54,3 +75,5 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
