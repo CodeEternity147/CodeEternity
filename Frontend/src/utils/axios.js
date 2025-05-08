@@ -4,10 +4,11 @@ import axios from 'axios';
 const api = axios.create({
   baseURL: 'https://temporary-9v8q.onrender.com/api',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
   },
   timeout: 10000, // 10 seconds timeout
-  withCredentials: true // Enable cookies if needed
+  withCredentials: true // Enable cookies for cross-origin requests
 });
 
 // Request interceptor
@@ -20,6 +21,10 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
+    // Add CORS headers
+    config.headers['Access-Control-Allow-Origin'] = 'https://temporary-yb8p.vercel.app';
+    config.headers['Access-Control-Allow-Credentials'] = 'true';
     
     return config;
   },
