@@ -9,9 +9,7 @@ import {
   FaUsers,
 } from 'react-icons/fa';
 
-import {
-  serviceData,
-} from '../../data/serviceData'; // Adjust the path as necessary
+import { serviceData } from '../../data/serviceData.js';
 
 const iconMap = {
   FaUsers: <FaUsers size={18} />,
