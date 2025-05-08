@@ -1,7 +1,7 @@
 import React from 'react';
 import img2 from '../../assets/img2.svg'; // Adjust the path as necessary
 
-const DeelSection = () => {
+const DealSection = () => {
   return (
     <>
     <img 
@@ -40,4 +40,4 @@ const DeelSection = () => {
   );
 };
 
-export default DeelSection;
+export default DealSection;
