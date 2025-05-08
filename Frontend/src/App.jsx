@@ -5,7 +5,7 @@ import React from 'react';
 import { Route, Routes } from "react-router-dom";
 
 import DealSection from './componants/Home/DealSection';
-
+import Information from './componants/Home/Information';
 import IntegrationsSection from './componants/Home/IntegrationsSection';
 import StartupHero from './componants/Home/StartupHero';
 import WhyJoinCodeEternity from './componants/Home/WhyJoin';
@@ -19,7 +19,6 @@ import TeamPaymentFeatures from './componants/Home/TeamPaymentFeatures';
 import ContactPage from './componants/Pages/ContactPage';
 import ErrorBoundary from './componants/ErrorBoundary';
 import NotFound from './componants/NotFound';
-import Information from './componants/Home/information';
 
 function App() {
   return (
