@@ -3,6 +3,10 @@ import axios from 'axios';
 // Create axios instance with default config
 const api = axios.create({
   baseURL: 'https://temporary-9v8q.onrender.com/api',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  },
   timeout: 10000, // 10 seconds timeout
   withCredentials: true // Enable cookies for cross-origin requests
 });

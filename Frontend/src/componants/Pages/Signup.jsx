@@ -32,7 +32,19 @@ const Signup = () => {
       return;
     }
 
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+
     try {
+      console.log('Sending registration request:', {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        passwordLength: formData.password.length
+      });
+
       const response = await api.post('/auth/register', {
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -40,13 +52,16 @@ const Signup = () => {
         password: formData.password,
       });
       
+      console.log('Registration response:', response.data);
+      
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
         await login({ email: formData.email, password: formData.password });
         navigate('/dashboard');
       }
     } catch (error) {
-      setError(error.response?.data?.message || 'Registration failed');
+      console.error('Registration error:', error);
+      setError(error.response?.data?.message || 'Registration failed. Please try again.');
     }
   };
 
