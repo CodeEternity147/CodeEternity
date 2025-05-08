@@ -21,7 +21,7 @@ app.use(express.json({ limit: '10kb' })); // Limit body size
 
 // CORS configuration - Updated
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://temporary-9v8q.onrender.com', 'https://temporary-yb8p.vercel.app'],
+  origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://temporary-9v8q.onrender.com', 'https://temporary-yb8p-git-main-rahul-kumar-jhas-projects-68d21053.vercel.app/'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: [
