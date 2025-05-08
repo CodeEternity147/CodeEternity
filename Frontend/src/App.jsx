@@ -17,7 +17,7 @@ import Dashboard from './componants/Dashboard';
 import ProtectedRoute from './componants/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import TeamPaymentFeatures from './componants/Home/TeamPaymentFeatures';
-import ContactPage from './componants/Pages/contactPage';
+import ContactPage from './componants/Pages/ContactPage';
 import ErrorBoundary from './componants/ErrorBoundary';
 import NotFound from './componants/NotFound';
 
