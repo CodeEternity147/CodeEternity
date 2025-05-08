@@ -42,8 +42,6 @@ export const register = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      role: role || 'user',
-      dob
     });
 
     const token = jwt.sign(
@@ -59,8 +57,6 @@ export const register = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        dob: user.dob,
-        role: user.role
       }
     });
   } catch (err) {
