@@ -16,22 +16,39 @@ export const register = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
     
+    // Log incoming request data
+    console.log('Registration attempt:', {
+      firstName,
+      lastName,
+      email,
+      passwordLength: password?.length
+    });
+    
     // Input validation
     if (!firstName || !lastName || !email || !password) {
+      console.log('Missing required fields:', {
+        firstName: !firstName,
+        lastName: !lastName,
+        email: !email,
+        password: !password
+      });
       return res.status(400).json({ message: 'All fields are required' });
     }
 
     if (!validateEmail(email)) {
+      console.log('Invalid email format:', email);
       return res.status(400).json({ message: 'Invalid email format' });
     }
 
     if (!validatePassword(password)) {
+      console.log('Password too short:', password.length);
       return res.status(400).json({ message: 'Password must be at least 6 characters long' });
     }
     
     // Check if user exists with the same email
     const userExists = await User.findOne({ email });
     if (userExists) {
+      console.log('Email already registered:', email);
       return res.status(400).json({ message: 'Email already registered' });
     }
 
@@ -42,6 +59,7 @@ export const register = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
+      role: 'user' // Default role
     });
 
     const token = jwt.sign(
@@ -50,6 +68,8 @@ export const register = async (req, res) => {
       { expiresIn: '1d' }
     );
 
+    console.log('Registration successful:', { email: user.email });
+
     res.status(201).json({
       message: 'User registered successfully',
       token,
@@ -57,9 +77,11 @@ export const register = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        role: user.role
       }
     });
   } catch (err) {
+    console.error('Registration error:', err);
     res.status(500).json({ message: err.message });
   }
 };
@@ -89,8 +111,6 @@ export const login = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        dob: user.dob,
-        role: user.role
       }
     });
   } catch (err) {

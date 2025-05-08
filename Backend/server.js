@@ -19,6 +19,20 @@ securityMiddleware(app);
 // Body parser
 app.use(express.json({ limit: '10kb' })); // Limit body size
 
+// Request logging middleware
+app.use((req, res, next) => {
+  console.log('Incoming request:', {
+    method: req.method,
+    path: req.path,
+    body: req.body,
+    headers: {
+      'content-type': req.headers['content-type'],
+      'origin': req.headers['origin']
+    }
+  });
+  next();
+});
+
 // CORS configuration - Updated
 app.use(cors({
   origin: true, // This will reflect the request origin
