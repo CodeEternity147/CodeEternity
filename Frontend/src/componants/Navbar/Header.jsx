@@ -68,15 +68,21 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-6 absolute left-1/2 transform -translate-x-1/2">
           <Link to="/" className="font-medium hover:text-blue-500">Home</Link>
-          <a href="#" onClick={whatWeOffer} className="font-medium hover:text-blue-500">
+          <button 
+            onClick={whatWeOffer} 
+            className="font-medium hover:text-blue-500 bg-transparent border-none cursor-pointer"
+          >
             What we offer{" "}
             <span>{arrow1 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
-          </a>
-          <a href="#" onClick={handleArrow2} className="font-medium hover:text-blue-500">
+          </button>
+          <button 
+            onClick={handleArrow2} 
+            className="font-medium hover:text-blue-500 bg-transparent border-none cursor-pointer"
+          >
             Who we serve{" "}
             <span>{arrow2 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
-          </a>
-          <Link to="/contactCodeEternity" className="font-medium hover:text-blue-500">Contact</Link>
+          </button>
+          <Link to="/contact" className="font-medium hover:text-blue-500">Contact</Link>
           {user && (
             <Link to="/dashboard" className="font-medium hover:text-blue-500">Dashboard</Link>
           )}
@@ -141,29 +147,27 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
             >
               Home
             </Link>
-            <a
-              href="#"
+            <button
               onClick={() => {
                 whatWeOffer();
                 setMenuOpen(false);
               }}
-              className="font-medium hover:text-blue-500 py-2 px-4 rounded-lg hover:bg-gray-50"
+              className="font-medium hover:text-blue-500 py-2 px-4 rounded-lg hover:bg-gray-50 w-full text-left bg-transparent border-none cursor-pointer"
             >
               What we offer{" "}
               <span>{arrow1 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
-            </a>
-            <a
-              href="#"
+            </button>
+            <button
               onClick={() => {
                 handleArrow2();
                 setMenuOpen(false);
               }}
-              className="font-medium hover:text-blue-500 py-2 px-4 rounded-lg hover:bg-gray-50"
+              className="font-medium hover:text-blue-500 py-2 px-4 rounded-lg hover:bg-gray-50 w-full text-left bg-transparent border-none cursor-pointer"
             >
               Who we serve{" "}
               <span>{arrow2 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
-            </a>
-            <Link to="/contactCodeEternity" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contact</Link>
+            </button>
+            <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contact</Link>
             {user && (
               <Link 
                 to="/dashboard" 
