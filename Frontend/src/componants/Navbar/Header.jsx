@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaArrowDown, FaArrowUp, FaBars, FaTimes } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import Logo from '../../assets/Logo.png';
 
@@ -76,7 +76,7 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
             Who we serve{" "}
             <span>{arrow2 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
           </a>
-          <a href="/contact" className="font-medium hover:text-blue-500">Contact</a>
+          <Link to="/contact" className="font-medium hover:text-blue-500">Contact</Link>
           {user && (
             <a href="/dashboard" className="font-medium hover:text-blue-500">Dashboard</a>
           )}
@@ -163,13 +163,7 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
               Who we serve{" "}
               <span>{arrow2 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
             </a>
-            <a 
-              href="/contact" 
-              onClick={() => setMenuOpen(false)}
-              className="font-medium hover:text-blue-500 py-2 px-4 rounded-lg hover:bg-gray-50"
-            >
-              Contact
-            </a>
+            <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contact</Link>
             {user && (
               <a 
                 href="/dashboard" 

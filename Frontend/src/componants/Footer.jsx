@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import {
   FaFacebookF,
@@ -39,7 +40,7 @@ const Footer = () => {
               <li><a href="/" className="hover:text-blue-400">Home</a></li>
               <li><a href="/about" className="hover:text-blue-400">About</a></li>
               <li><a href="/services" className="hover:text-blue-400">Services</a></li>
-              <li><a href="/contact" className="hover:text-blue-400">Contact</a></li>
+              <li><Link to="/contact" className="hover:text-blue-400">Contact</Link></li>
             </ul>
           </div>
 
@@ -69,7 +70,7 @@ const Footer = () => {
           <div className="flex flex-col gap-6">
             <h1 className="text-3xl font-bold">CodeEternity</h1>
             <p className="text-sm max-w-md">
-              Get the latest insights on today’s tech world delivered straight to your inbox.
+              Get the latest insights on today's tech world delivered straight to your inbox.
             </p>
 
             <div className="relative w-full">
