@@ -86,8 +86,8 @@ const WhyJoinCodeEternity = () => {
           <div className="mt-14 text-center">
             <a
               href="https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform"
-              target="_blank"
-              rel="noopener noreferrer"
+                target="_blank"
+    rel="noopener noreferrer"
               className="px-8 py-4 text-lg font-bold bg-orange-400 text-white rounded-full shadow-md transform transition duration-300 hover:bg-orange-600 hover:scale-105 hover:shadow-lg"
             >
               Apply Now
@@ -115,4 +115,4 @@ const Card = ({ icon, title, description }) => {
   );
 };
 
-export default WhyJoinCodeEternity; 
+export default WhyJoinCodeEternity;

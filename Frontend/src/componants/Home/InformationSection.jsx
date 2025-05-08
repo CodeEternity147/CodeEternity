@@ -1,81 +1,82 @@
 import React from 'react';
-import img1 from '../../assets/img1.svg';
-import img2 from '../../assets/img2.svg';
 
-const InformationSection = () => {
+import {
+  FaAward,
+  FaChartBar,
+  FaCheckCircle,
+  FaUsers,
+} from 'react-icons/fa';
+
+const FeatureCard = ({ icon, title, description }) => {
   return (
-    <>
-      <img
-        src={img1}
-        alt="Background"
-        className="w-full bg-[#fffbf4] h-auto object-cover"
-      />
-
-      <section className="py-16 bg-[#fffbf4] text-black">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-12">
-            Why Choose <span className="text-[#2750c4]">CodeEternity</span>?
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Left Column */}
-            <div className="space-y-8">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-semibold mb-4">Expert Mentorship</h3>
-                <p className="text-gray-600">
-                  Learn from industry experts who have years of experience in their respective fields.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-semibold mb-4">Real-World Projects</h3>
-                <p className="text-gray-600">
-                  Work on actual projects that will help you build a strong portfolio.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-semibold mb-4">Career Support</h3>
-                <p className="text-gray-600">
-                  Get guidance on resume building, interview preparation, and job search strategies.
-                </p>
-              </div>
-            </div>
-
-            {/* Right Column */}
-            <div className="space-y-8">
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-semibold mb-4">Flexible Learning</h3>
-                <p className="text-gray-600">
-                  Learn at your own pace with our flexible learning schedule.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-semibold mb-4">Community</h3>
-                <p className="text-gray-600">
-                  Join a community of like-minded individuals and grow together.
-                </p>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="text-2xl font-semibold mb-4">Industry Recognition</h3>
-                <p className="text-gray-600">
-                  Get certified by industry leaders and boost your career prospects.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <img
-        src={img2}
-        alt="Background"
-        className="w-full bg-[#fffbf4] h-auto object-cover"
-      />
-    </>
+    <div className=" p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+      <div className="text-[#b7790e]   text-3xl mb-4">{icon}</div>
+      <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
+      <p className="text-gray-600">{description}</p>
+    </div>
   );
 };
 
-export default InformationSection; 
+const InformationSection = () => {
+  return (
+    <section id="about" className="py-20  bg-[#fffbf4]  ">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">Why CodeEternity Stands Out</h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            A technology startup focused on shaping the future of software development.
+          </p>
+        </div>
+
+        <div className="flex flex-col lg:flex-row items-center mb-24 gap-10">
+  <div className="lg:w-1/2 space-y-6">
+    <h3 className="text-3xl font-bold text-gray-900 mb-4">Our Story</h3>
+    <p className="text-gray-700 text-lg leading-relaxed">
+      Founded in 2023, CodeEternity offers comprehensive IT services and unique internship opportunities to help businesses and individuals thrive in the digital world.
+    </p>
+    <p className="text-gray-700 text-lg leading-relaxed">
+      Our team includes experts from top tech firms like EY, HCL, and BYJU'S. We combine mentorship, real-time training, and cutting-edge solutions to deliver excellence.
+    </p>
+    <button className="mt-4 inline-block bg-orange-400 text-white font-medium py-2 px-6 rounded-full shadow-md hover:shadow-lg transition hover:scale-105 duration-300">
+      Know More
+    </button>
+  </div>
+
+  <div className="lg:w-1/2 relative group rounded-lg overflow-hidden shadow-xl">
+    <img
+      src="https://images.pexels.com/photos/3184325/pexels-photo-3184325.jpeg"
+      alt="Our team"
+      className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-500"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-blue-800 via-transparent to-transparent opacity-40 group-hover:opacity-60 transition duration-300 rounded-lg" />
+  </div>
+</div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <FeatureCard 
+            icon={<FaUsers />} 
+            title="Expert Team"
+            description="Seasoned professionals with deep industry knowledge and cutting-edge skills."
+          />
+          <FeatureCard 
+            icon={<FaCheckCircle />} 
+            title="Customized Solutions"
+            description="Personalized services tailored to meet your specific business needs."
+          />
+          <FeatureCard 
+            icon={<FaAward />} 
+            title="Proven Track Record"
+            description="Consistent delivery of results that drive efficiency and growth."
+          />
+          <FeatureCard 
+            icon={<FaChartBar />} 
+            title="Mentorship & Learning"
+            description="Internship programs offering real-world projects and expert guidance."
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default InformationSection;

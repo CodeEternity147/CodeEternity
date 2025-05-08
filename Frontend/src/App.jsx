@@ -37,7 +37,7 @@ function App() {
           } />
 
           {/* Route for ContactUs page */}
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/contactCodeEternity" element={<ContactPage />} />
 
           {/* Route for Login page */}
           <Route path="/login" element={<LoginPage />} />
