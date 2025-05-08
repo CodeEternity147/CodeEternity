@@ -5,12 +5,10 @@ import React from 'react';
 import { Route, Routes } from "react-router-dom";
 
 import DealSection from './componants/Home/DealSection';
-
-import Information from './componants/Home/Information';
-
+import InformationSection from './componants/Home/InformationSection';
 import IntegrationsSection from './componants/Home/IntegrationsSection';
 import StartupHero from './componants/Home/StartupHero';
-import WhyJoin from './componants/Home/WhyJoin';
+import WhyJoinCodeEternity from './componants/Home/WhyJoinCodeEternity';
 import MainLayout from './componants/MainLayout';
 import LoginPage from './componants/Pages/LoginPage';
 import Signup from './componants/Pages/Signup';
@@ -31,8 +29,8 @@ function App() {
             <MainLayout>
               <StartupHero />
               <TeamPaymentFeatures />
-              <WhyJoin />
-              <Information />
+              <WhyJoinCodeEternity />
+              <InformationSection />
               <IntegrationsSection />
               <DealSection />
             </MainLayout>
