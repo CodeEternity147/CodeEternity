@@ -11,7 +11,7 @@ import {
 
 import {
   serviceData,
-} from '../../data/ServiceData'; // Adjust the path as necessary
+} from '../../data/serviceData'; // Adjust the path as necessary
 
 const iconMap = {
   FaUsers: <FaUsers size={18} />,

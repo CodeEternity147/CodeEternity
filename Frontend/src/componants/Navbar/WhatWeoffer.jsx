@@ -1,62 +1,42 @@
-import React, { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import React from 'react';
 import data from '../../data/data'; // Adjust the path as necessary
-import ImgCard from './ImgCard';
-import RightCard from './RightCard';
 
-function WhatWeoffer() {
-  const { whatWeOffer } = data;
-  const [index, setIndex] = useState(0);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
-
+const WhatWeOffer = () => {
   return (
-    <div className="animate-fadeIn transition-opacity duration-500 ease-in-out flex flex-col lg:flex-row min-h-screen bg-[#f9fafb] relative z-40">
-      {/* Toggle Button (visible on small screens) */}
-      <button className="lg:hidden p-4 text-xl" onClick={toggleSidebar}>
-        {sidebarOpen ? <FaTimes /> : <FaBars />}
-      </button>
-
-      {/* Sidebar */}
-      <div
-        className={`bg-white shadow-md p-6 border-r border-gray-300 lg:static absolute top-16 left-0 z-50 w-64 transition-transform duration-300 ${
-          sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-        }`}
-      >
-        <h1 className="text-xl font-bold mb-4">What we offer</h1>
-        {whatWeOffer.map((item, i) => (
-          <div
-            key={i}
-            onClick={() => {
-              setIndex(item.index);
-              setSidebarOpen(false);
-            }}
-            className={`cursor-pointer p-3 rounded-md mb-2 hover:bg-blue-50 font-medium ${
-              index === item.index ? 'bg-blue-100 text-black' : ''
-            }`}
-            style={
-              index === item.index
-                ? { backgroundColor: item.iconBgColor, color: '#000' }
-                : {}
-            }
-          >
-            {item.name}
-          </div>
-        ))}
-      </div>
-
-      {/* Content Area */}
-      <div className="flex-1 p-6 grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-        <div className="lg:col-span-2">
-          <RightCard index={index} />
-        </div>
-        <div>
-          <ImgCard index={index} />
+    <div className="bg-white py-8 lg:ml-7 border-b border-gray-100">
+      <div className="container mx-auto px-4 max-w-full md:ml-4">
+        <div className="flex flex-wrap gap-8 justify-start">
+          {data.map((section, index) => (
+            <div key={index} className="flex mx-4 flex-col w-full sm:w-72 md:w-72">
+              <div className="hover:bg-blue-100 transition-colors duration-300 ease-in-out rounded-md p-2 mb-4 pb-2 border-b border-gray-200">
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-500">{section.icon}</span>
+                  <h3 className="text-xl font-semibold">{section.name}</h3>
+                </div>
+              </div>
+              <div className="font-medium text-gray-700">
+                {section.courses.map((course, idx) => (
+                  <div
+                    key={idx}
+                    className="hover:bg-orange-100 transition-colors duration-300 ease-in-out rounded-md p-2"
+                  >
+                    <div className="flex items-center">
+                      <h4 className="text-gray-900 font-semibold">{course.name}</h4>
+                    </div>
+                    {course.description && (
+                      <p className="text-gray-500 text-sm mt-0.5">
+                        {course.description}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default WhatWeoffer;
+export default WhatWeOffer;

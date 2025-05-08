@@ -4,11 +4,11 @@ import './index.css'; // Import Tailwind CSS
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
 
-import DeelSection from './componants/Home/DeelSection';
+import DealSection from './componants/Home/DealSection';
 import Information from './componants/Home/Information';
 import IntegrationsSection from './componants/Home/IntegrationsSection';
 import StartupHero from './componants/Home/StartupHero';
-import WhyJoinCodeEternity from './componants/Home/whyJoin';
+import WhyJoinCodeEternity from './componants/Home/WhyJoin';
 import Header from './componants/Navbar/Header';
 import MainLayout from './componants/MainLayout';
 import LoginPage from './componants/Pages/LoginPage';
@@ -33,7 +33,7 @@ function App() {
               <WhyJoinCodeEternity />
               <Information />
               <IntegrationsSection />
-              <DeelSection />
+              <DealSection />
             </MainLayout>
           } />
 
