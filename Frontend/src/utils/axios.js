@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with default config
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://temporary-9v8q.onrender.com/api',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -28,7 +28,7 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor
+// Response interceptor with retry logic
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
@@ -50,6 +50,21 @@ api.interceptors.response.use(
 
     // Handle server errors
     if (error.response.status >= 500) {
+      // Add retry logic for server errors
+      if (!originalRequest._retry) {
+        originalRequest._retry = true;
+        originalRequest.retryCount = (originalRequest.retryCount || 0) + 1;
+        
+        // Maximum 3 retries
+        if (originalRequest.retryCount <= 3) {
+          const delayRetry = new Promise(resolve => {
+            setTimeout(resolve, 1000 * originalRequest.retryCount);
+          });
+          
+          await delayRetry;
+          return api(originalRequest);
+        }
+      }
       return Promise.reject({
         message: 'Server error. Please try again later.'
       });
@@ -64,21 +79,5 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-// Add retry logic for failed requests
-api.interceptors.response.use(null, async (error) => {
-  const { config } = error;
-  if (!config || !config.retry) {
-    return Promise.reject(error);
-  }
-
-  config.retry -= 1;
-  const delayRetry = new Promise(resolve => {
-    setTimeout(resolve, config.retryDelay || 1000);
-  });
-
-  await delayRetry;
-  return api(config);
-});
 
 export default api;

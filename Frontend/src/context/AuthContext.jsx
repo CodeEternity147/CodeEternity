@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const response = await axios.get('http://localhost:5000/api/auth/verify', {
+      const response = await axios.get('https://temporary-9v8q.onrender.com/api/auth/verify', {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.data.valid && response.data.user) {
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', credentials);
+      const response = await axios.post('https://temporary-9v8q.onrender.com/api/auth/login', credentials);
       const { token, user } = response.data;
       localStorage.setItem('token', token);
       setUser(user);
