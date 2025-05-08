@@ -2,7 +2,7 @@ import React from "react";
 import img3 from "../../assets/img3.svg";
 import img4 from "../../assets/img4.svg";
 
-const WhyJoinCodeEternity = () => {
+const WhyJoin = () => {
   const cards = [
     {
       title: "Innovative Projects",
@@ -115,4 +115,4 @@ const Card = ({ icon, title, description }) => {
   );
 };
 
-export default WhyJoinCodeEternity;
+export default WhyJoin;
