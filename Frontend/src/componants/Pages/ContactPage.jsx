@@ -2,7 +2,7 @@
 import MainLayout from '../MainLayout'
 import ContactUs from '../ContactUs'
 import FAQSection from '../FAQSection'
-import DeelSection from '../Home/DeelSection'
+import DealSection from '../Home/DealSection'
 // ... existing code ...
 
 function ContactPage() {
@@ -10,7 +10,7 @@ function ContactPage() {
     <MainLayout>
       <ContactUs />
       <FAQSection />
-      <DeelSection />
+      <DealSection />
       
     </MainLayout>
   )
