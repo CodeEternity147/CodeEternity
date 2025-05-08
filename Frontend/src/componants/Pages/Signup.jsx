@@ -9,7 +9,6 @@ const Signup = () => {
     lastName: '',
     email: '',
     password: '',
-    confirmPassword: '',
     termsAccepted: false,
   });
   const [error, setError] = useState("");
@@ -30,10 +29,6 @@ const Signup = () => {
     
     if (!formData.termsAccepted) {
       setError("Please accept the Terms of Use and Privacy Policy to continue.");
-      return;
-    }
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match!");
       return;
     }
 
