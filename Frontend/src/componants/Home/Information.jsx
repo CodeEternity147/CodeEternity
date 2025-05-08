@@ -17,7 +17,7 @@ const FeatureCard = ({ icon, title, description }) => {
   );
 };
 
-const About = () => {
+const Information = () => {
   return (
     <section id="about" className="py-20  bg-[#fffbf4]  ">
       <div className="container mx-auto px-6">
@@ -79,4 +79,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Information;
