@@ -167,7 +167,7 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
               Who we serve{" "}
               <span>{arrow2 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
             </button>
-            <Link to="/contactCodeEternity" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contact</Link>
+            <Link to="/contactCodeEternity" className="block px-4 py-2 font-semibold text-black hover:bg-gray-100">Contact</Link>
             {user && (
               <Link 
                 to="/dashboard" 
