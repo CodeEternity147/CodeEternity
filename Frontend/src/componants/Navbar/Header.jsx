@@ -67,7 +67,7 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-6 absolute left-1/2 transform -translate-x-1/2">
-          <a href="/" className="font-medium hover:text-blue-500">Home</a>
+          <Link to="/" className="font-medium hover:text-blue-500">Home</Link>
           <a href="#" onClick={whatWeOffer} className="font-medium hover:text-blue-500">
             What we offer{" "}
             <span>{arrow1 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
@@ -78,7 +78,7 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
           </a>
           <Link to="/contact" className="font-medium hover:text-blue-500">Contact</Link>
           {user && (
-            <a href="/dashboard" className="font-medium hover:text-blue-500">Dashboard</a>
+            <Link to="/dashboard" className="font-medium hover:text-blue-500">Dashboard</Link>
           )}
         </nav>
 
@@ -134,13 +134,13 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
             ref={menuRef}
             className="fixed top-[calc(5rem+1.25rem)] left-[2.5%] right-[2.5%] bg-white shadow-lg rounded-xl p-4 md:hidden flex flex-col space-y-4 z-50 animate-slideDown"
           >
-            <a
-              href="/"
+            <Link
+              to="/"
               onClick={() => setMenuOpen(false)}
               className="font-medium hover:text-blue-500 py-2 px-4 rounded-lg hover:bg-gray-50"
             >
               Home
-            </a>
+            </Link>
             <a
               href="#"
               onClick={() => {
@@ -165,13 +165,13 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
             </a>
             <Link to="/contact" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Contact</Link>
             {user && (
-              <a 
-                href="/dashboard" 
+              <Link 
+                to="/dashboard" 
                 onClick={() => setMenuOpen(false)}
                 className="font-medium hover:text-blue-500 py-2 px-4 rounded-lg hover:bg-gray-50"
               >
                 Dashboard
-              </a>
+              </Link>
             )}
             <div className="border-t pt-4 mt-2">
               {!user ? (
