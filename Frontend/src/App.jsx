@@ -5,7 +5,7 @@ import React from 'react';
 import { Route, Routes } from "react-router-dom";
 
 import DeelSection from './componants/Home/DeelSection';
-import Information from './componants/Home/information';
+import Information from './componants/Home/Information';
 import IntegrationsSection from './componants/Home/IntegrationsSection';
 import StartupHero from './componants/Home/StartupHero';
 import WhyJoinCodeEternity from './componants/Home/whyJoin';
