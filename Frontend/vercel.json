@@ -11,24 +11,11 @@
   ],
   "routes": [
     {
-      "src": "/contact",
-      "dest": "/index.html"
+      "handle": "filesystem"
     },
     {
-      "src": "/about",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/services",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/dashboard",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/(.*)",
+      "src": "/.*",
       "dest": "/index.html"
     }
   ]
-} 
+}
