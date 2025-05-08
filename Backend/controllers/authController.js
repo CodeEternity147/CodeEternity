@@ -8,9 +8,6 @@ const validateEmail = (email) => {
   return re.test(email);
 };
 
-const validatePassword = (password) => {
-  return password.length >= 6;
-};
 
 export const register = async (req, res) => {
   try {
@@ -40,10 +37,6 @@ export const register = async (req, res) => {
       return res.status(400).json({ message: 'Invalid email format' });
     }
 
-    if (!validatePassword(password)) {
-      console.log('Password too short:', password.length);
-      return res.status(400).json({ message: 'Password must be at least 6 characters long' });
-    }
     
     // Check if user exists with the same email
     const userExists = await User.findOne({ email });
