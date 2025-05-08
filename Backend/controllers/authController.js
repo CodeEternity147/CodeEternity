@@ -14,7 +14,7 @@ const validatePassword = (password) => {
 
 export const register = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, role, dob } = req.body;
+    const { firstName, lastName, email, password } = req.body;
     
     // Input validation
     if (!firstName || !lastName || !email || !password) {
@@ -104,7 +104,7 @@ export const login = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const { firstName, lastName, dob } = req.body;
+    const { firstName, lastName, dob , } = req.body;
     
     // Input validation
     if (!firstName && !lastName && !dob) {
