@@ -18,3 +18,18 @@
 .animate-slideDown {
   animation: slideDown 0.2s ease-out;
 }
+
+@keyframes logoSlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
+}
+
+.logo-slider {
+  animation: logoSlide 20s linear infinite;
+  display: flex;
+  width: fit-content;
+}

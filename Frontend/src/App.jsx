@@ -19,6 +19,8 @@ import TeamPaymentFeatures from './componants/Home/TeamPaymentFeatures';
 import ContactPage from './componants/Pages/ContactPage';
 import ErrorBoundary from './componants/ErrorBoundary';
 import NotFound from './componants/NotFound';
+import WhatWeOffer from './componants/Pages/WhatWeOffer';
+
 
 function App() {
   return (
@@ -54,6 +56,10 @@ function App() {
               </ProtectedRoute>
             } 
           />
+
+          {/* Route for WhatWeOffer page */}
+          <Route path="/whatweoffer" element={<WhatWeOffer />} />
+
 
           {/* 404 Route - Must be last */}
           <Route path="*" element={<NotFound />} />

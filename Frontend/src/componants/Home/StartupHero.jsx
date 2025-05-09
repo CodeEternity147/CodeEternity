@@ -7,36 +7,52 @@ import msmeLogo from '../../assets/msme.png';
 import startupLogo from "../../assets/startup.png";
 import nsdcLogo from "../../assets/nsdc.png";
 import aicteLogo from "../../assets/aicte.png";
+import iso9001Logo from "../../assets/Iso9001.png";
 
 const companies = [
   { name: 'Tech Mahindra', logo: 'https://cdn.prod.website-files.com/65a11e98184e9d03348f2bc5/65a11e98184e9d03348f2d39_Tech_Mahindra_Logo%20BW%20PNG-min.png' },
   { name: 'HCL', logo: 'https://cdn.simpleicons.org/hcl/6B7280' },
   { name: 'Byju\'s', logo: 'https://cdn.simpleicons.org/byjus/6B7280' },
   { name: 'Paytm', logo: 'https://cdn.simpleicons.org/paytm/6B7280' },
+  {name:'collegedekho', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUYGmM7615qNY0D6h4GXeB7kUijOiIZCw7uw&s'},
   { name: 'EY', logo: 'https://1000logos.net/wp-content/uploads/2020/04/ernst-young-ey-logo.png' },
   { name: 'Deloitte', logo: 'https://energy-dialogues.com/wp-content/uploads/2019/03/gray-logo-deloitte.png' },
+  { name: 'Z', logo: 'https://i.pinimg.com/736x/e4/92/be/e492be62feff5fd29949f87e82e6d5ac.jpg' },
+  { name: 'TCS', logo: 'https://cdn.simpleicons.org/tcs/6B7280' },
+  {name : 'BookmyShow', logo: 'https://cdn.simpleicons.org/bookmyshow/6B7280'},
+  {name : 'celonis', logo: 'https://www.ecube.de/wp-content/uploads/2023/01/Celonis-Logo-grey.png'},
+  
+  
+
 ];
 
 const TrustedCompanies = () => {
   return (
-    <section className='bg-[#ffe27c] '>
+    <section className="bg-[#ffe27c] overflow-hidden py-8">
       <div className="text-center mb-6 text-gray-700 font-semibold text-sm uppercase tracking-wider">
         Industry-Backed Educators
       </div>
-      <div className="flex flex-wrap justify-center items-center gap-6 px-4">
-        {companies.map((company, index) => (
-          <div key={index} className="h-12 sm:h-14 md:h-16 w-32 flex items-center justify-center">
-            <img
-              src={company.logo}
-              alt={company.name}
-              className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-            />
-          </div>
-        ))}
+      <div className="w-full overflow-hidden">
+        <div className="logo-slider">
+          {[...companies, ...companies, ...companies].map((company, index) => (
+            <div
+              key={index}
+              className="h-12 sm:h-14 md:h-16 w-32 flex-shrink-0 flex items-center justify-center mx-4"
+            >
+              <img
+                src={company.logo}
+                alt={company.name}
+                className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
+
+
 
 const Hero = () => {
   return (
@@ -54,7 +70,11 @@ const Hero = () => {
                 Empowering Talents, Engineering Solutions
               </h1>
               <p className="text-base sm:text-lg text-gray-700 max-w-xl">
-                Our company proudly holds certifications from <strong>MSME</strong>, <strong>Start-up India</strong>, <strong>NSDC</strong>, and <strong>AICTE</strong>. We are committed to excellence, pioneering innovation, and enabling skill development at scale.
+              At our core, we empower your talents and engineer innovative 
+solutions, providing the training you need to turn your dreams into 
+reality. Our company proudly holds certifications from <strong>MSME</strong>, <strong>Start-up India</strong>, <strong>NSDC</strong>, and <strong>AICTE</strong>, reflecting our commitment to excellence 
+and pioneering innovation. Together, we cultivate skills and inspire 
+growth, making your aspirations our mission
               </p>
             </div>
 
@@ -70,9 +90,10 @@ const Hero = () => {
             </div>
 
             {/* Certificates Logos BELOW buttons */}
-            <div className="flex flex-wrap items-center gap-6 ">
+            <div className="flex flex-wrap mb-16 items-center gap-3 ">
               <img src={msmeLogo} alt="MSME" className="h-14 sm:h-16 md:h-20 w-auto object-contain" />
               <img src={startupLogo} alt="Startup India" className="h-14 sm:h-16 md:h-20 w-auto object-contain" />
+              <img src={iso9001Logo} alt="ISO 9001" className="h-14 sm:h-16 md:h-20 w-auto object-contain" />
               <img src={nsdcLogo} alt="NSDC" className="h-14 sm:h-16 md:h-20 w-auto object-contain" />
               <img src={aicteLogo} alt="AICTE" className="h-14 sm:h-16 md:h-20 w-auto object-contain" />
             </div>

@@ -6,24 +6,14 @@ import TransparentBox from './TransparentBox';
 import Footer from './Footer';
 
 const MainLayout = ({ children, showFooter = true }) => {
-  const [showOffer, setshowOffer] = useState(false);
   const [showServe, setshowServe] = useState(false);
 
   return (
     <div className="relative z-10 bg-[#fffaf4]">
       <Header
-        showOffer={showOffer}
-        setshowOffer={setshowOffer}
         showServe={showServe}
         setshowServe={setshowServe}
       />
-
-      {/* Dropdown Sections Below Header */}
-      {showOffer && (
-        <div className="w-[95%] pt-28 mx-auto mt-4 z-40 relative">
-          <WhatWeoffer />
-        </div>
-      )}
 
       {showServe && (
         <div className="w-[95%] pt-28 mx-auto mt-4 z-40 relative">

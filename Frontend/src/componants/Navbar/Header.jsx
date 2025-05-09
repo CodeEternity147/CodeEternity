@@ -5,7 +5,6 @@ import { useAuth } from "../../context/AuthContext";
 import Logo from '../../assets/Logo.png';
 
 function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
-  const [arrow1, setArrow1] = useState(true);
   const [arrow2, setArrow2] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -36,32 +35,23 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
   };
 
   const whatWeOffer = () => {
-    setArrow1(!arrow1);
-    setshowOffer(!showOffer);
 
-    if (!arrow2) {
-      setArrow2(true);
-      setshowServe(false);
-    }
+    navigate('/whatWeOffer');
+
   };
 
   const handleArrow2 = () => {
     setArrow2(!arrow2);
     setshowServe(!showServe);
-
-    if (!arrow1) {
-      setArrow1(true);
-      setshowOffer(false);
-    }
   };
 
   return (
     <>
-      <header className="px-6 py-4 w-[95%] mx-auto flex justify-between items-center shadow-md fixed top-5 left-0 right-0 z-50 bg-white backdrop-blur-md rounded-xl">
+      <header className="px-6 py-4  w-[95%] mx-auto flex justify-between items-center shadow-md fixed top-5 left-0 right-0 z-50 bg-white backdrop-blur-md rounded-xl">
         <img
           src={Logo}
           alt="CodeEternity Logo"
-          className="h-10 w-auto object-contain"
+          className="h-8 md:h-10 w-auto object-contain"
           style={{ maxHeight: '40px' }}
         />
 
@@ -73,7 +63,6 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
             className="font-medium hover:text-blue-500 bg-transparent border-none cursor-pointer"
           >
             What we offer{" "}
-            <span>{arrow1 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
           </button>
           <button 
             onClick={handleArrow2} 
@@ -82,10 +71,8 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
             Who we serve{" "}
             <span>{arrow2 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
           </button>
-          <Link to="/contact" className="font-medium hover:text-blue-500">Contact</Link>
-          {user && (
-            <Link to="/dashboard" className="font-medium hover:text-blue-500">Dashboard</Link>
-          )}
+          <Link to="/Careers" className="font-medium hover:text-blue-500">Careers</Link>
+          <Link to="/contactCodeEternity" className="font-medium hover:text-blue-500">Contact</Link>
         </nav>
 
         {/* Auth Buttons - Desktop */}
@@ -167,16 +154,8 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
               Who we serve{" "}
               <span>{arrow2 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
             </button>
-            <Link to="/contact" className="block px-4 py-2 font-bold text-sm text-gray-700 hover:bg-gray-100">Contact</Link>
-            {user && (
-              <Link 
-                to="/dashboard" 
-                onClick={() => setMenuOpen(false)}
-                className="font-medium hover:text-blue-500 py-2 px-4 rounded-lg hover:bg-gray-50"
-              >
-                Dashboard
-              </Link>
-            )}
+            <Link to="/Careers" className="block px-4 py-2 font-semibold text-black hover:bg-gray-100">Careers</Link>
+            <Link to="/contactCodeEternity" className="block px-4 py-2 font-semibold text-black hover:bg-gray-100">Contact</Link>
             <div className="border-t pt-4 mt-2">
               {!user ? (
                 <div className="flex flex-col space-y-3">

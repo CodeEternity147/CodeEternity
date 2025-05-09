@@ -1,89 +1,194 @@
-import React from 'react';
-
-const features = [
-  {
-    title: ['Automate', 'contractor invoices'],
-    icon: (
-      <svg className="w-16 h-16" viewBox="0 0 100 100" fill="none">
-        <path d="M20 50L50 20L80 50L50 80L20 50Z" fill="#D6E8FF" />
-        <path d="M30 50L50 30L70 50L50 70L30 50Z" fill="#005AE0" />
-      </svg>
-    ),
-  },
-  {
-    title: ['Pay everyone with', 'one bulk payment'],
-    icon: (
-      <svg className="w-16 h-16" viewBox="0 0 100 100" fill="none">
-        <circle cx="50" cy="50" r="35" fill="#D6E8FF" />
-        <circle cx="50" cy="40" r="15" fill="#0047AB" />
-        <path d="M25 70C25 57.3 36.3 47 50 47C63.7 47 75 57.3 75 70" fill="#0047AB" />
-      </svg>
-    ),
-  },
-  {
-    title: ['5+ flexible', 'payment methods'],
-    icon: (
-      <svg className="w-16 h-16" viewBox="0 0 100 100" fill="none">
-        <circle cx="50" cy="45" r="25" fill="#D6E8FF" />
-        <circle cx="50" cy="45" r="20" fill="#D6E8FF" stroke="#0047AB" strokeWidth="3" />
-        <circle cx="50" cy="45" r="15" fill="white" stroke="#0047AB" strokeWidth="2" />
-        <path d="M50 35V45H60" stroke="#0047AB" strokeWidth="2" />
-        <circle cx="50" cy="65" r="20" fill="#D6E8FF" stroke="#0047AB" strokeWidth="3" />
-        <path d="M45 65H55" stroke="#0047AB" strokeWidth="2" />
-      </svg>
-    ),
-  },
-  {
-    title: ['We handle all', 'taxes, social contributions'],
-    icon: (
-      <svg className="w-16 h-16" viewBox="0 0 100 100" fill="none">
-        <path d="M20 70H80V30H20V70Z" fill="#D6E8FF" />
-        <path d="M25 30H75V25H25V30Z" fill="#0047AB" />
-        <path d="M30 70H70V75H30V70Z" fill="#0047AB" />
-        <rect x="30" y="35" width="5" height="30" fill="#0047AB" />
-        <rect x="45" y="35" width="5" height="30" fill="#0047AB" />
-        <rect x="60" y="35" width="5" height="30" fill="#0047AB" />
-      </svg>
-    ),
-  },
-  {
-    title: ['Track expenses,', 'bonuses, allowances'],
-    icon: (
-      <svg className="w-16 h-16" viewBox="0 0 100 100" fill="none">
-        <path d="M30 40C30 31.7 36.7 25 45 25H55C63.3 25 70 31.7 70 40V70C70 78.3 63.3 85 55 85H45C36.7 85 30 78.3 30 70V40Z" fill="#D6E8FF" />
-        <path d="M30 45H70" stroke="#0047AB" strokeWidth="2" />
-        <circle cx="65" cy="35" r="5" fill="#0047AB" />
-        <circle cx="55" cy="35" r="5" fill="#0047AB" />
-      </svg>
-    ),
-  },
-];
+import React, { useState, useRef, useEffect } from 'react';
+import features from '../../data/FeatureData';
 
 const TeamPaymentFeatures = () => {
+  const [startIdx, setStartIdx] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(3);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const intervalRef = useRef(null);
+  const totalItems = features.length;
+  const [isVisible, setIsVisible] = useState(false);
+
+  const getCount = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth < 640) return Math.min(1, totalItems);
+      if (window.innerWidth < 768) return Math.min(2, totalItems);
+      if (window.innerWidth < 1024) return Math.min(3, totalItems);
+      if (window.innerWidth < 1280) return Math.min(4, totalItems);
+    }
+    return Math.min(5, totalItems);
+  };
+
+  useEffect(() => {
+    setVisibleCount(getCount());
+    const handleResize = () => setVisibleCount(getCount());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [totalItems]);
+
+  useEffect(() => {
+    if (!isHovered) {
+      intervalRef.current = setInterval(() => {
+        handleAdvance();
+      }, 2500); // Slightly longer interval for smoother experience
+    }
+    return () => clearInterval(intervalRef.current);
+  }, [isHovered, totalItems]);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const handleAdvance = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setStartIdx((prev) => (prev + 1) % totalItems);
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 100);
+    }, 500);
+  };
+
+  const handleDotClick = (idx) => {
+    if (startIdx === idx) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setStartIdx(idx);
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 100);
+    }, 300);
+  };
+
+  const getVisibleFeatures = () => {
+    const arr = [];
+    for (let i = 0; i < visibleCount; i++) {
+      arr.push(features[(startIdx + i) % totalItems]);
+    }
+    return arr;
+  };
+  const visibleFeatures = getVisibleFeatures();
+
   return (
-    <section className="bg-[#FFF8F0] py-16 px-4">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-snug">
-        CodeEternity helps you <br />
-        <span className="text-blue-700">build faster, together</span>
-        </h1>
-        <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-        Empower your dev team with efficient task management, bulk sync, and total control over collaboration tools.        </p>
+    <section className="bg-gradient-to-b from-[#FFF8F0] to-[#F9F4FF] py-16 w-full overflow-hidden">
+      <div className={`text-center mb-12 px-4 py-8 transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-xl transform -rotate-1 scale-105"></div>
+          <div className="relative z-10 py-2 px-4">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-800">Code</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-purple-700">Eternity</span>
+              <div className="mt-1">
+                <span className="relative inline-block mr-2">
+                  <span className="relative text-indigo-700 z-10">Help you to Build</span>
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-indigo-200 rounded-md -z-10 transform -rotate-1"></span>
+                </span>
+                <span className="text-gray-800">Faster,</span>
+                <span className="relative inline-block ml-2">
+                  <span className="relative text-purple-700 z-10">Together</span>
+                  <span className="absolute bottom-0 left-0 w-full h-1 bg-purple-200 rounded-md -z-10 transform rotate-1"></span>
+                </span>
+              </div>
+            </h1>
+            
+            <p className="text-gray-600 max-w-2xl mx-auto mt-6 text-sm sm:text-base md:text-lg">
+              <span className="font-medium">Empowering businesses</span> with cutting-edge technology solutions and <span className="font-medium">digital transformation</span> services.
+            </p>
+            
+            <div className="mt-6 flex justify-center space-x-2">
+              <div className="h-1 w-16 rounded-full bg-indigo-300"></div>
+              <div className="h-1 w-8 rounded-full bg-purple-400"></div>
+              <div className="h-1 w-4 rounded-full bg-pink-300"></div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
-        {features.map((feature, idx) => (
-          <div
+      <div
+        className="relative px-4 sm:px-6 overflow-visible"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div
+          className={`flex justify-center items-stretch gap-3 md:gap-6 transition-all duration-400 ease-out w-full ${
+            isTransitioning ? "opacity-0 transform scale-95" : "opacity-100 transform scale-100"
+          }`}
+        >
+          {visibleFeatures.map((feature, idx) => (
+            <div
+              key={`${feature.title}-${idx}`}
+              className="flex flex-col justify-end items-center shadow-xl hover:shadow-2xl transition-all duration-500 ease-out transform hover:scale-105 group relative"
+              style={{
+                borderRadius: '24px',
+                minWidth: 0,
+                width: `calc(100%/${visibleCount} - 1rem)`,
+                aspectRatio: '1 / 1.2',
+                backgroundImage: `linear-gradient(to top, rgba(17,24,39,0.7), rgba(17,24,39,0.1)), url('${feature.image}')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                overflow: 'hidden',
+                boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+              }}
+            >
+              {/* Top shine effect */}
+              <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/20 to-transparent"></div>
+              
+              {/* Border glow on hover - more subtle */}
+              <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                <div className="absolute inset-0 rounded-3xl border-2 border-blue-400/40 blur"></div>
+                <div className="absolute inset-0 rounded-3xl border border-blue-300/20"></div>
+              </div>
+              
+              {/* Overlay animation */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 opacity-0 group-hover:opacity-15 transition-opacity duration-500"></div>
+              
+              {/* Floating indicator at top */}
+              <div className="absolute top-4 right-4 w-3 h-3 rounded-full bg-blue-400/80 shadow-lg shadow-blue-400/50 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+              
+              {/* Particle effect on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500">
+                <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white rounded-full animate-ping"></div>
+                <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-white rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
+                <div className="absolute bottom-1/3 left-1/2 w-2 h-2 bg-white rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+                <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-white rounded-full animate-ping" style={{animationDelay: '1.5s'}}></div>
+              </div>
+              
+              {/* Content - with fixed heights for consistent sizing */}
+              <div className="p-4 sm:p-6 text-white text-center w-full backdrop-blur-[2px] rounded-b-3xl transition-all duration-500 bg-gradient-to-t from-black/60 via-black/40 to-black/10 group-hover:bg-gradient-to-t group-hover:from-black/70 group-hover:to-black/20 group-hover:p-6" style={{ minHeight: '180px' }}>
+                <div className="relative">
+                  {/* Icon above title */}
+                  <div className="w-10 h-10 mx-auto mb-3 flex items-center justify-center rounded-full bg-blue-500/20 border border-blue-400/30 group-hover:bg-blue-500/30 transition-all duration-500">
+                    <div className="w-5 h-5 bg-blue-400/90 rounded-md transform rotate-45 group-hover:rotate-[135deg] transition-all duration-700"></div>
+                  </div>
+                  
+                  <h2 className="text-xl font-bold  group-hover:text-blue-300 transition-all duration-300 transform group-hover:-translate-y-1 h-[50px] flex items-center justify-center">
+                    {feature.title}
+                  </h2>
+                  
+                  <p className=" text-gray-200 group-hover:text-white transition-all duration-500 transform opacity-90 group-hover:opacity-100 h-[60px] overflow-hidden">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dots Navigation - Enhanced */}
+      <div className="flex justify-center mt-8 gap-3">
+        {features.map((_, idx) => (
+          <button
             key={idx}
-            className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md p-6 flex flex-col items-center text-center transition-transform hover:scale-[1.03]"
-          >
-            <div className="mb-4">{feature.icon}</div>
-            {feature.title.map((line, i) => (
-              <h3 key={i} className="text-gray-800 font-medium text-[15px] leading-tight">
-                {line}
-              </h3>
-            ))}
-          </div>
+            onClick={() => handleDotClick(idx)}
+            className={`transition-all duration-500 ${
+              startIdx % totalItems === idx 
+                ? 'w-6 h-3 bg-purple-600 rounded-full scale-110 shadow-md shadow-indigo-300' 
+                : 'w-3 h-3 bg-gray-400 hover:bg-gray-600 rounded-full hover:scale-110'
+            }`}
+            aria-label={`Go to feature ${idx + 1}`}
+          />
         ))}
       </div>
     </section>
