@@ -144,7 +144,6 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
               className="font-medium hover:text-blue-500 py-2 px-4 rounded-lg hover:bg-gray-50 w-full text-left bg-transparent border-none cursor-pointer"
             >
               What we offer{" "}
-              <span>{arrow1 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
             </button>
             <button
               onClick={() => {
