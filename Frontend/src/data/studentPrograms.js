@@ -49,7 +49,7 @@ const studentPrograms = [
     },
     {
       title: 'Technology Skills Program',
-      description: 'Master essential technology skills for the digital age.',
+      description: 'Master essential technology skills for the digital age of today',
       image: 'https://img.freepik.com/free-vector/computer-technology-isometric-concept_1284-17390.jpg',
       features: [
         'Digital Literacy',

@@ -9,71 +9,26 @@ import cors from 'cors';
 import User from './models/User.js';
 
 dotenv.config();
-connectDB();
 
 const app = express();
+
+// Connect to MongoDB
+connectDB();
 
 // Security middleware
 securityMiddleware(app);
 
 // Body parser
-app.use(express.json({ limit: '10kb' })); // Limit body size
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Request logging middleware
-app.use((req, res, next) => {
-  console.log('Incoming request:', {
-    method: req.method,
-    path: req.path,
-    body: req.body,
-    headers: {
-      'content-type': req.headers['content-type'],
-      'origin': req.headers['origin']
-    }
-  });
-  next();
-});
-
-// CORS configuration - Updated
-app.use(cors({
-  origin: true, // This will reflect the request origin
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  allowedHeaders: [
-    'Content-Type',
-    'Authorization',
-    'X-Requested-With',
-    'Accept',
-    'Origin',
-    'Access-Control-Allow-Origin',
-    'Access-Control-Allow-Credentials'
-  ],
-  exposedHeaders: ['Content-Range', 'X-Content-Range'],
-  maxAge: 86400 // 24 hours
-}));
-
-// Additional CORS headers for preflight requests
-app.options('*', cors({
-  origin: true,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  allowedHeaders: [
-    'Content-Type',
-    'Authorization',
-    'X-Requested-With',
-    'Accept',
-    'Origin',
-    'Access-Control-Allow-Origin',
-    'Access-Control-Allow-Credentials'
-  ]
-}));
-
+app.use(cors());
 // Routes
 app.use('/api/auth', authRoutes);
 
 // Token verification endpoint
 app.get('/api/auth/verify', authenticateToken, async (req, res) => {
   try {
-    // Get the complete user data from the database
     const user = await User.findById(req.user.id).select('firstName lastName email role dob');
     if (!user) {
       return res.status(404).json({ valid: false, message: 'User not found' });
@@ -84,10 +39,13 @@ app.get('/api/auth/verify', authenticateToken, async (req, res) => {
   }
 });
 
-// Error Handler
+// Error handling
 app.use(errorHandler);
 
+// Start server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 

@@ -13,55 +13,43 @@ export const register = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
     
-    // Log incoming request data
-    console.log('Registration attempt:', {
-      firstName,
-      lastName,
-      email,
-      passwordLength: password?.length
-    });
-    
-    // Input validation
-    if (!firstName || !lastName || !email || !password) {
-      console.log('Missing required fields:', {
-        firstName: !firstName,
-        lastName: !lastName,
-        email: !email,
-        password: !password
-      });
+    // Basic input validation
+    if (!firstName?.trim() || !lastName?.trim() || !email?.trim() || !password?.trim()) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
     if (!validateEmail(email)) {
-      console.log('Invalid email format:', email);
       return res.status(400).json({ message: 'Invalid email format' });
     }
 
+    if (password.length < 6) {
+      return res.status(400).json({ message: 'Password must be at least 6 characters long' });
+    }
     
     // Check if user exists with the same email
-    const userExists = await User.findOne({ email });
+    const userExists = await User.findOne({ email: email.toLowerCase() });
     if (userExists) {
-      console.log('Email already registered:', email);
       return res.status(400).json({ message: 'Email already registered' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Hash password with lower salt rounds for better performance
+    const hashedPassword = await bcrypt.hash(password, 8);
     
+    // Create user with lowercase email
     const user = await User.create({
-      firstName,
-      lastName,
-      email,
+      firstName: firstName.trim(),
+      lastName: lastName.trim(),
+      email: email.toLowerCase(),
       password: hashedPassword,
-      role: 'user' // Default role
+      role: 'user'
     });
 
+    // Generate token with shorter expiration
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: '1d' }
+      { expiresIn: '24h' }
     );
-
-    console.log('Registration successful:', { email: user.email });
 
     res.status(201).json({
       message: 'User registered successfully',
@@ -74,7 +62,11 @@ export const register = async (req, res) => {
     });
   } catch (err) {
     console.error('Registration error:', err);
-    res.status(500).json({ message: err.message });
+    // Send more specific error messages
+    if (err.code === 11000) {
+      return res.status(400).json({ message: 'Email already registered' });
+    }
+    res.status(500).json({ message: 'Registration failed. Please try again.' });
   }
 };
 

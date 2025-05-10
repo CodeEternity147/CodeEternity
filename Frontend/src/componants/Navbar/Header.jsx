@@ -72,9 +72,6 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
             <span>{arrow2 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
           </button>
           <Link to="/contactCodeEternity" className="font-medium hover:text-blue-500">Contact</Link>
-          {user && (
-            <Link to="/dashboard" className="font-medium hover:text-blue-500">Dashboard</Link>
-          )}
         </nav>
 
         {/* Auth Buttons - Desktop */}
@@ -156,15 +153,7 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
               <span>{arrow2 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
             </button>
             <Link to="/contactCodeEternity" className="block px-4 py-2 font-semibold text-black hover:bg-gray-100">Contact</Link>
-            {user && (
-              <Link 
-                to="/dashboard" 
-                onClick={() => setMenuOpen(false)}
-                className="font-medium hover:text-blue-500 py-2 px-4 rounded-lg hover:bg-gray-50"
-              >
-                Dashboard
-              </Link>
-            )}
+
             <div className="border-t pt-4 mt-2">
               {!user ? (
                 <div className="flex flex-col space-y-3">

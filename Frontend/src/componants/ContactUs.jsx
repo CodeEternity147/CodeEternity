@@ -25,7 +25,7 @@ export default function ContactUs() {
 
   return (
     <>
-      <section className="relative bg-[#c4b1f9] flex flex-col mt-28 md:flex-row min-h-screen overflow-hidden">
+      <section className="relative bg-[#c4b1f9] flex flex-col mt-28 pb-10 md:flex-row min-h-screen overflow-hidden">
         {/* SVG Background */}
         <img
           src={img7}

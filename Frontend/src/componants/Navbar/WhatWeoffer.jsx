@@ -11,6 +11,7 @@ function WhatWeOfferContent() {
   const [activeTab, setActiveTab] = useState('training');
   const [selectedItem, setSelectedItem] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [expandedPrograms, setExpandedPrograms] = useState({});
 
   useEffect(() => {
     setIsVisible(true);
@@ -29,6 +30,13 @@ function WhatWeOfferContent() {
     { id: 'placement', label: 'Placement Programs', icon: <Briefcase size={18} /> },
     { id: 'career', label: 'Career Development', icon: <TrendingUp size={18} /> }
   ];
+
+  const toggleFeatures = (programIndex) => {
+    setExpandedPrograms(prev => ({
+      ...prev,
+      [programIndex]: !prev[programIndex]
+    }));
+  };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -268,7 +276,7 @@ function WhatWeOfferContent() {
                       <p className="text-gray-600 mb-5">{program.description}</p>
 
                       <div className="space-y-3 mb-6">
-                        {program.features.slice(0, 3).map((feature, idx) => (
+                        {program.features.slice(0, expandedPrograms[index] ? program.features.length : 3).map((feature, idx) => (
                           <div key={idx} className="flex items-start text-gray-700">
                             <div className="mt-1 bg-emerald-100 text-emerald-600 p-1 rounded-full mr-3">
                               <Check size={12} />
@@ -307,7 +315,7 @@ function WhatWeOfferContent() {
         return (
           <div className={`transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="relative mb-24">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-indigo-900 skew-y-3 transform origin-top-left rounded-3xl -z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-900 to-purple-500 skew-y-3 transform origin-top-left rounded-3xl -z-10"></div>
               <div className="container mx-auto px-6 py-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
                   <div>
@@ -386,7 +394,7 @@ function WhatWeOfferContent() {
                       <p className="text-gray-600 mb-6 text-sm">{program.description}</p>
 
                       <div className="space-y-2 mb-6">
-                        {program.features.slice(0, 3).map((feature, idx) => (
+                        {program.features.slice(0, expandedPrograms[index] ? program.features.length : 3).map((feature, idx) => (
                           <div key={idx} className="flex items-start text-gray-700">
                             <div className="mt-1 bg-blue-100 text-blue-600 p-1 rounded-full mr-3">
                               <Check size={12} />
@@ -396,9 +404,15 @@ function WhatWeOfferContent() {
                         ))}
                         <div className="flex justify-between items-center">
                           {program.features.length > 3 && (
-                            <div className="text-blue-600 font-medium text-sm mt-2 flex items-center cursor-pointer hover:text-blue-800 transition-colors">
-                              +{program.features.length - 3} more features
-                              <ChevronRight size={16} className="ml-1" />
+                            <div 
+                              onClick={() => toggleFeatures(index)}
+                              className="text-blue-600 font-medium text-sm mt-2 flex items-center cursor-pointer hover:text-blue-800 transition-colors"
+                            >
+                              {expandedPrograms[index] ? 'Show Less' : `+${program.features.length - 3} more features`}
+                              <ChevronRight 
+                                size={16} 
+                                className={`ml-1 transition-transform duration-300 ${expandedPrograms[index] ? 'rotate-90' : ''}`}
+                              />
                             </div>
                           )}
                           <button className="bg-blue-600 text-white py-2 px-4 rounded-xl font-medium hover:bg-blue-700 transition-colors text-sm">
@@ -432,25 +446,48 @@ function WhatWeOfferContent() {
         </div>
       </div>
 
-      {/* Tabs Section */}
-      <div className="max-w-4xl mx-auto px-4 mb-12">
-        <div className="bg-white p-2 rounded-2xl shadow-lg flex justify-between">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 text-sm sm:text-md md:text-xl font-bold py-4 px-6 rounded-xl font-medium transition-all duration-300 flex items-center justify-center space-x-2 ${
-                activeTab === tab.id
-                  ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg'
-                  : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <span className={activeTab === tab.id ? 'text-white' : 'text-blue-500'}>{tab.icon}</span>
-              <span>{tab.label}</span>
-            </button>
-          ))}
-        </div>
-      </div>
+  {/* Tabs Section */}
+<div className="w-[95%] sm:w-[90%] md:w-[85%] lg:max-w-4xl mx-auto px-2 sm:px-4 mb-8 sm:mb-12">
+  <div className="bg-gradient-to-br from-indigo-50 to-purple-100 p-3 sm:p-4 rounded-2xl sm:rounded-3xl shadow-xl flex flex-wrap sm:flex-nowrap justify-between gap-3 sm:gap-4 border border-indigo-100">
+    {tabs.map((tab, index) => (
+      <button
+        key={tab.id}
+        onClick={() => setActiveTab(tab.id)}
+        className={`
+          ${index === 2 ? 'w-1/2 mx-auto mt-2 sm:mt-0 sm:mx-0 sm:w-auto sm:flex-1' : 'w-[48%] sm:w-auto sm:flex-1'}
+          text-xs sm:text-sm md:text-base lg:text-lg font-medium py-3 sm:py-4 px-2 sm:px-4 md:px-6 
+          rounded-xl transition-all duration-500 flex items-center justify-center 
+          space-x-2 sm:space-x-3 overflow-hidden relative group
+          ${
+            activeTab === tab.id
+              ? tab.id === 'training'
+                ? 'bg-gradient-to-r from-purple-900 to-blue-800 text-white shadow-lg'
+                : tab.id === 'placement'
+                  ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg'
+                  : 'bg-gradient-to-r from-purple-800 to-purple-600 text-white shadow-lg'
+              : 'bg-white/90 text-gray-700 hover:shadow-md hover:translate-y-1 hover:bg-white'
+          }
+        `}
+      >
+        {activeTab === tab.id && (
+          <span className="absolute inset-0 bg-white/20 animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        )}
+        <span className={`text-base sm:text-lg md:text-xl relative z-10 transition-transform duration-300 group-hover:scale-110 ${
+          activeTab === tab.id
+            ? 'text-white'
+            : tab.id === 'training'
+              ? 'text-blue-500 group-hover:text-blue-600'
+              : tab.id === 'placement'
+                ? 'text-emerald-500 group-hover:text-emerald-600'
+                : 'text-purple-500 group-hover:text-purple-600'
+        }`}>{tab.icon}</span>
+        <span className={`whitespace-nowrap font-semibold relative z-10 transition-all duration-300 group-hover:font-bold ${
+          activeTab === tab.id ? 'text-white' : 'text-gray-800'
+        }`}>{tab.label}</span>
+      </button>
+    ))}
+  </div>
+</div>
 
       {/* Content Section */}
       <div className="max-w-7xl mx-auto px-4">

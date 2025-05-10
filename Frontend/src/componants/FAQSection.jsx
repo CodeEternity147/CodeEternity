@@ -8,12 +8,12 @@ const FAQItem = ({ question, answer, isOpen = false, toggleOpen }) => {
     return (
       <div className="border-t border-gray-300">
         <button
-          className="flex justify-between items-center w-full py-6 text-left focus:outline-none hover:bg-gray-100 transition-colors duration-300 px-2 rounded-md"
+          className="flex justify-between items-center w-full py-4 sm:py-6 text-left focus:outline-none hover:bg-gray-100 transition-colors duration-300 px-2 sm:px-4 rounded-md"
           onClick={toggleOpen}
         >
-          <h3 className="text-[23px] text-black font-semibold">{question}</h3>
-          <div className="bg-black rounded-full p-1 text-white hover:bg-gray-800 transition-colors duration-300">
-            {isOpen ? <FiMinus size={20} /> : <FiPlus size={20} />}
+          <h3 className="text-lg sm:text-xl md:text-[23px] text-black font-semibold pr-4">{question}</h3>
+          <div className="bg-black rounded-full p-1 text-white hover:bg-gray-800 transition-colors duration-300 flex-shrink-0">
+            {isOpen ? <FiMinus size={18} className="sm:w-5 sm:h-5" /> : <FiPlus size={18} className="sm:w-5 sm:h-5" />}
           </div>
         </button>
   
@@ -26,7 +26,7 @@ const FAQItem = ({ question, answer, isOpen = false, toggleOpen }) => {
               transition={{ duration: 0.3 }}
               className="overflow-hidden"
             >
-              <div className="pb-6 px-3 text-[19px] text-gray-700 leading-relaxed bg-[#fffaf4] rounded-md shadow-sm">
+              <div className="pb-4 sm:pb-6 px-2 sm:px-3 text-base sm:text-[19px] text-gray-700 leading-relaxed bg-[#fffaf4] rounded-md shadow-sm">
                 {answer}
               </div>
             </motion.div>
@@ -115,22 +115,25 @@ export default function FAQSection() {
   }
 
   return (
-    <div className="flex flex-col m-32 md:flex-row gap-8">
-  <div className="md:w-1/4 mb-6 md:mb-0">
-    <h2 className="text-5xl font-bold text-gray-800">FAQs</h2>
-  </div>
-  <div className="md:w-[80%]">
-    {faqs.map((faq, index) => (
-      <FAQItem
-        key={index}
-        question={faq.question}
-        answer={faq.answer}
-        isOpen={index === openIndex}
-        toggleOpen={() => toggleFAQ(index)}
-      />
-    ))}
-  </div>
-</div>
-
+    <div className="flex flex-col px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-32">
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8">
+          <div className="md:w-1/4 mb-4 md:mb-0">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">FAQs</h2>
+          </div>
+          <div className="md:w-[80%]">
+            {faqs.map((faq, index) => (
+              <FAQItem
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={index === openIndex}
+                toggleOpen={() => toggleFAQ(index)}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
