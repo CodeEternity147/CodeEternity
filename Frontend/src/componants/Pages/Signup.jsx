@@ -61,8 +61,17 @@ const Signup = () => {
       }
     } catch (error) {
       console.error('Registration error:', error);
-      setError(error.response?.data?.message || 'Registration failed. Please try again.');
+    
+      // If the server sent a message, show it. Otherwise, show a generic message.
+      const backendMessage =
+        error.response?.data?.message ||         // Custom backend error
+        error.response?.data?.error ||           // Alternate error key
+        error.message ||                         // Axios or network error
+        'Registration failed. Please try again.'; // Fallback message
+    
+      setError(backendMessage);
     }
+    
   };
 
   return (
