@@ -38,9 +38,8 @@ const Footer = () => {
             <h3 className="text-2xl font-bold mb-5">Quick Links</h3>
             <ul className="space-y-3 text-sm">
               <li><Link to="/" className="hover:text-blue-400">Home</Link></li>
-              <li><Link to="/about" className="hover:text-blue-400">About</Link></li>
-              <li><Link to="/services" className="hover:text-blue-400">Services</Link></li>
-              <li><Link to="/contact" className="hover:text-blue-400">Contact</Link></li>
+              <li><Link to="/whatWeOffer" className="hover:text-blue-400">Services</Link></li>
+              <li><Link to="/contactCodeEternity" className="hover:text-blue-400">Contact</Link></li>
             </ul>
           </div>
 
@@ -56,10 +55,18 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl font-bold mb-5">Follow Us</h3>
             <div className="flex space-x-4 text-lg text-[#faf4ee]">
-              <FaFacebookF className="hover:text-blue-400 cursor-pointer" />
-              <FaXTwitter className="hover:text-blue-400 cursor-pointer" />
-              <FaLinkedinIn className="hover:text-blue-400 cursor-pointer" />
-              <FaInstagram className="hover:text-blue-400 cursor-pointer" />
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+    <FaFacebookF className="hover:text-blue-400 cursor-pointer" />
+  </a>
+  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+    <FaXTwitter className="hover:text-blue-400 cursor-pointer" />
+  </a>
+  <a href="https://www.linkedin.com/company/codeeternity/" target="_blank" rel="noopener noreferrer">
+    <FaLinkedinIn className="hover:text-blue-400 cursor-pointer" />
+  </a>
+  <a href="https://www.instagram.com/code__eternity/" target="_blank" rel="noopener noreferrer">
+    <FaInstagram className="hover:text-blue-400 cursor-pointer" />  
+    </a>
             </div>
           </div>
         </div>
@@ -89,10 +96,18 @@ const Footer = () => {
             </p>
 
             <div className="flex space-x-4 text-lg">
-              <FaXTwitter className="hover:text-blue-400 cursor-pointer" />
-              <FaLinkedinIn className="hover:text-blue-400 cursor-pointer" />
-              <FaFacebookF className="hover:text-blue-400 cursor-pointer" />
-              <FaInstagram className="hover:text-blue-400 cursor-pointer" />
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+    <FaFacebookF className="hover:text-blue-400 cursor-pointer" />
+  </a>
+  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+    <FaXTwitter className="hover:text-blue-400 cursor-pointer" />
+  </a>
+  <a href="https://www.linkedin.com/company/codeeternity/" target="_blank" rel="noopener noreferrer">
+    <FaLinkedinIn className="hover:text-blue-400 cursor-pointer" />
+  </a>
+  <a href="https://www.instagram.com/code__eternity/" target="_blank" rel="noopener noreferrer">
+    <FaInstagram className="hover:text-blue-400 cursor-pointer" />
+  </a>
             </div>
           </div>
 
@@ -100,8 +115,8 @@ const Footer = () => {
           <div className="flex flex-col gap-6 text-sm">
             <h3 className="text-lg font-semibold">Explore</h3>
             <div className="grid grid-cols-2 gap-x-6 gap-y-2">
-              <a href="#" className="hover:text-blue-400">About Us</a>
-              <a href="#" className="hover:text-blue-400">Careers</a>
+              <a href="/whatWeOffer" className="hover:text-blue-400">About Us</a>
+              <a href="/career" className="hover:text-blue-400">Careers</a>
               <a href="#" className="hover:text-blue-400">G2 Customer Reviews</a>
               <a href="#" className="hover:text-blue-400">Press & Media</a>
               <a href="#" className="hover:text-blue-400">Pricing</a>
@@ -133,7 +148,6 @@ const Footer = () => {
             <a href="#" className="hover:text-[#faf4ee]">Disclaimer</a>
             <a href="#" className="hover:text-[#faf4ee]">Privacy Policy</a>
             <a href="#" className="hover:text-[#faf4ee]">Legal Hub</a>
-            <a href="#" className="hover:text-[#faf4ee]">Whistleblower Policy</a>
           </div>
         </div>
       </footer>

@@ -20,6 +20,7 @@ import ContactPage from './componants/Pages/ContactPage';
 import ErrorBoundary from './componants/ErrorBoundary';
 import NotFound from './componants/NotFound';
 import WhatWeOffer from './componants/Pages/WhatWeOffer';
+import CareerPage from './componants/Pages/CareerPage ';
 
 
 function App() {
@@ -59,6 +60,8 @@ function App() {
 
           {/* Route for WhatWeOffer page */}
           <Route path="/whatweoffer" element={<WhatWeOffer />} />
+
+          <Route path="/career" element={<CareerPage />} />
 
 
           {/* 404 Route - Must be last */}

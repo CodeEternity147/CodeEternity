@@ -86,7 +86,7 @@ export default function ContactUs() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-indigo-500 outline-none"
+                className="w-full px-4 py-3 border  rounded-md focus:ring-2 focus:ring-indigo-500 outline-none"
               />
 
               <div>
