@@ -18,10 +18,18 @@ connectDB();
 // ✅ Configure CORS correctly (only once and at the top)
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || 'https://codeeternityofficial.netlify.app',
+    origin: (origin, callback) => {
+      const allowedOrigin = process.env.FRONTEND_URL || 'https://codeeternityofficial.netlify.app';
+      if (origin && origin === allowedOrigin || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   })
 );
+
 
 // Body parser
 app.use(express.json({ limit: '10mb' }));
