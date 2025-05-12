@@ -1,35 +1,32 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { authenticateToken } from './middleware/authMiddleware.js';
-// import { securityMiddleware } from './middleware/securityMiddleware.js';
-import cors from 'cors';
 import User from './models/User.js';
 
 dotenv.config();
 
 const app = express();
 
-// Connect to MongoDB
-connectDB();
-
-// ✅ Configure CORS correctly (only once and at the top)
+// ✅ Configure CORS correctly
 app.use(
   cors({
-    origin: (origin, callback) => {
-      const allowedOrigin = process.env.FRONTEND_URL || 'https://codeeternityofficial.netlify.app';
-      if (origin && origin === allowedOrigin || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: process.env.FRONTEND_URL || 'https://codeeternityofficial.netlify.app',
     credentials: true,
   })
 );
 
+// Handle preflight requests (for POST, PUT, etc.)
+app.options('*', cors({
+  origin: process.env.FRONTEND_URL || 'https://codeeternityofficial.netlify.app',
+  credentials: true,
+}));
+
+// Connect to MongoDB
+connectDB();
 
 // Body parser
 app.use(express.json({ limit: '10mb' }));
@@ -53,7 +50,7 @@ app.get('/api/auth/verify', authenticateToken, async (req, res) => {
 
 // Root route
 app.get('/', (req, res) => {
-  res.send('CodeEternity API is running...');
+  res.send('CodeEternity Backend is running...');
 });
 
 // Error handling
