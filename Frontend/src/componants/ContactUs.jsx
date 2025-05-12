@@ -4,9 +4,15 @@ import { useState } from "react";
 import Lottie from "lottie-react";
 import animationData from '../data/contactPage.json';
 import img7 from "../assets/img7.svg"; // Import your SVG as an image
+import features from '../data/FeatureData';
 
 export default function ContactUs() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ 
+    name: "", 
+    email: "", 
+    service: "", 
+    message: "" 
+  });
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
@@ -18,7 +24,7 @@ export default function ContactUs() {
     setSubmitted(true);
 
     setTimeout(() => {
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", service: "", message: "" });
       setSubmitted(false);
     }, 3000);
   };
@@ -57,9 +63,9 @@ export default function ContactUs() {
         {/* Right form */}
         <div className="relative z-10 w-full md:w-1/2 flex items-center justify-center">
           <div className="bg-white rounded-3xl p-8 md:p-16 shadow-2xl w-full max-w-md">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Let's Talk</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Raise your query</h2>
             <p className="text-gray-500 mb-6 text-sm">
-              Have a question, suggestion, or just want to say hi? Fill out the form and we'll get back to you soon.
+              Have a question, suggestion, or just doubt about our services? Fill out the form and we'll get back to you soon.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -82,6 +88,27 @@ export default function ContactUs() {
                 required
                 className="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-indigo-500 outline-none"
               />
+
+              <div>
+                <label htmlFor="service" className="block text-gray-700 font-medium mb-2">
+                  Choose the Service
+                </label>
+                <select
+                  id="service"
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-indigo-500 outline-none"
+                >
+                  <option value="">Select a service</option>
+                  {features.map((feature, index) => (
+                    <option key={index} value={feature.title}>
+                      {feature.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
               <textarea
                 name="message"

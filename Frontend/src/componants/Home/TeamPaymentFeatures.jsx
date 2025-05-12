@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import features from '../../data/FeatureData';
+import { Link } from 'react-router-dom';
 
 const TeamPaymentFeatures = () => {
   const [startIdx, setStartIdx] = useState(0);
@@ -116,9 +117,10 @@ const TeamPaymentFeatures = () => {
           }`}
         >
           {visibleFeatures.map((feature, idx) => (
-            <div
+            <Link
+              to="/contactCodeEternity"
               key={`${feature.title}-${idx}`}
-              className="flex flex-col justify-end items-center shadow-xl hover:shadow-2xl transition-all duration-500 ease-out transform hover:scale-105 group relative"
+              className="flex flex-col justify-end items-center shadow-xl hover:shadow-2xl transition-all duration-500 ease-out transform hover:scale-105 group relative cursor-pointer"
               style={{
                 borderRadius: '24px',
                 minWidth: 0,
@@ -171,7 +173,7 @@ const TeamPaymentFeatures = () => {
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

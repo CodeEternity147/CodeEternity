@@ -28,7 +28,7 @@ const companies = [
 
 const TrustedCompanies = () => {
   return (
-    <section className="bg-[#ffe27c] overflow-hidden py-8">
+    <section className="bg-[#ffe27c]   overflow-hidden py-8">
       <div className="text-center mb-6 text-gray-700 font-semibold text-sm uppercase tracking-wider">
         Industry-Backed Educators
       </div>
