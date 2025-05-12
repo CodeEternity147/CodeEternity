@@ -61,12 +61,12 @@ export const register = async (req, res) => {
       }
     });
   } catch (err) {
-    console.error('Registration error:', err);
+    console.error('Registration error from Backend:', err);
     // Send more specific error messages
     if (err.code === 11000) {
       return res.status(400).json({ message: 'Email already registered' });
     }
-    res.status(500).json({ message: 'Registration failed. Please try again.' });
+   return  res.status(500).json({ message: 'Registration failed. Please try again.' });
   }
 };
 

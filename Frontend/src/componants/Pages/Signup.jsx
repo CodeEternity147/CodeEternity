@@ -60,7 +60,7 @@ const Signup = () => {
         navigate('/dashboard');
       }
     } catch (error) {
-      console.error('Registration error:', error);
+      console.error('Registration error From Frontend:', error);
     
       // If the server sent a message, show it. Otherwise, show a generic message.
       const backendMessage =
