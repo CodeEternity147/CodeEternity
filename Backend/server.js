@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cors());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: 'https://codeeternityofficial.netlify.app',
     credentials: true,
   })
 );
