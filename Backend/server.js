@@ -4,7 +4,7 @@ import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { authenticateToken } from './middleware/authMiddleware.js';
-import { securityMiddleware } from './middleware/securityMiddleware.js';
+// import { securityMiddleware } from './middleware/securityMiddleware.js';
 import cors from 'cors';
 import User from './models/User.js';
 
@@ -15,8 +15,6 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// Security middleware
-securityMiddleware(app);
 
 // Body parser
 app.use(express.json({ limit: '10mb' }));
@@ -56,3 +54,6 @@ app.listen(PORT, () => {
 });
 
 
+app.get('/', (req, res) => {
+  res.send('CodeEternity API is running...');
+});
