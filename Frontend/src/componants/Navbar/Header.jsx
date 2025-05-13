@@ -5,7 +5,6 @@ import { useAuth } from "../../context/AuthContext";
 import Logo from '../../assets/Logo.png';
 
 function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
-  const [arrow2, setArrow2] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -41,8 +40,7 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
   };
 
   const handleArrow2 = () => {
-    setArrow2(!arrow2);
-    setshowServe(!showServe);
+    navigate('/whoweServe');
   };
 
   return (
@@ -69,7 +67,6 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
             className="font-medium hover:text-blue-500 bg-transparent border-none cursor-pointer"
           >
             Who we serve{" "}
-            <span>{arrow2 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
           </button>
           <Link to="/contactCodeEternity" className="font-medium hover:text-blue-500">Contact</Link>
           <Link to="/career" className="font-medium hover:text-blue-500">Career</Link>
@@ -151,7 +148,6 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
               className="font-medium hover:text-blue-500 py-2 px-4 rounded-lg hover:bg-gray-50 w-full text-left bg-transparent border-none cursor-pointer"
             >
               Who we serve{" "}
-              <span>{arrow2 ? <FaArrowDown className="inline ml-1" /> : <FaArrowUp className="inline ml-1" />}</span>
             </button>
             <Link to="/contactCodeEternity" className="block px-4 py-2 font-semibold text-black hover:bg-gray-100">Contact</Link>
             <Link to="/career" className="block px-4 py-2 font-semibold text-black hover:bg-gray-100">Career</Link>

@@ -6,20 +6,11 @@ import TransparentBox from './TransparentBox';
 import Footer from './Footer';
 
 const MainLayout = ({ children, showFooter = true }) => {
-  const [showServe, setshowServe] = useState(false);
 
   return (
     <div className="relative z-10 bg-[#fffaf4]">
-      <Header
-        showServe={showServe}
-        setshowServe={setshowServe}
-      />
+      <Header/>
 
-      {showServe && (
-        <div className="w-[95%] pt-28 mx-auto mt-4 z-40 relative">
-          <WhoWeServe />
-        </div>
-      )}
 
       {/* Page Content */}
       {children}

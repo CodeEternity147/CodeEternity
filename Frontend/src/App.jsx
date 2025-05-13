@@ -21,7 +21,7 @@ import ErrorBoundary from './componants/ErrorBoundary';
 import NotFound from './componants/NotFound';
 import WhatWeOffer from './componants/Pages/WhatWeOffer';
 import CareerPage from './componants/Pages/CareerPage ';
-
+import WhoWeOfferPage from './componants/Pages/WhoWeOfferPage';
 
 function App() {
   return (
@@ -60,6 +60,7 @@ function App() {
 
           {/* Route for WhatWeOffer page */}
           <Route path="/whatweoffer" element={<WhatWeOffer />} />
+          <Route path="/whoweServe" element={<WhoWeOfferPage />} />
 
           <Route path="/career" element={<CareerPage />} />
 
