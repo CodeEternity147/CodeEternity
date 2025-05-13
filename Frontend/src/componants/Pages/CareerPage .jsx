@@ -71,6 +71,7 @@ const CareerPage = () => {
         </p>
       </section>
     </div>
+    
     </div>
   );
 };

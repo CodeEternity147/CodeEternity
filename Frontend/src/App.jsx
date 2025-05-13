@@ -22,7 +22,6 @@ import NotFound from './componants/NotFound';
 import WhatWeOffer from './componants/Pages/WhatWeOffer';
 import CareerPage from './componants/Pages/CareerPage ';
 import WhoWeOfferPage from './componants/Pages/WhoWeOfferPage';
-
 function App() {
   return (
     <ErrorBoundary>
@@ -40,7 +39,11 @@ function App() {
           } />
 
           {/* Route for ContactUs page */}
-          <Route path="/contactCodeEternity" element={<ContactPage />} />
+          <Route path="/contactCodeEternity" element={
+            <MainLayout showFooter={false} showtransparentbox={false} >
+              <ContactPage />
+            </MainLayout>
+          } />
 
           {/* Route for Login page */}
           <Route path="/login" element={<LoginPage />} />
@@ -52,17 +55,31 @@ function App() {
           <Route 
             path="/dashboard" 
             element={
-              <ProtectedRoute>
+             <MainLayout showFooter={false} >
+               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
+             </MainLayout>
             } 
           />
 
           {/* Route for WhatWeOffer page */}
-          <Route path="/whatweoffer" element={<WhatWeOffer />} />
-          <Route path="/whoweServe" element={<WhoWeOfferPage />} />
+          <Route path="/whatweoffer" element={
+            <MainLayout showFooter={false} showtransparentbox={false} >
+              <WhatWeOffer />
+            </MainLayout>
+          } />
+          <Route path="/whoweServe" element={
+            <MainLayout showFooter={false} showtransparentbox={false} >
+              <WhoWeOfferPage />
+            </MainLayout>
+          } />
 
-          <Route path="/career" element={<CareerPage />} />
+          <Route path="/career" element={
+            <MainLayout showFooter={false} showtransparentbox={false} >
+              <CareerPage />
+            </MainLayout>
+          } />
 
 
           {/* 404 Route - Must be last */}
