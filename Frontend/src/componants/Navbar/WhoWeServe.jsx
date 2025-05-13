@@ -371,6 +371,7 @@ const WhoWeServe = () => {
               </div>
               
               <motion.button 
+                onClick={() => navigate('/')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
                 className="bg-white text-indigo-700 hover:bg-indigo-50 transition-colors duration-300 py-3 px-6 rounded-xl font-medium flex items-center justify-center w-full shadow-md"
@@ -463,6 +464,7 @@ const WhoWeServe = () => {
               Connect with our expert team to discover how our solutions can be tailored to your specific industry needs.
             </p>
             <motion.button 
+              onClick={() => navigate('/contactCodeEternity')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium py-4 px-10 rounded-xl transition-all duration-300 shadow-lg inline-flex items-center gap-2"
