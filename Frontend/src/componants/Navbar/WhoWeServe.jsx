@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BsGrid3X3Gap } from 'react-icons/bs';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/Logo.png';
 import {
   FaArrowRight,
   FaBuilding,
