@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
+const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+console.log(apiKey);
+
+
 export default function ChatBot() {
     const [question, setQuestion] = useState("");
     const [messages, setMessages] = useState([]);
@@ -9,6 +13,8 @@ export default function ChatBot() {
     const [isButtonHovered, setIsButtonHovered] = useState(false);
     const messagesEndRef = useRef(null);
     const chatInputRef = useRef(null);
+
+    
 
     // Auto-scroll to bottom when messages change
     useEffect(() => {
@@ -64,7 +70,7 @@ export default function ChatBot() {
 
         try {
             const response = await axios({
-                url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBw11LL2uqrk_69Zuj0FZRx-m8O_uMFPQs",
+                url: `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
                 method: "POST",
                 data: {
                     contents: [
