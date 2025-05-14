@@ -1,35 +1,43 @@
 import * as FaIcons from 'react-icons/fa';
-
 import data from '../../data/data'; // adjust if path differs
 
 const RightCard = ({ index }) => {
   const field = data.whatWeOffer[index];
   const bgColor = field.iconBgColor;
-
+  
   return (
     <div className="space-y-6">
-     <div className="border-b border-b-gray-500 pb-4">
-  <p className="text-gray-500 text-lg">{field.description}</p>
-</div>
-
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="border-b border-b-gray-200 pb-4">
+        <p className="text-gray-600 text-base">{field.description}</p>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {field?.courses.map((item, idx) => {
           const Icon = FaIcons[item.reactIcon];
           return (
             <div
               key={idx}
-              className="flex items-start bg-blue-50 p-4 rounded-xl shadow-sm space-x-4 hover:shadow-md transition-all duration-300"
+              className="bg-white rounded-lg shadow-sm hover:shadow transition-all duration-300 border border-gray-100 flex overflow-hidden"
             >
-              <div
-                className="p-3 rounded-xl text-black text-xl"
+              <div 
+                className="w-2 h-auto" 
                 style={{ backgroundColor: bgColor }}
-              >
-                {Icon && <Icon />}
-              </div>
-              <div>
-                <h2 className="text-lg font-semibold">{item.name}</h2>
-                <p className="text-gray-600 text-sm mt-1">{item.description}</p>
+              />
+              <div className="p-4 flex-1">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center space-x-2">
+                    <div
+                      className="p-2 rounded-md text-black text-sm"
+                      style={{ backgroundColor: bgColor }}
+                    >
+                      {Icon && <Icon />}
+                    </div>
+                    <h3 className="text-base font-semibold text-gray-800">{item.name}</h3>
+                  </div>
+                  <button className="text-xs px-3 py-1 bg-blue-50 text-blue-600 font-medium rounded-md hover:bg-blue-100 transition-colors">
+                    Apply Now
+                  </button>
+                </div>
               </div>
             </div>
           );

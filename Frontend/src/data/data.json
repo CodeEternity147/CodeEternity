@@ -159,50 +159,50 @@
       ]
     },
     {
-      "key": "BSc/BCom",
+      "key": "Mechanical",
       "index": 3,
-      "name": "BSc/BCom",
-      "description": "Foundations in science and commerce.",
-      "summary": "Science and commerce fundamentals.",
-      "icon": "🔬📈",
-      "sideImg": "https://plus.unsplash.com/premium_photo-1661371731552-9a1a45bb797d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnVzc2luZXNzJTIwbGF3fGVufDB8fDB8fHww",
-      "sideImgAlt": "BSc/BCom Image",
-      "iconBgColor": "#e6ccb2",
+      "name": "Mechanical",
+      "description": "Designing and manufacturing mechanical systems.",
+      "summary": "Engineering in motion.",
+      "icon": "⚙️",
+      "sideImg": "https://images.unsplash.com/photo-1607349691345-315f6fefc2a1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWVjaGFuaWNhbCUyMGVuZ2luZWVyaW5nfGVufDB8fDB8fHww",
+      "sideImgAlt": "Mechanical Image",
+      "iconBgColor": "#fbc4ab",
       "courses": [
         {
-          "key": "BSc/BCom_0",
+          "key": "Mechanical_0",
           "index": 0,
-          "name": "Accounting",
-          "description": "Recording and reporting financial transactions.",
-          "reactIcon": "FaCalculator"
+          "name": "Thermodynamics",
+          "description": "Study of heat, work, and energy systems.",
+          "reactIcon": "FaFire"
         },
         {
-          "key": "BSc/BCom_1",
+          "key": "Mechanical_1",
           "index": 1,
-          "name": "Business Law",
-          "description": "Legal aspects of business operations.",
-          "reactIcon": "FaGavel"
+          "name": "Fluid Mechanics",
+          "description": "Behavior of fluids and their interactions.",
+          "reactIcon": "FaWater"
         },
         {
-          "key": "BSc/BCom_2",
+          "key": "Mechanical_2",
           "index": 2,
-          "name": "Marketing",
-          "description": "Promoting and selling products or services.",
-          "reactIcon": "FaBullhorn"
+          "name": "Machine Design",
+          "description": "Designing mechanical components and systems.",
+          "reactIcon": "FaDraftingCompass"
         },
         {
-          "key": "BSc/BCom_3",
+          "key": "Mechanical_3",
           "index": 3,
-          "name": "Finance",
-          "description": "Managing money, investments, and credit.",
-          "reactIcon": "FaMoneyBill"
+          "name": "Manufacturing Technology",
+          "description": "Processes involved in producing goods.",
+          "reactIcon": "FaIndustry"
         },
         {
-          "key": "BSc/BCom_4",
+          "key": "Mechanical_4",
           "index": 4,
-          "name": "Statistics",
-          "description": "Collecting and analyzing numerical data.",
-          "reactIcon": "FaAtlas"
+          "name": "Automobile Engineering",
+          "description": "Design and development of vehicles.",
+          "reactIcon": "FaCar"
         }
       ]
     }

@@ -155,7 +155,7 @@ function WhatWeOfferContent() {
 
                     <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-xl font-medium flex items-center justify-center group transition-all duration-300 hover:shadow-lg">
                       <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform">
-                      Apply for this Program
+                      Welcome to CodeEternity
                       </a>
                       <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                     </button>
