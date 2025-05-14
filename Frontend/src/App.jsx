@@ -55,7 +55,7 @@ function App() {
           <Route 
             path="/dashboard" 
             element={
-             <MainLayout showFooter={false} >
+             <MainLayout showFooter={false} showtransparentbox={false} showHeader={false} >
                <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>

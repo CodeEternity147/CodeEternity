@@ -7,11 +7,18 @@ import Footer from './Footer';
 import ChatBot from './ChatBot';
 
 
-const MainLayout = ({ children, showFooter = true ,showtransparentbox = true }) => {
+const MainLayout = ({ children, showFooter = true ,showtransparentbox = true , showHeader = true}) => {
 
   return (
     <div className="relative z-10 bg-[#fffaf4]">
-      <Header/>
+      {/* Header */}
+      {showHeader && (
+        <div className="fixed top-0 left-0 right-0 z-50">
+          <Header />
+        </div>
+      )}
+
+      {/* Navigation Bar */}
 
 
       {/* Page Content */}
