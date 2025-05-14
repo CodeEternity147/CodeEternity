@@ -218,7 +218,7 @@ Quick Links
         : "transition-transform hover:scale-110";
 
     return (
-        <div className="fixed bottom-4 right-4 z-99999 font-sans">
+        <div className="fixed bottom-4 right-4 z-50 font-sans">
             {/* Chat Toggle Button with Animations and Text */}
             <div className="relative">
                 {/* Notification badge when closed */}

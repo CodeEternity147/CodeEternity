@@ -245,7 +245,7 @@ export default function Dashboard() {
                 <img
                   src={img8}
                   alt="Background Pattern"
-                  className="absolute right-5 top-0 h-full max-h-48 object-contain w-auto opacity-100 pointer-events-none"
+                  className="absolute right-5 z-30 top-0 h-full max-h-48 object-contain w-auto opacity-100 pointer-events-none"
                 />
               </div>
               <div className="flex flex-col md:flex-row relative z-10">
