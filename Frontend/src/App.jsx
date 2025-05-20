@@ -1,5 +1,5 @@
-import "./App.css"; // Import your CSS file
-import "./index.css"; // Import Tailwind CSS
+import "./App.css"; 
+import "./index.css"; 
 
 import React from "react";
 import { Route, Routes } from "react-router-dom";
@@ -23,6 +23,7 @@ import WhatWeOffer from "./componants/Pages/WhatWeOffer";
 import CareerPage from "./componants/Pages/CareerPage ";
 import WhoWeOfferPage from "./componants/Pages/WhoWeOfferPage";
 import LMSPage from "./componants/Pages/LMSPage";
+import TestimonialsComponent from "./componants/TestimonialsComponent";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
                 <TeamPaymentFeatures />
                 <WhyJoinCodeEternity />
                 <InformationSection />
+                <TestimonialsComponent />
                 <IntegrationsSection />
                 <DealSection />
               </MainLayout>
