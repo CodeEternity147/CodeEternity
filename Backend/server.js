@@ -11,7 +11,7 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Configure CORS correctly
+// Configure CORS correctly
 app.use(
   cors({
     origin: process.env.FRONTEND_URL || 'https://codeeternityofficial.netlify.app',

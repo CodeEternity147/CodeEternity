@@ -16,19 +16,16 @@ export default function ChatBot() {
 
     
 
-    // Auto-scroll to bottom when messages change
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
 
-    // Focus input when chat opens
     useEffect(() => {
         if (isOpen && chatInputRef.current) {
             chatInputRef.current.focus();
         }
     }, [isOpen]);
 
-    // Add welcome message when chat first opens
     useEffect(() => {
         if (isOpen && messages.length === 0) {
             setMessages([
@@ -39,11 +36,9 @@ export default function ChatBot() {
             ]);
         }
         
-        // Show/hide the notification after a delay to attract attention
         if (!isOpen) {
             const timer = setTimeout(() => {
-                // This would trigger a state update if we needed to show the notification after a delay
-                // For now, it's always visible when chat is closed
+               
             }, 3000);
             return () => clearTimeout(timer);
         }

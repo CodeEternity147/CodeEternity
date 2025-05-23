@@ -86,8 +86,6 @@ function App() {
             }
           />
 
-          {/* Route for TeamPaymentFeatures page */}
-
           {/* Route for WhatWeOffer page */}
           <Route
             path="/whatweoffer"
