@@ -64,13 +64,7 @@ const IntegrationsSection = () => {
                     })}
                 </div>
 
-                <div className="text-center mt-8 md:mt-12">
-                    <button
-                        className="px-6 py-3 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100 transition-colors duration-200 text-lg"
-                    >
-                        Explore all →
-                    </button>
-                </div>
+               
             </div>
         </section>
     );

@@ -38,8 +38,8 @@ function App() {
                 <TeamPaymentFeatures />
                 <WhyJoinCodeEternity />
                 <InformationSection />
-                <TestimonialsComponent />
                 <IntegrationsSection />
+                <TestimonialsComponent />
                 <DealSection />
               </MainLayout>
             }
