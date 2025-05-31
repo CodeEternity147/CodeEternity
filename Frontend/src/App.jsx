@@ -2,8 +2,9 @@ import "./App.css";
 import "./index.css"; 
 
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import CourseDetailModal from "./componants/CourseDetailModal ";
 import DealSection from "./componants/Home/DealSection";
 import InformationSection from "./componants/Home/InformationSection";
 import IntegrationsSection from "./componants/Home/IntegrationsSection";
@@ -26,6 +27,25 @@ import LMSPage from "./componants/Pages/LMSPage";
 import TestimonialsComponent from "./componants/TestimonialsComponent";
 
 function App() {
+  const [selectedChildCourse, setSelectedChildCourse] = useState(null);
+  const navigate = useNavigate();
+
+  const handleCourseSelect = (course) => {
+    console.log('Course selected in App:', course); // Debug log
+    if (!course) {
+      console.log('No course provided to handleCourseSelect'); // Debug log
+      return;
+    }
+    setSelectedChildCourse(course);
+  };
+
+  // Effect to handle course selection changes
+  useEffect(() => {
+    if (selectedChildCourse) {
+      console.log('Selected course changed:', selectedChildCourse); // Debug log
+    }
+  }, [selectedChildCourse]);
+
   return (
     <ErrorBoundary>
       <AuthProvider>
@@ -91,7 +111,10 @@ function App() {
             path="/whatweoffer"
             element={
               <MainLayout showFooter={false} showtransparentbox={false}>
-                <WhatWeOffer />
+                <WhatWeOffer 
+                  selectedChildCourse={selectedChildCourse} 
+                  setSelectedChildCourse={setSelectedChildCourse} 
+                />
               </MainLayout>
             }
           />
@@ -109,6 +132,17 @@ function App() {
             element={
               <MainLayout showFooter={false} showtransparentbox={false}>
                 <CareerPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/course/:courseId"
+            element={
+              <MainLayout showFooter={false} showtransparentbox={false}>
+                <CourseDetailModal 
+                  selectedChildCourse={selectedChildCourse} 
+                  setSelectedChildCourse={setSelectedChildCourse} 
+                />
               </MainLayout>
             }
           />

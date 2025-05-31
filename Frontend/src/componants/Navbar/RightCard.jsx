@@ -2,6 +2,7 @@ import * as FaIcons from 'react-icons/fa';
 import data from '../../data/data'; // adjust if path differs
 
 const RightCard = ({ index }) => {
+  console.log("RightCard index:", index);
   const field = data.whatWeOffer[index];
   const bgColor = field.iconBgColor;
   
@@ -12,7 +13,8 @@ const RightCard = ({ index }) => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {field?.courses.map((item, idx) => {
+        {field?.childCourses.map((item, idx) =>
+   {
           const Icon = FaIcons[item.reactIcon];
           return (
             <div

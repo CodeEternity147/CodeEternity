@@ -10,40 +10,270 @@
       "sideImg": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fGNvbXB1dGVyfGVufDB8fDB8fHww",
       "sideImgAlt": "CSE/IT Image",
       "iconBgColor": "#ffc8dd",
-      "courses": [
+      "childCourses": [
         {
           "key": "CSE/IT_0",
           "index": 0,
           "name": "Web Development",
-          "description": "Building websites and web applications.",
+          "description": "Dive deep into creating responsive and dynamic websites and web applications. This course covers front-end technologies such as HTML5 for structure, CSS3 for styling (including frameworks like Bootstrap or Tailwind CSS), and JavaScript for interactivity (including popular libraries/frameworks like React, Angular, or Vue.js). It also explores back-end development with server-side languages (e.g., Node.js, Python, Ruby, PHP), database management (SQL and NoSQL), API development, and version control with Git.",
+          "duration": "16",
+          "level": "Beginner to Advanced",
+          "prerequisites": "Basic computer knowledge and problem-solving skills. No prior programming experience required.",
+          "rating": 4.8,
+          "ratingCount": 2847,
+          "students": 3245,
+          "curriculum": [
+            {
+              "module": "HTML5 & CSS3 Fundamentals",
+              "weeks": "Week 1-3",
+              "description": "Master the building blocks of web development with semantic HTML and modern CSS techniques",
+              "lessons": 5,
+              "students": 12450
+            },
+            {
+              "module": "JavaScript & DOM Manipulation",
+              "weeks": "Week 4-7",
+              "description": "Learn programming fundamentals and how to make websites interactive",
+              "lessons": 5,
+              "students": 450
+            },
+            {
+              "module": "Frontend Frameworks (React/Vue)",
+              "weeks": "Week 8-12",
+              "description": "Build modern single-page applications with popular JavaScript frameworks",
+              "lessons": 5,
+              "students": 350
+            },
+            {
+              "module": "Backend Development & Databases",
+              "weeks": "Week 13-16",
+              "description": "Server-side programming, APIs, and database integration for full-stack development",
+              "lessons": 5,
+              "students": 250
+            }
+          ],
+          "skills": [
+            "HTML5 & CSS3",
+            "JavaScript ES6+",
+            "React.js/Vue.js",
+            "Node.js & Express",
+            "Database Management",
+            "API Development",
+            "Version Control (Git)",
+            "Responsive Design"
+          ],
           "reactIcon": "FaCode"
         },
         {
           "key": "CSE/IT_1",
           "index": 1,
           "name": "Mobile App Development",
-          "description": "Creating apps for iOS and Android.",
+          "description": "Learn to design, build, and deploy applications for mobile platforms like iOS and Android. This includes understanding mobile UI/UX principles, working with platform-specific SDKs (Software Development Kits) and programming languages (e.g., Swift/Objective-C for iOS, Kotlin/Java for Android), or utilizing cross-platform development frameworks (e.g., React Native, Flutter). Topics often cover data storage, API integration, performance optimization, and app store deployment processes.",
+          "duration": "14",
+          "level": "Intermediate",
+          "prerequisites": "Basic programming knowledge in any language. Familiarity with object-oriented programming concepts preferred.",
+          "rating": 4.5,
+          "ratingCount": 1567,
+          "students": 1876,
+          "curriculum": [
+            {
+              "module": "Mobile Development Fundamentals",
+              "weeks": "Week 1-2",
+              "description": "Introduction to mobile platforms, development environment setup, and basic concepts",
+              "lessons": 3,
+              "students": 1450
+            },
+            {
+              "module": "Native Development (iOS/Android)",
+              "weeks": "Week 3-8",
+              "description": "Platform-specific development using Swift/Kotlin with hands-on projects",
+              "lessons": 4,
+              "students": 150
+            },
+            {
+              "module": "Cross-Platform Development",
+              "weeks": "Week 9-12",
+              "description": "React Native or Flutter development for multi-platform applications",
+              "lessons": 4,
+              "students": 1056
+            },
+            {
+              "module": "Deployment & App Store Optimization",
+              "weeks": "Week 13-14",
+              "description": "Publishing apps to App Store and Google Play, optimization techniques",
+              "lessons": 2,
+              "students": 545
+            }
+          ],
+          "skills": [
+            "Swift/Kotlin Programming",
+            "React Native/Flutter",
+            "Mobile UI/UX Design",
+            "API Integration",
+            "Local Storage & Databases",
+            "App Store Deployment",
+            "Performance Optimization",
+            "Push Notifications"
+          ],
           "reactIcon": "FaMobileAlt"
         },
         {
           "key": "CSE/IT_2",
           "index": 2,
           "name": "Data Science",
-          "description": "Analyzing and interpreting complex data.",
+          "description": "Uncover insights and knowledge from complex datasets. This course delves into statistical analysis, data mining, machine learning algorithms, data visualization, and big data technologies. Students learn to collect, clean, process, and analyze data to make predictions, inform decisions, and solve real-world problems using tools and languages like Python (with libraries such as Pandas, NumPy, Scikit-learn) and R.",
+          "duration": "18",
+          "level": "Beginner to Advanced",
+          "prerequisites": "Basic mathematics and statistics knowledge. Programming experience helpful but not required.",
+          "rating": 4.9,
+          "ratingCount": 3987,
+          "students": 4567,
+          "curriculum": [
+            {
+              "module": "Python Programming & Data Manipulation",
+              "weeks": "Week 1-4",
+              "description": "Master Python basics and data manipulation with Pandas and NumPy",
+              "lessons": 4,
+              "students": 1250
+            },
+            {
+              "module": "Statistical Analysis & Visualization",
+              "weeks": "Week 5-9",
+              "description": "Statistical concepts, hypothesis testing, and data visualization with Matplotlib/Seaborn",
+              "lessons": 5,
+              "students": 1000
+            },
+            {
+              "module": "Machine Learning Algorithms",
+              "weeks": "Week 10-15",
+              "description": "Supervised and unsupervised learning, model evaluation, and optimization",
+              "lessons": 7,
+              "students": 1300
+            },
+            {
+              "module": "Big Data & Advanced Analytics",
+              "weeks": "Week 16-18",
+              "description": "Working with large datasets, cloud platforms, and advanced analytics techniques",
+              "lessons": 3,
+              "students": 1100
+            }
+          ],
+          "skills": [
+            "Python Programming",
+            "Statistical Analysis",
+            "Data Visualization",
+            "Machine Learning",
+            "SQL & Databases",
+            "Big Data Technologies",
+            "Data Mining",
+            "Predictive Modeling"
+          ],
           "reactIcon": "FaDatabase"
         },
         {
           "key": "CSE/IT_3",
           "index": 3,
-          "name": "Cybersecurity",
-          "description": "Protecting computer systems and networks.",
+          "name": "Cyber Security",
+          "description": "Focus on the principles and practices of protecting computer systems, networks, programs, and data from cyber-attacks, unauthorized access, and damage. This involves learning about threat landscapes, vulnerability assessment, penetration testing, cryptography, network security, application security, incident response, and ethical hacking. It prepares individuals to implement and manage security measures in various IT environments.",
+          "duration": "12",
+          "level": "Intermediate to Advanced",
+          "prerequisites": "Basic networking knowledge and understanding of operating systems. Some programming experience recommended.",
+          "rating": 4.7,
+          "ratingCount": 2456,
+          "students": 2890,
+          "curriculum": [
+            {
+              "module": "Security Fundamentals & Risk Assessment",
+              "weeks": "Week 1-3",
+              "description": "Core security principles, threat modeling, and risk management frameworks",
+              "lessons": 3,
+              "students": 1160
+            },
+            {
+              "module": "Network Security & Cryptography",
+              "weeks": "Week 4-7",
+              "description": "Network protocols, firewalls, encryption, and secure communication",
+              "lessons": 4,
+              "students": 2300
+            },
+            {
+              "module": "Ethical Hacking & Penetration Testing",
+              "weeks": "Week 8-10",
+              "description": "Vulnerability assessment, penetration testing tools and methodologies",
+              "lessons": 3,
+              "students": 1500
+            },
+            {
+              "module": "Incident Response & Security Management",
+              "weeks": "Week 11-12",
+              "description": "Security incident handling, compliance, and security program management",
+              "lessons": 2,
+              "students": 1560
+            }
+          ],
+          "skills": [
+            "Network Security",
+            "Ethical Hacking",
+            "Cryptography",
+            "Vulnerability Assessment",
+            "Incident Response",
+            "Security Frameworks",
+            "Penetration Testing",
+            "Risk Management"
+          ],
           "reactIcon": "FaLock"
         },
         {
           "key": "CSE/IT_4",
           "index": 4,
           "name": "Cloud Computing",
-          "description": "Delivering services over the Internet.",
+          "description": "Explore the delivery of computing services—including servers, storage, databases, networking, software, analytics, and intelligence—over the Internet ('the cloud'). This course covers cloud models (IaaS, PaaS, SaaS), deployment strategies (public, private, hybrid), virtualization technologies, cloud architecture, security in the cloud, and services offered by major cloud providers like AWS, Azure, and Google Cloud.",
+          "duration": "14",
+          "level": "Intermediate",
+          "prerequisites": "Basic understanding of networking, operating systems, and server administration. Some programming knowledge helpful.",
+          "rating": 4.6,
+          "ratingCount": 2987,
+          "students": 3421,
+          "curriculum": [
+            {
+              "module": "Cloud Fundamentals & Architecture",
+              "weeks": "Week 1-3",
+              "description": "Cloud concepts, service models, and architectural patterns",
+              "lessons": 3,
+              "students": 1200
+            },
+            {
+              "module": "AWS/Azure Platform Deep Dive",
+              "weeks": "Week 4-9",
+              "description": "Hands-on experience with major cloud platforms and their services",
+              "lessons": 6,
+              "students": 1500
+            },
+            {
+              "module": "DevOps & Infrastructure as Code",
+              "weeks": "Week 10-12",
+              "description": "Automation, CI/CD pipelines, and infrastructure management",
+              "lessons": 3,
+              "students": 1340
+            },
+            {
+              "module": "Cloud Security & Optimization",
+              "weeks": "Week 13-14",
+              "description": "Security best practices, cost optimization, and performance tuning",
+              "lessons": 2,
+              "students": 1456
+            }
+          ],
+          "skills": [
+            "AWS/Azure/GCP",
+            "Infrastructure as Code",
+            "Container Technologies",
+            "DevOps Practices",
+            "Cloud Security",
+            "Monitoring & Logging",
+            "Cost Optimization",
+            "Serverless Computing"
+          ],
           "reactIcon": "FaCloud"
         }
       ]
@@ -58,47 +288,315 @@
       "sideImgAlt": "Management Image",
       "icon": "💼",
       "iconBgColor": "#b7e4c7",
-      "courses": [
+      "childCourses": [
         {
           "key": "Management_0",
           "index": 0,
           "name": "Business Administration",
-          "description": "Managing business operations.",
+          "description": "Gain a broad understanding of the fundamental concepts and practices of business management. This course covers areas such as organizational structure, business law, economics, accounting principles, marketing fundamentals, operations management, and human resources, providing a solid foundation for managing and leading business entities.",
+          "duration": "12",
+          "level": "Beginner to Intermediate",
+          "prerequisites": "High school diploma or equivalent. Basic mathematical skills and business interest.",
+          "rating": 4.3,
+          "ratingCount": 1987,
+          "students": 2345,
+          "curriculum": [
+            {
+              "module": "Business Fundamentals & Economics",
+              "weeks": "Week 1-3",
+              "description": "Introduction to business concepts, economic principles, and market dynamics",
+              "lessons": 3,
+              "students": 3220
+            },
+            {
+              "module": "Accounting & Financial Management",
+              "weeks": "Week 4-6",
+              "description": "Financial statements, budgeting, and basic accounting principles",
+              "lessons": 3,
+              "students": 2500
+            },
+            {
+              "module": "Marketing & Operations",
+              "weeks": "Week 7-9",
+              "description": "Marketing strategies, operations management, and supply chain basics",
+              "lessons": 3,
+              "students": 2000
+            },
+            {
+              "module": "Leadership & Strategic Planning",
+              "weeks": "Week 10-12",
+              "description": "Management theories, leadership skills, and strategic business planning",
+              "lessons": 3,
+              "students": 1800
+            }
+          ],
+          "skills": [
+            "Business Strategy",
+            "Financial Analysis",
+            "Project Management",
+            "Leadership Skills",
+            "Marketing Fundamentals",
+            "Operations Management",
+            "Business Communication",
+            "Decision Making"
+          ],
           "reactIcon": "FaBriefcase"
         },
         {
           "key": "Management_1",
           "index": 1,
           "name": "Marketing Management",
-          "description": "Promoting products and services.",
+          "description": "Learn to develop and implement effective marketing strategies to create, communicate, and deliver value to customers and manage customer relationships. Topics include market research, consumer behavior, branding, product development, pricing strategies, distribution channels, and promotional activities (digital and traditional marketing).",
+          "duration": "10",
+          "level": "Beginner to Intermediate",
+          "prerequisites": "Basic business knowledge. Interest in consumer psychology and market dynamics.",
+          "rating": 4.4,
+          "ratingCount": 1678,
+          "students": 1987,
+          "curriculum": [
+            {
+              "module": "Marketing Fundamentals & Research",
+              "weeks": "Week 1-2",
+              "description": "Marketing concepts, market research methods, and consumer behavior analysis",
+              "lessons": 2,
+              "students": 1500
+            },
+            {
+              "module": "Digital Marketing & Social Media",
+              "weeks": "Week 3-6",
+              "description": "Online marketing strategies, social media marketing, and digital analytics",
+              "lessons": 4,
+              "students": 1000
+            },
+            {
+              "module": "Brand Management & Strategy",
+              "weeks": "Week 7-8",
+              "description": "Brand building, positioning, and integrated marketing communications",
+              "lessons": 2,
+              "students": 1000
+            },
+            {
+              "module": "Campaign Development & Analytics",
+              "weeks": "Week 9-10",
+              "description": "Marketing campaign planning, execution, and performance measurement",
+              "lessons": 2,
+              "students": 6100
+            }
+          ],
+          "skills": [
+            "Digital Marketing",
+            "Social Media Strategy",
+            "Market Research",
+            "Brand Management",
+            "Content Marketing",
+            "Marketing Analytics",
+            "Customer Relationship Management",
+            "Campaign Management"
+          ],
           "reactIcon": "FaChartLine"
         },
         {
           "key": "Management_2",
           "index": 2,
           "name": "Financial Management",
-          "description": "Handling finances and investments.",
+          "description": "Focus on the effective and efficient management of an organization's monetary resources. This includes financial planning, budgeting, investment analysis, capital management, risk assessment, and understanding financial markets and instruments to ensure the financial stability and growth of the business.",
+          "duration": "14",
+          "level": "Intermediate to Advanced",
+          "prerequisites": "Basic accounting knowledge and mathematical skills. Understanding of business fundamentals.",
+          "rating": 4.7,
+          "ratingCount": 2345,
+          "students": 2765,
+          "curriculum": [
+            {
+              "module": "Financial Analysis & Planning",
+              "weeks": "Week 1-4",
+              "description": "Financial statement analysis, budgeting, and forecasting techniques",
+              "lessons": 4,
+              "students": 1000
+            },
+            {
+              "module": "Investment & Capital Management",
+              "weeks": "Week 5-9",
+              "description": "Investment analysis, capital budgeting, and portfolio management",
+              "lessons": 5,
+              "students": 1234
+            },
+            {
+              "module": "Risk Management & Corporate Finance",
+              "weeks": "Week 10-12",
+              "description": "Financial risk assessment, derivatives, and corporate financing strategies",
+              "lessons": 3,
+              "students": 1000
+            },
+            {
+              "module": "International Finance & Markets",
+              "weeks": "Week 13-14",
+              "description": "Global financial markets, currency risk, and international investment",
+              "lessons": 2,
+              "students": 1450
+            }
+          ],
+          "skills": [
+            "Financial Analysis",
+            "Investment Planning",
+            "Risk Management",
+            "Capital Budgeting",
+            "Financial Modeling",
+            "Corporate Finance",
+            "Portfolio Management",
+            "Financial Reporting"
+          ],
           "reactIcon": "FaMoneyBill"
         },
         {
           "key": "Management_3",
           "index": 3,
           "name": "Human Resource Management",
-          "description": "Managing employees and workplace.",
+          "description": "Explore the strategies and practices for managing an organization's most valuable asset: its people. This course covers talent acquisition and recruitment, training and development, performance management, compensation and benefits, employee relations, labor laws, and fostering a positive organizational culture.",
+          "duration": "12",
+          "level": "Beginner to Intermediate",
+          "prerequisites": "Basic understanding of organizational behavior and communication skills.",
+          "rating": 4.2,
+          "ratingCount": 1234,
+          "students": 1543,
+          "curriculum": [
+            {
+              "module": "HR Fundamentals & Recruitment",
+              "weeks": "Week 1-3",
+              "description": "HR principles, talent acquisition, and recruitment strategies",
+              "lessons": 3,
+              "students": 1500
+            },
+            {
+              "module": "Training & Development",
+              "weeks": "Week 4-6",
+              "description": "Employee training programs, skill development, and career planning",
+              "lessons": 3,
+              "students": 1540
+            },
+            {
+              "module": "Performance & Compensation Management",
+              "weeks": "Week 7-9",
+              "description": "Performance evaluation systems and compensation strategies",
+              "lessons": 3,
+              "students": 1200
+            },
+            {
+              "module": "Employee Relations & Legal Compliance",
+              "weeks": "Week 10-12",
+              "description": "Workplace policies, labor laws, and conflict resolution",
+              "lessons": 3,
+              "students": 1200
+            }
+          ],
+          "skills": [
+            "Talent Acquisition",
+            "Performance Management",
+            "Employee Relations",
+            "Training & Development",
+            "Compensation Planning",
+            "HR Analytics",
+            "Labor Law Compliance",
+            "Organizational Development"
+          ],
           "reactIcon": "FaUsers"
         },
         {
           "key": "Management_4",
           "index": 4,
           "name": "Operations Management",
-          "description": "Managing production and services.",
+          "description": "Study the administration of business practices to create the highest level of efficiency possible within an organization. This involves planning, organizing, and supervising the processes that convert resources (labor, materials, energy) into goods and services, focusing on quality, productivity, supply chain management, and process improvement.",
+          "duration": "10",
+          "level": "Intermediate",
+          "prerequisites": "Basic business knowledge and analytical thinking skills.",
+          "rating": 4.1,
+          "ratingCount": 987,
+          "students": 1234,
+          "curriculum": [
+            {
+              "module": "Operations Strategy & Design",
+              "weeks": "Week 1-3",
+              "description": "Operations strategy, process design, and capacity planning",
+              "lessons": 3
+            },
+            {
+              "module": "Supply Chain & Quality Management",
+              "weeks": "Week 4-6",
+              "description": "Supply chain optimization and quality control systems",
+              "lessons": 3
+            },
+            {
+              "module": "Lean Operations & Continuous Improvement",
+              "weeks": "Week 7-8",
+              "description": "Lean methodologies, Six Sigma, and process improvement",
+              "lessons": 2
+            },
+            {
+              "module": "Technology & Innovation in Operations",
+              "weeks": "Week 9-10",
+              "description": "Operations technology, automation, and innovation management",
+              "lessons": 2
+            }
+          ],
+          "skills": [
+            "Process Optimization",
+            "Supply Chain Management",
+            "Quality Control",
+            "Lean Manufacturing",
+            "Project Management",
+            "Operations Analytics",
+            "Inventory Management",
+            "Production Planning"
+          ],
           "reactIcon": "FaCogs"
         },
         {
           "key": "Management_5",
           "index": 5,
           "name": "Strategic Management",
-          "description": "Developing long-term goals.",
+          "description": "Delve into the art and science of formulating, implementing, and evaluating cross-functional decisions that enable an organization to achieve its long-term objectives. This includes analyzing competitive environments, setting organizational goals, developing strategies, allocating resources, and monitoring performance to gain a sustainable competitive advantage.",
+          "duration": "16",
+          "level": "Advanced",
+          "prerequisites": "Significant business experience or completion of foundational business courses.",
+          "rating": 4.8,
+          "ratingCount": 2987,
+          "students": 3456,
+          "curriculum": [
+            {
+              "module": "Strategic Analysis & Planning",
+              "weeks": "Week 1-4",
+              "description": "Environmental analysis, competitive intelligence, and strategic planning frameworks",
+              "lessons": 4
+            },
+            {
+              "module": "Strategy Formulation & Innovation",
+              "weeks": "Week 5-9",
+              "description": "Strategy development, innovation management, and business model design",
+              "lessons": 5
+            },
+            {
+              "module": "Strategy Implementation & Change Management",
+              "weeks": "Week 10-13",
+              "description": "Strategy execution, organizational change, and performance management",
+              "lessons": 4
+            },
+            {
+              "module": "Global Strategy & Future Trends",
+              "weeks": "Week 14-16",
+              "description": "International strategy, digital transformation, and future business trends",
+              "lessons": 3
+            }
+          ],
+          "skills": [
+            "Strategic Planning",
+            "Competitive Analysis",
+            "Business Model Innovation",
+            "Change Management",
+            "Performance Measurement",
+            "Global Strategy",
+            "Leadership",
+            "Decision Making"
+          ],
           "reactIcon": "FaCompass"
         }
       ]
@@ -113,96 +611,300 @@
       "iconBgColor": "#e0aaff",
       "sideImg": "https://images.unsplash.com/photo-1706466614149-5e04fd018a49?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fEFJfGVufDB8fDB8fHww",
       "sideImgAlt": "AI Image",
-      "courses": [
+      "childCourses": [
         {
           "key": "AI_0",
           "index": 0,
           "name": "Artificial Intelligence",
-          "description": "Developing intelligent machines and systems.",
+          "description": "Build a comprehensive understanding of the core concepts, theories, and methodologies of AI. This includes topics like search algorithms, knowledge representation, logical reasoning, planning, probabilistic reasoning, and an introduction to various subfields like machine learning and natural language processing, aiming to create systems that exhibit intelligent behavior.",
+          "duration": "16",
+          "level": "Intermediate to Advanced",
+          "prerequisites": "Strong programming background (Python preferred), mathematics including linear algebra and statistics.",
+          "rating": 4.9,
+          "ratingCount": 3876,
+          "students": 4321,
+          "curriculum": [
+            {
+              "module": "AI Fundamentals & Problem Solving",
+              "weeks": "Week 1-4",
+              "description": "Introduction to AI, search algorithms, and problem-solving techniques",
+              "lessons": 4
+            },
+            {
+              "module": "Knowledge Representation & Reasoning",
+              "weeks": "Week 5-8",
+              "description": "Logic systems, knowledge graphs, and reasoning mechanisms",
+              "lessons": 4
+            },
+            {
+              "module": "Machine Learning Integration",
+              "weeks": "Week 9-12",
+              "description": "ML algorithms within AI systems and probabilistic reasoning",
+              "lessons": 4
+            },
+            {
+              "module": "Advanced AI Applications",
+              "weeks": "Week 13-16",
+              "description": "Expert systems, planning algorithms, and real-world AI implementations",
+              "lessons": 4
+            }
+          ],
+          "skills": [
+            "Search Algorithms",
+            "Knowledge Representation",
+            "Logic & Reasoning",
+            "Problem Solving",
+            "AI Planning",
+            "Expert Systems",
+            "Probabilistic Reasoning",
+            "AI Ethics"
+          ],
           "reactIcon": "FaBrain"
         },
         {
           "key": "AI_1",
           "index": 1,
           "name": "Machine Learning",
-          "description": "Algorithms that learn from data.",
+          "description": "Focus on the development of algorithms that enable computer systems to learn from and make decisions or predictions based on data, without explicit programming. This course covers supervised learning (e.g., regression, classification), unsupervised learning (e.g., clustering, dimensionality reduction), and reinforcement learning, along with model evaluation and optimization techniques.",
+          "duration": "18",
+          "level": "Intermediate to Advanced",
+          "prerequisites": "Programming experience (Python/R), statistics, and linear algebra knowledge required.",
+          "rating": 4.8,
+          "ratingCount": 3456,
+          "students": 3987,
+          "curriculum": [
+            {
+              "module": "ML Fundamentals & Supervised Learning",
+              "weeks": "Week 1-6",
+              "description": "Introduction to ML, regression, classification, and model evaluation",
+              "lessons": 6
+            },
+            {
+              "module": "Unsupervised Learning & Feature Engineering",
+              "weeks": "Week 7-11",
+              "description": "Clustering, dimensionality reduction, and feature selection techniques",
+              "lessons": 5
+            },
+            {
+              "module": "Advanced Algorithms & Ensemble Methods",
+              "weeks": "Week 12-15",
+              "description": "Advanced ML algorithms, ensemble learning, and hyperparameter tuning",
+              "lessons": 4
+            },
+            {
+              "module": "MLOps & Production Deployment",
+              "weeks": "Week 16-18",
+              "description": "Model deployment, monitoring, and production machine learning systems",
+              "lessons": 3
+            }
+          ],
+          "skills": [
+            "Supervised Learning",
+            "Unsupervised Learning",
+            "Feature Engineering",
+            "Model Evaluation",
+            "Ensemble Methods",
+            "Hyperparameter Tuning",
+            "MLOps",
+            "Data Preprocessing"
+          ],
           "reactIcon": "FaLaptop"
         },
         {
           "key": "AI_2",
           "index": 2,
           "name": "Deep Learning",
-          "description": "Neural networks with many layers.",
+          "description": "Explore a specialized subfield of machine learning that uses artificial neural networks with multiple layers (deep neural networks) to model and solve complex problems. This includes understanding architectures like Convolutional Neural Networks (CNNs) for image processing and Recurrent Neural Networks (RNNs) for sequential data, along with techniques for training and deploying these models.",
+          "duration": "20",
+          "level": "Advanced",
+          "prerequisites": "Strong ML background, Python programming, and familiarity with linear algebra and calculus.",
+          "rating": 4.7,
+          "ratingCount": 3123,
+          "students": 3567,
+          "curriculum": [
+            {
+              "module": "Neural Network Fundamentals",
+              "weeks": "Week 1-4",
+              "description": "Perceptrons, backpropagation, and basic neural network architectures",
+              "lessons": 4
+            },
+            {
+              "module": "Convolutional Neural Networks",
+              "weeks": "Week 5-9",
+              "description": "CNN architectures, image processing, and computer vision applications",
+              "lessons": 5
+            },
+            {
+              "module": "Recurrent Networks & NLP",
+              "weeks": "Week 10-14",
+              "description": "RNNs, LSTMs, transformers, and natural language processing",
+              "lessons": 5
+            },
+            {
+              "module": "Advanced Architectures & Deployment",
+              "weeks": "Week 15-20",
+              "description": "GANs, autoencoders, transfer learning, and model deployment",
+              "lessons": 6
+            }
+          ],
+          "skills": [
+            "Neural Networks",
+            "Convolutional Networks",
+            "Recurrent Networks",
+            "Transformers",
+            "Transfer Learning",
+            "Model Optimization",
+            "Deep Learning Frameworks",
+            "GPU Computing"
+          ],
           "reactIcon": "FaNetworkWired"
         },
         {
           "key": "AI_3",
           "index": 3,
           "name": "Natural Language Processing",
-          "description": "Enabling computers to understand language.",
+          "description": "Learn how to enable computers to understand, interpret, and generate human language in a meaningful way. Topics include text preprocessing, sentiment analysis, machine translation, chatbots, speech recognition, and information retrieval, utilizing techniques from linguistics, computer science, and AI.",
+          "duration": "14",
+          "level": "Intermediate to Advanced",
+          "prerequisites": "Programming skills (Python), basic ML knowledge, and understanding of linguistics concepts helpful.",
+          "rating": 4.6,
+          "ratingCount": 2456,
+          "students": 2876,
+          "curriculum": [
+            {
+              "module": "Text Processing & Linguistics",
+              "weeks": "Week 1-3",
+              "description": "Text preprocessing, tokenization, and computational linguistics fundamentals",
+              "lessons": 3
+            },
+            {
+              "module": "Traditional NLP Techniques",
+              "weeks": "Week 4-7",
+              "description": "N-grams, TF-IDF, named entity recognition, and part-of-speech tagging",
+              "lessons": 4
+            },
+            {
+              "module": "Deep Learning for NLP",
+              "weeks": "Week 8-11",
+              "description": "Word embeddings, RNNs, transformers, and attention mechanisms",
+              "lessons": 4
+            },
+            {
+              "module": "NLP Applications & Projects",
+              "weeks": "Week 12-14",
+              "description": "Chatbots, machine translation, sentiment analysis, and text generation",
+              "lessons": 3
+            }
+          ],
+          "skills": [
+            "Text Processing",
+            "Sentiment Analysis",
+            "Named Entity Recognition",
+            "Machine Translation",
+            "Chatbot Development",
+            "Language Modeling",
+            "Information Extraction",
+            "Speech Processing"
+          ],
           "reactIcon": "FaComments"
         },
         {
           "key": "AI_4",
           "index": 4,
           "name": "Computer Vision",
-          "description": "Enabling machines to see and interpret images.",
+          "description": "Study the theory and application of enabling machines to 'see' and interpret visual information from images and videos. This involves image acquisition, processing, analysis, object detection and recognition, image segmentation, 3D reconstruction, and motion analysis, with applications in robotics, autonomous vehicles, and medical imaging.",
+          "duration": "16",
+          "level": "Intermediate to Advanced",
+          "prerequisites": "Programming skills (Python), basic ML knowledge, and understanding of linear algebra and image processing concepts.",
+          "rating": 4.5,
+          "ratingCount": 1987,
+          "students": 2345,
+          "curriculum": [
+            {
+              "module": "Image Processing Fundamentals",
+              "weeks": "Week 1-4",
+              "description": "Digital image basics, filtering, enhancement, and geometric transformations",
+              "lessons": 4
+            },
+            {
+              "module": "Feature Detection & Description",
+              "weeks": "Week 5-8",
+              "description": "Edge detection, corner detection, feature descriptors, and matching",
+              "lessons": 6
+            },
+            {
+              "module": "Deep Learning for Vision",
+              "weeks": "Week 9-12",
+              "description": "CNNs, object detection, image segmentation, and advanced architectures",
+              "lessons": 2
+            },
+            {
+              "module": "Advanced Applications",
+              "weeks": "Week 13-16",
+              "description": "3D vision, motion analysis, medical imaging, and autonomous systems",
+              "lessons": 4
+            }
+          ],
+          "skills": [
+            "Image Processing",
+            "Object Detection",
+            "Image Classification",
+            "Feature Extraction",
+            "Image Segmentation",
+            "3D Vision",
+            "Video Analysis",
+            "Medical Imaging"
+          ],
           "reactIcon": "FaEye"
         },
         {
           "key": "AI_5",
           "index": 5,
           "name": "Reinforcement Learning",
-          "description": "Training agents to make decisions.",
+          "description": "Dive into a type of machine learning where an agent learns to make optimal decisions by interacting with an environment and receiving rewards or penalties. This course covers fundamental concepts like Markov decision processes, Q-learning, policy gradients, and deep reinforcement learning, applicable to robotics, game playing, and autonomous systems.",
+          "duration": "14",
+          "level": "Advanced",
+          "prerequisites": "Strong programming background, ML knowledge, and understanding of probability and statistics.",
+          "rating": 4.4,
+          "ratingCount": 1678,
+          "students": 1987,
+          "curriculum": [
+            {
+              "module": "RL Fundamentals & MDPs",
+              "weeks": "Week 1-3",
+              "description": "Introduction to RL, Markov decision processes, and value functions",
+              "lessons": 3
+            },
+            {
+              "module": "Value-Based Methods",
+              "weeks": "Week 4-7",
+              "description": "Q-learning, temporal difference learning, and function approximation",
+              "lessons": 4
+            },
+            {
+              "module": "Policy-Based & Actor-Critic Methods",
+              "weeks": "Week 8-10",
+              "description": "Policy gradients, actor-critic algorithms, and advanced RL techniques",
+              "lessons": 3
+            },
+            {
+              "module": "Deep RL & Applications",
+              "weeks": "Week 11-14",
+              "description": "Deep Q-networks, advanced deep RL, and real-world applications",
+              "lessons": 5
+            }
+          ],
+          "skills": [
+            "Markov Decision Processes",
+            "Q-Learning",
+            "Policy Gradients",
+            "Deep Reinforcement Learning",
+            "Multi-Agent Systems",
+            "Game Theory",
+            "Robotics Applications",
+            "Optimization"
+          ],
           "reactIcon": "FaRocket"
-        }
-      ]
-    },
-    {
-      "key": "Mechanical",
-      "index": 3,
-      "name": "Mechanical",
-      "description": "Designing and manufacturing mechanical systems.",
-      "summary": "Engineering in motion.",
-      "icon": "⚙️",
-      "sideImg": "https://images.unsplash.com/photo-1607349691345-315f6fefc2a1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWVjaGFuaWNhbCUyMGVuZ2luZWVyaW5nfGVufDB8fDB8fHww",
-      "sideImgAlt": "Mechanical Image",
-      "iconBgColor": "#fbc4ab",
-      "courses": [
-        {
-          "key": "Mechanical_0",
-          "index": 0,
-          "name": "Thermodynamics",
-          "description": "Study of heat, work, and energy systems.",
-          "reactIcon": "FaFire"
-        },
-        {
-          "key": "Mechanical_1",
-          "index": 1,
-          "name": "Fluid Mechanics",
-          "description": "Behavior of fluids and their interactions.",
-          "reactIcon": "FaWater"
-        },
-        {
-          "key": "Mechanical_2",
-          "index": 2,
-          "name": "Machine Design",
-          "description": "Designing mechanical components and systems.",
-          "reactIcon": "FaDraftingCompass"
-        },
-        {
-          "key": "Mechanical_3",
-          "index": 3,
-          "name": "Manufacturing Technology",
-          "description": "Processes involved in producing goods.",
-          "reactIcon": "FaIndustry"
-        },
-        {
-          "key": "Mechanical_4",
-          "index": 4,
-          "name": "Automobile Engineering",
-          "description": "Design and development of vehicles.",
-          "reactIcon": "FaCar"
         }
       ]
     }

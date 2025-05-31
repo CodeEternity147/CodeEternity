@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import './ChatBot.css';
 
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
-console.log(apiKey);
 
 
 export default function ChatBot() {
@@ -37,10 +37,7 @@ export default function ChatBot() {
         }
         
         if (!isOpen) {
-            const timer = setTimeout(() => {
-               
-            }, 3000);
-            return () => clearTimeout(timer);
+            // The empty setTimeout and its cleanup were removed.
         }
     }, [isOpen, messages.length]);
 
@@ -209,7 +206,7 @@ Quick Links
 
     // Animation classes for the chat bubble
     const chatBubbleAnimation = isButtonHovered 
-        ? "animate-bounce" 
+        ? "animate-custom-bounce"
         : "transition-transform hover:scale-110";
 
     return (
@@ -357,53 +354,7 @@ Quick Links
                 </div>
             )}
             
-            {/* CSS Animations */}
-            <style jsx>{`
-                @keyframes slideUp {
-                    from { transform: translateY(20px); opacity: 0; }
-                    to { transform: translateY(0); opacity: 1; }
-                }
-                @keyframes fadeIn {
-                    from { opacity: 0; }
-                    to { opacity: 1; }
-                }
-                .animate-slideUp {
-                    animation: slideUp 0.3s ease forwards;
-                }
-                .animate-fadeIn {
-                    animation: fadeIn 0.3s ease forwards;
-                }
-                .animate-bounce {
-                    animation: bounce 1s infinite;
-                }
-                @keyframes bounce {
-                    0%, 100% { transform: translateY(0); }
-                    50% { transform: translateY(-5px); }
-                }
-                @keyframes floating {
-                    0%, 100% { transform: translateY(0); }
-                    50% { transform: translateY(-8px); }
-                }
-                .animate-floating {
-                    animation: floating 3s ease-in-out infinite;
-                }
-                @keyframes ping-slow {
-                    0% { transform: scale(0.95); opacity: 0.5; }
-                    70% { transform: scale(1.1); opacity: 0; }
-                    100% { transform: scale(1.1); opacity: 0; }
-                }
-                .animate-ping-slow {
-                    animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-                }
-                @keyframes ping-slower {
-                    0% { transform: scale(0.9); opacity: 0.7; }
-                    70% { transform: scale(1.2); opacity: 0; }
-                    100% { transform: scale(1.2); opacity: 0; }
-                }
-                .animate-ping-slower {
-                    animation: ping-slower 3s cubic-bezier(0, 0, 0.2, 1) infinite;
-                }
-            `}</style>
+            {/* CSS Animations are now in ChatBot.css */}
         </div>
     );
 }

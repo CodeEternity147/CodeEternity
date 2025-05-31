@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from "react-router-dom";
 import data from '../../data/data';
 import ImgCard from './ImgCard';
+import * as FaIcons from 'react-icons/fa';
 import RightCard from './RightCard';
 import studentPrograms from '../../data/studentPrograms';
 import placementPrograms from '../../data/placementPrograms';
-import { ChevronRight, Star, Users, BookOpen, Award, ArrowRight, Check, Calendar, Clock, Target, Heart, Book, Briefcase, Zap, Globe, TrendingUp } from 'lucide-react';
+import { X, ExternalLink, AlertCircle } from 'lucide-react';
+import { ChevronRight, Star, Users, BookOpen, Award, ArrowRight, Check, Calendar, Clock, Play, Download, Target, Heart, Book, Briefcase, Zap, Globe, TrendingUp, Code } from 'lucide-react';
 
-function WhatWeOfferContent() {
+function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
   const { whatWeOffer } = data;
   const [activeTab, setActiveTab] = useState('training');
   const [selectedItem, setSelectedItem] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [expandedPrograms, setExpandedPrograms] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setIsVisible(true);
-  }, []);
+    console.log('WhatWeOffer component mounted with props:', { selectedChildCourse, setSelectedChildCourse }); // Debug log
+  }, [selectedChildCourse, setSelectedChildCourse]);
 
   useEffect(() => {
     setIsVisible(false);
@@ -38,8 +42,38 @@ function WhatWeOfferContent() {
     }));
   };
 
+  const handleCourseClick = (course, category) => {
+    console.log('Course clicked:', course); // Debug log
+    if (typeof setSelectedChildCourse !== 'function') {
+      console.error('setSelectedChildCourse is not a function:', setSelectedChildCourse); // Debug log
+      return;
+    }
+    
+    const courseWithCategory = { 
+      ...course, 
+      category,
+      key: course.key || `${category}_${course.index}` // Ensure key exists
+    };
+    console.log('Course with category:', courseWithCategory); // Debug log
+    
+    try {
+      // First set the selected course
+      setSelectedChildCourse(courseWithCategory);
+      
+      // Encode the course key to handle special characters in the URL
+      const encodedKey = encodeURIComponent(courseWithCategory.key);
+      console.log('Encoded key:', encodedKey); // Debug log
+      
+      // Then navigate to the course detail page with encoded key
+      navigate(`/course/${encodedKey}`);
+    } catch (error) {
+      console.error('Error in handleCourseClick:', error); // Debug log
+    }
+  };
+
   const renderContent = () => {
     switch (activeTab) {
+    
       case 'training':
         return (
           <div className={`transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -52,7 +86,6 @@ function WhatWeOfferContent() {
             <div className="grid grid-cols-12 gap-6">
               {/* Left Navigation Panel - Mobile Dropdown/Desktop Sidebar */}
               <div className="col-span-12 lg:col-span-3 order-1">
-
                 <div className="bg-gradient-to-br from-purple-900 to-indigo-800 rounded-3xl shadow-xl overflow-hidden sticky top-8">
                   <div className="p-6">
                     <h3 className="text-white text-xl font-bold mb-6 flex items-center">
@@ -97,8 +130,8 @@ function WhatWeOfferContent() {
               </div>
 
               {/* Main Content Area */}
-              <div className="col-span-12 lg:col-span-6 order-1 lg:order-2">
-                <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+              <div className="col-span-12 lg:col-span-6  order-1 lg:order-2">
+                <div className="bg-white  rounded-3xl shadow-xl overflow-hidden">
                   <div className="p-8">
                     <div className="flex items-center mb-6">
                       <div className="h-10 w-10 bg-purple-100 rounded-xl flex items-center justify-center">
@@ -113,7 +146,52 @@ function WhatWeOfferContent() {
                       </h2>
                     </div>
 
-                    <RightCard index={selectedItem} />
+
+                    {/* Child Courses List */}
+                    <div className="mt-8">
+                      <h3 className="text-lg font-bold text-gray-800 mb-4">Available Courses</h3>
+                      <div className="space-y-3">
+                        {whatWeOffer[selectedItem] && whatWeOffer[selectedItem].childCourses && whatWeOffer[selectedItem].childCourses.map((course, index) => {
+                            const Icon = FaIcons[course.reactIcon];
+                            const bgColor = whatWeOffer[selectedItem].iconBgColor;
+
+                          return (
+                            
+                             <div key={index} className="bg-gray-50 rounded-xl p-4 flex items-center justify-between hover:bg-gray-100 transition-colors">
+                              
+                              
+                            <div className="flex items-center">
+                              
+                              <div className="h-8 w-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                
+                                 <div
+                      className="p-2 rounded-md text-black text-sm"
+                      style={{ backgroundColor: bgColor }}
+                    >
+                      {Icon && <Icon />}
+                    </div>
+                              </div>
+                              <div>
+                                <div className="font-medium text-gray-800">{course.name}</div>
+                                <div className="text-sm text-gray-600">{course.description ? course.description.substring(0, 80) + '...' : 'Comprehensive training program'}</div>
+                              </div>
+                            </div>
+                            <button
+                              onClick={() => {
+                                console.log('Button clicked for course:', course); // Debug log
+                                handleCourseClick(course, whatWeOffer[selectedItem].name);
+                              }}
+                              className="bg-purple-600 flex items-center cursor-pointer text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors"
+                              style={{ backgroundColor: bgColor }}
+                            >
+                              View Details
+                              <ExternalLink size={20} className="ml-2" />
+                            </button>
+                        </div>
+                          )
+                        })}
+                      </div>
+                    </div>
 
                     <div className="mt-8 grid grid-cols-2 gap-4">
                       <div className="bg-gray-50 rounded-xl p-4 flex items-center">
@@ -227,7 +305,7 @@ function WhatWeOfferContent() {
             </div>
           </div>
         );
-
+       
       case 'placement':
         return (
           <div className={`transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -497,4 +575,4 @@ function WhatWeOfferContent() {
   );
 }
 
-export default WhatWeOfferContent;
+export default WhatWeOffer;
