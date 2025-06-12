@@ -25,6 +25,10 @@ import CareerPage from "./componants/Pages/CareerPage ";
 import WhoWeOfferPage from "./componants/Pages/WhoWeOfferPage";
 import LMSPage from "./componants/Pages/LMSPage";
 import TestimonialsComponent from "./componants/TestimonialsComponent";
+import PrivacyPolicy from "./componants/PrivacyPolicy";
+import TermsAndConditions from "./componants/TermsAndConditions";
+import ReturnPolicy from "./componants/ReturnPolicy";
+import WhatsAppChat from "./componants/WhatsAppChat";
 
 function App() {
   const [selectedChildCourse, setSelectedChildCourse] = useState(null);
@@ -147,9 +151,37 @@ function App() {
             }
           />
 
+          <Route
+            path="/privacy-policy"
+            element={
+              <MainLayout showFooter={false} showtransparentbox={false}>
+                <PrivacyPolicy/>
+              </MainLayout>
+            }
+          />
+
+          <Route
+            path="/terms-and-conditions"
+            element={
+              <MainLayout showFooter={false} showtransparentbox={false}>
+                <TermsAndConditions/>
+              </MainLayout>
+            }
+          />
+
+          <Route
+            path="/return-policy"
+            element={
+              <MainLayout showFooter={false} showtransparentbox={false}>
+                <ReturnPolicy/>
+              </MainLayout>
+            }
+          />
+
           {/* 404 Route - Must be last */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <WhatsAppChat />
       </AuthProvider>
     </ErrorBoundary>
   );

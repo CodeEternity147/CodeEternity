@@ -25,12 +25,14 @@ const Footer = () => {
       <footer className="bg-black text-[#faf4ee] font-sans">
         {/* Top Section */}
         <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 border-b border-gray-700">
-          {/* About */}
+          {/* Legal */}
           <div>
-            <h3 className="text-2xl font-bold mb-5">About Us</h3>
-            <p className="text-sm leading-7 tracking-wide text-[#faf4ee]">
-              CodeEternity is a technology-driven company specializing in custom software development, mobile app development, and internship programs that help businesses and individuals thrive in the digital world.
-            </p>
+            <h3 className="text-2xl font-bold mb-5">Legal</h3>
+            <ul className="space-y-3 text-sm">
+              <li><Link to="/terms-and-conditions" className="hover:text-blue-400">Terms & Conditions</Link></li>
+              <li><Link to="/privacy-policy" className="hover:text-blue-400">Privacy Policy</Link></li>
+              <li><Link to="/return-policy" className="hover:text-blue-400">Return Policy</Link></li>
+            </ul>
           </div>
 
           {/* Quick Links */}
@@ -145,9 +147,9 @@ const Footer = () => {
         <div className="text-sm text-[#cccccc] py-6 px-6 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           <p>© {new Date().getFullYear()} CodeEternity. All rights reserved.</p>
           <div className="flex flex-wrap gap-4">
-            <a href="#" className="hover:text-[#faf4ee]">Disclaimer</a>
-            <a href="#" className="hover:text-[#faf4ee]">Privacy Policy</a>
-            <a href="#" className="hover:text-[#faf4ee]">Legal Hub</a>
+            <Link to="/terms-and-conditions" className="hover:text-[#faf4ee]">Terms & Conditions</Link>
+            <Link to="/privacy-policy" className="hover:text-[#faf4ee]">Privacy Policy</Link>
+            <Link to="/return-policy" className="hover:text-[#faf4ee]">Return Policy</Link>
           </div>
         </div>
       </footer>

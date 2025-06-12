@@ -6,32 +6,23 @@ import TransparentBox from './TransparentBox';
 import Footer from './Footer';
 import ChatBot from './ChatBot';
 
-
-const MainLayout = ({ children, showFooter = true ,showtransparentbox = true , showHeader = true}) => {
-
+const MainLayout = ({ children, showFooter = true, showtransparentbox = true, showHeader = true }) => {
   return (
     <div className="relative z-10 bg-[#fffaf4]">
       {/* Header */}
       {showHeader && (
-        <div className="fixed top-0 left-0 right-0 z-50">
+        <div className="fixed top-0 left-0 right-0 z-[100]">
           <Header />
         </div>
       )}
-
-      {/* Navigation Bar */}
-
 
       {/* Page Content */}
       {children}
 
       {/* Fixed Transparent Box */}
-      {showtransparentbox && (
-        <div className="hidden md:block fixed top-5/8 left-20 transform -translate-y-1/2 z-50">
-        <TransparentBox />
-      </div>
-      )}
+      {showtransparentbox && <TransparentBox />}
 
-      <div className='fixed top-1/2'>
+      <div className='fixed bottom-4 right-4 z-[90]'>
         <ChatBot />
       </div>
 

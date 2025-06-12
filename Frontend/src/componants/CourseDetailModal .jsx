@@ -161,29 +161,124 @@ const CourseDetailModal = ({ selectedChildCourse, setSelectedChildCourse }) => {
                 </div>
               </div>
 
-              {/* Course Curriculum */}
-              <div>
-                <h3 className="text-2xl font-bold text-slate-800 mb-6">Course Curriculum</h3>
-                <div className="space-y-4">
-                  {selectedChildCourse.curriculum.map((module, index) => (
-                    <details key={index} className="group bg-white border border-slate-200 rounded-xl shadow-lg hover:shadow-purple-200/50 transition-all duration-300 overflow-hidden">
-                      <summary className="flex items-center justify-between p-5 sm:p-6 cursor-pointer list-none group-hover:bg-slate-50">
-                        <div className="flex items-center">
-                           <div className="mr-4 p-2 bg-slate-100 rounded-lg group-hover:bg-purple-100 transition-colors">{module.icon}</div>
-                           <div>
-                            <h4 className="font-semibold text-slate-800 text-md sm:text-lg">Module {index + 1}: {module.module}</h4>
-                            <span className="text-xs text-slate-500 group-hover:text-purple-600">{module.week} • {module.lessons} lessons</span>
-                           </div>
-                        </div>
-                        <ArrowRight size={20} className="text-slate-500 group-open:rotate-90 transition-transform duration-300" />
-                      </summary>
-                      <div className="p-5 sm:p-6 border-t border-slate-200 bg-slate-50/50">
-                        <p className="text-slate-600 text-sm sm:text-base">{module.description}</p>
-                      </div>
-                    </details>
-                  ))}
+{/* Course Curriculum */}
+<div className="relative">
+  {/* Background decoration */}
+  <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-blue-50/30 rounded-3xl -z-10"></div>
+  
+  <div className="relative p-8">
+    <div className="text-center mb-10">
+      <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
+        {selectedChildCourse.name} - Course Curriculum
+      </h3>
+      <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+        Comprehensive learning path designed to take you from beginner to expert
+      </p>
+    </div>
+    
+    <div className="space-y-6 max-w-4xl mx-auto">
+      {selectedChildCourse.curriculum.map((module, index) => (
+        <details 
+          key={index} 
+          className="group bg-white/80 backdrop-blur-sm border border-slate-200/50 rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 overflow-hidden hover:-translate-y-1"
+        >
+          <summary className="flex items-center justify-between p-6 sm:p-8 cursor-pointer list-none group-hover:bg-gradient-to-r group-hover:from-purple-50/80 group-hover:to-blue-50/80 transition-all duration-300">
+            <div className="flex items-center flex-1">
+              {/* Enhanced icon container */}
+              <div className="mr-6 p-4 bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl group-hover:from-purple-200 group-hover:to-blue-200 transition-all duration-300 shadow-lg group-hover:shadow-purple-200/70 group-hover:scale-110">
+                <div className="text-purple-600 group-hover:text-purple-700 transition-colors duration-300">
+                  {module.icon}
                 </div>
               </div>
+              
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="px-3 py-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-xs font-semibold rounded-full shadow-md">
+                    {module.weeks}
+                  </span>
+                  <h4 className="font-bold text-slate-800 text-lg sm:text-xl group-hover:text-purple-700 transition-colors duration-300">
+                    {module.module}
+                  </h4>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span className="text-sm text-slate-600 group-hover:text-purple-600 font-medium transition-colors duration-300">
+                    {Array.isArray(module.description) ? module.description.length : 1} interactive lessons
+                  </span>
+                </div>
+              </div>
+            </div>
+            
+            {/* Enhanced arrow */}
+            <div className="ml-4 p-2 rounded-full bg-slate-100/50 group-hover:bg-purple-100 transition-all duration-300">
+              <ArrowRight 
+                size={20} 
+                className="text-slate-500 group-hover:text-purple-600 group-open:rotate-90 transition-all duration-300" 
+              />
+            </div>
+          </summary>
+          
+          <div className="border-t border-gradient-to-r from-purple-200/30 to-blue-200/30 bg-gradient-to-br from-slate-50/80 to-purple-50/40 backdrop-blur-sm">
+            <div className="p-6 sm:p-8">
+              {Array.isArray(module.description) ? (
+                <div className="grid gap-4">
+                  {module.description.map((item, i) => (
+                    <div 
+                      key={i} 
+                      className="group/item flex items-start gap-4 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-slate-200/50 hover:border-purple-300/50 hover:bg-white/80 hover:shadow-md transition-all duration-300 hover:translate-x-2"
+                    >
+                      {/* Enhanced bullet point */}
+                      <div className="flex-shrink-0 mt-1">
+                        <div className="relative">
+                          <div className="w-6 h-6 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center shadow-lg group-hover/item:shadow-purple-300/50 group-hover/item:scale-110 transition-all duration-300">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          {/* Pulse effect */}
+                          <div className="absolute inset-0 w-6 h-6 bg-purple-400 rounded-full animate-ping opacity-20 group-hover/item:opacity-40"></div>
+                        </div>
+                      </div>
+                      
+                      <div className="flex-1">
+                        <span className="text-slate-700 group-hover/item:text-slate-900 text-sm sm:text-base leading-relaxed font-medium transition-colors duration-300">
+                          {item}
+                        </span>
+                      </div>
+                      
+                      {/* Subtle arrow indicator */}
+                      <div className="flex-shrink-0 opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
+                        <ArrowRight size={16} className="text-purple-500" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-6 rounded-xl bg-white/60 backdrop-blur-sm border border-slate-200/50">
+                  <p className="text-slate-700 text-sm sm:text-base leading-relaxed">{module.description}</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+    
+    {/* Progress indicator */}
+    <div className="mt-10 text-center">
+      <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-100 to-blue-100 rounded-full border border-green-200/50">
+        <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+        </svg>
+        <span className="text-green-700 font-medium text-sm">
+          Complete curriculum with hands-on projects and assessments
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
             </div>
 
             {/* Right Column */}

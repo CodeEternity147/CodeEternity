@@ -385,7 +385,7 @@ const TestimonialsComponent = () => {
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-violet-50 border border-blue-100 rounded-2xl px-8 py-4">
             <Star className="w-5 h-5 text-amber-500" />
             <span className="text-gray-700 font-medium">
-              Join <span className="font-bold text-blue-600">10,000+</span> successful graduates
+              Join <span className="font-bold text-blue-600">1,000+</span> successful graduates
             </span>
           </div>
         </div>
