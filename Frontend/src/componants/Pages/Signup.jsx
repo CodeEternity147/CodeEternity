@@ -30,6 +30,9 @@ const Signup = () => {
     setError("");
     setLoading(true);
     
+    // Dismiss all existing toasts
+    toast.dismiss();
+    
     if (!formData.termsAccepted) {
       toast.error("Please accept the Terms of Use and Privacy Policy to continue.");
       setLoading(false);
@@ -52,12 +55,9 @@ const Signup = () => {
         password: formData.password,
       });
       
-      toast.update(toastId, {
-        render: "Account created successfully!",
-        type: "success",
-        isLoading: false,
-        autoClose: 2000
-      });
+      // Dismiss loading toast before showing success
+      toast.dismiss(toastId);
+      toast.success("Account created successfully!");
       
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
