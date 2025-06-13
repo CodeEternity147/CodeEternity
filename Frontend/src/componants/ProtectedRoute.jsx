@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../utils/axios';
 
 const ProtectedRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -19,11 +19,7 @@ const ProtectedRoute = ({ children }) => {
 
       try {
         // Verify token with backend
-        const response = await axios.get('https://temporary-9v8q.onrender.com/api/auth/verify', {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+        const response = await api.get('/auth/verify');
 
         if (response.data.valid) {
           setIsAuthenticated(true);
