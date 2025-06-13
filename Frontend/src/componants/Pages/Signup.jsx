@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import api from '../../utils/axios';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
+import { Eye, EyeOff, Mail, Lock, User, Sparkles, Zap, Code2 } from 'lucide-react';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -10,10 +11,13 @@ const Signup = () => {
     lastName: '',
     email: '',
     password: '',
+    confirmPassword: '',
     termsAccepted: false,
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -30,7 +34,6 @@ const Signup = () => {
     setError("");
     setLoading(true);
     
-    // Dismiss all existing toasts
     toast.dismiss();
     
     if (!formData.termsAccepted) {
@@ -61,7 +64,6 @@ const Signup = () => {
         password: formData.password,
       });
       
-      // Dismiss loading toast before showing success
       toast.dismiss(toastId);
       toast.success("Account created successfully!");
       
@@ -82,106 +84,244 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center animated-gradient">
-      <div className="bg-white text-gray-800 p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center mb-6">Sign up for CodeEternity</h2>
-        {error && <div className="text-red-600 text-center mb-4">{error}</div>}
-
-        <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off">
-          <div>
-            <label className="block text-sm font-medium">First Name</label>
-            <input
-              type="text"
-              name="firstName"
-              className="w-full border px-3 py-2 rounded mt-1"
-              value={formData.firstName}
-              onChange={handleChange}
-              required
-              autoComplete="off"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium">Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              className="w-full border px-3 py-2 rounded mt-1"
-              value={formData.lastName}
-              onChange={handleChange}
-              required
-              autoComplete="off"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium">Email</label>
-            <input
-              type="email"
-              name="email"
-              className="w-full border px-3 py-2 rounded mt-1"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              autoComplete="off"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="w-full border px-3 py-2 rounded mt-1"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              autoComplete="off"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium">Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              className="w-full border px-3 py-2 rounded mt-1"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-              autoComplete="off"
-            />
-          </div>
-
-          <div className="flex items-center mt-2 mb-2">
-            <input
-              type="checkbox"
-              name="termsAccepted"
-              id="termsAccepted"
-              checked={formData.termsAccepted}
-              onChange={handleChange}
-              required
-              className="accent-purple-700 w-5 h-5 rounded border-2 border-gray-300 focus:ring-2 focus:ring-purple-500 transition-all duration-200 mr-2 shadow-sm hover:scale-110 cursor-pointer"
-            />
-            <label htmlFor="termsAccepted" className="text-sm text-gray-700 cursor-pointer select-none">
-              By continuing, you agree to the <a href="/terms" className="text-blue-600 hover:underline">Terms of Use</a> and <a href="/privacy" className="text-blue-600 hover:underline">Privacy Policy</a>.
-            </label>
-          </div>
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? "Creating Account..." : "Sign up with email"}
-          </button>
-        </form>
-
-        <p className="pl-1 font-semibold mt-6 text-gray-900">
-          Already have an account?{' '}
-          <Link to="/login" className="text-blue-600 hover:underline">Log in →</Link>
-        </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden flex items-center justify-center p-4">
+      {/* Futuristic Grid Background */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}></div>
       </div>
+
+      {/* Animated Orbs */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-violet-500/30 to-purple-500/30 rounded-full filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/30 to-blue-500/30 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-gradient-to-r from-fuchsia-500/20 to-pink-500/20 rounded-full filter blur-3xl animate-pulse delay-500"></div>
+      </div>
+
+      {/* Floating Tech Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <Code2 className="absolute top-20 left-20 text-violet-400/60 w-8 h-8 animate-float" />
+        <Zap className="absolute top-32 right-32 text-cyan-400/60 w-6 h-6 animate-float delay-700" />
+        <Sparkles className="absolute bottom-32 left-32 text-fuchsia-400/60 w-7 h-7 animate-float delay-1000" />
+        <Code2 className="absolute bottom-20 right-20 text-violet-400/60 w-5 h-5 animate-float delay-300" />
+      </div>
+
+      {/* Main Container */}
+      <div className="relative z-10 w-4/5 h-4/5 max-w-6xl max-h-[800px] flex">
+        {/* Left Side - Branding */}
+        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-violet-600/10 to-fuchsia-600/10 backdrop-blur-xl border border-white/10 rounded-l-3xl p-12 flex-col justify-center items-center relative overflow-hidden">
+          {/* Animated Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `
+                radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.8) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.8) 0%, transparent 50%)
+              `
+            }}></div>
+          </div>
+          
+          <div className="relative z-10 text-center">
+            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-2xl mb-8 shadow-2xl">
+              <Code2 className="w-12 h-12 text-white animate-pulse" />
+            </div>
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent mb-6 leading-tight">
+              CodeEternity
+            </h1>
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              We Create Future
+            </p>
+            <div className="flex justify-center space-x-4">
+              <div className="w-3 h-3 bg-violet-500 rounded-full animate-bounce"></div>
+              <div className="w-3 h-3 bg-fuchsia-500 rounded-full animate-bounce delay-200"></div>
+              <div className="w-3 h-3 bg-cyan-500 rounded-full animate-bounce delay-400"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side - Signup Form */}
+        <div className="w-full lg:w-1/2 bg-slate-900/80 backdrop-blur-2xl border border-white/20 rounded-3xl lg:rounded-l-none lg:rounded-r-3xl shadow-2xl flex items-center justify-center p-6 lg:p-8">
+          <div className="w-full max-w-sm">
+            {/* Form Header */}
+            <div className="text-center mb-8">
+              <div className="lg:hidden inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl mb-4 shadow-lg">
+                <Code2 className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-3xl font-bold text-white mb-2">
+                Create Account
+              </h2>
+              <p className="text-gray-400">Shaping the future of technology</p>
+            </div>
+
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl mb-6 text-sm backdrop-blur-sm">
+                {error}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Name Fields */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="relative group">
+                  <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 transition-colors group-focus-within:text-violet-400" />
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder="First Name"
+                    className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="relative group">
+                  <User className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 transition-colors group-focus-within:text-violet-400" />
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Last Name"
+                    className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Email Field */}
+              <div className="relative group">
+                <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 transition-colors group-focus-within:text-violet-400" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              {/* Password Field */}
+              <div className="relative group">
+                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 transition-colors group-focus-within:text-violet-400" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Password"
+                  className="w-full pl-12 pr-14 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-violet-400 focus:outline-none transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
+
+              {/* Confirm Password Field */}
+              <div className="relative group">
+                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 transition-colors group-focus-within:text-violet-400" />
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  className="w-full pl-12 pr-14 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-violet-400 focus:outline-none transition-colors"
+                >
+                  {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
+
+              {/* Terms Checkbox */}
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  name="termsAccepted"
+                  id="termsAccepted"
+                  checked={formData.termsAccepted}
+                  onChange={handleChange}
+                  className="mt-1.5 w-5 h-5 text-violet-600 bg-white/5 border-2 border-white/20 rounded focus:ring-violet-500 focus:ring-2"
+                  required
+                />
+                <label htmlFor="termsAccepted" className="text-sm text-gray-400 leading-5">
+                  I agree to the{' '}
+                  <Link to="/terms" className="text-violet-400 hover:text-violet-300 font-medium transition-colors">
+                    Terms of Service
+                  </Link>
+                  {' '}and{' '}
+                  <Link to="/privacy" className="text-violet-400 hover:text-violet-300 font-medium transition-colors">
+                    Privacy Policy
+                  </Link>
+                </label>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-violet-600 text-white py-4 px-6 rounded-xl font-semibold shadow-2xl hover:shadow-violet-500/25 transform transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-violet-500/50 bg-size-200 hover:bg-pos-100"
+              >
+                {loading ? (
+                  <div className="flex items-center justify-center gap-3">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Creating Account...
+                  </div>
+                ) : (
+                  <span className="flex items-center justify-center gap-2">
+                    <Sparkles className="w-5 h-5" />
+                    Create Account
+                  </span>
+                )}
+              </button>
+            </form>
+
+            {/* Login Link */}
+            <div className="text-center mt-8 pt-6 border-t border-white/10">
+              <p className="text-gray-400">
+                Already have an account?{' '}
+                <Link 
+                  to="/login" 
+                  className="text-violet-400 hover:text-violet-300 font-semibold transition-colors duration-200"
+                >
+                  Sign In →
+                </Link>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        .bg-size-200 {
+          background-size: 200% 200%;
+        }
+        .hover\\:bg-pos-100:hover {
+          background-position: 100% 100%;
+        }
+      `}</style>
     </div>
   );
 };

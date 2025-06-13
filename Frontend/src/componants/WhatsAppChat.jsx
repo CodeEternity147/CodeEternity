@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { IoClose } from 'react-icons/io5';
 
-const WhatsAppChat = () => {
+const WhatsAppChat = ({ showInMainLayout = false }) => {
+  // If not in MainLayout, don't render anything
+  if (!showInMainLayout) {
+    return null;
+  }
+
   const phoneNumber = '918874700800';
   const message = 'Hello! I have a question about CodeEternity.';
   const [showPopup, setShowPopup] = useState(false);

@@ -183,7 +183,6 @@ function App() {
           {/* 404 Route - Must be last */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <WhatsAppChat />
         <ToastContainer
           position="top-right"
           autoClose={3000}
