@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/axios';
 
 const AuthContext = createContext(null);
 
@@ -19,9 +19,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     try {
-      const response = await axios.get('https://temporary-9v8q.onrender.com/api/auth/verify', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await api.get('/auth/verify');
       if (response.data.valid && response.data.user) {
         setUser(response.data.user);
       } else {
@@ -36,7 +34,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     try {
-      const response = await axios.post('https://temporary-9v8q.onrender.com/api/auth/login', credentials);
+      const response = await api.post('/auth/login', credentials);
       const { token, user } = response.data;
       localStorage.setItem('token', token);
       setUser(user);
