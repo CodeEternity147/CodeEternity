@@ -1,5 +1,7 @@
 import "./App.css"; 
 import "./index.css"; 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import React from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -182,6 +184,18 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <WhatsAppChat />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </AuthProvider>
     </ErrorBoundary>
   );

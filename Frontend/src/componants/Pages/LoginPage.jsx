@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaMicrosoft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { toast } from 'react-toastify';
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ export default function LoginPage() {
     termsAccepted: false
   });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -37,30 +39,47 @@ export default function LoginPage() {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
     
     if (!formData.termsAccepted) {
-      setError("Please accept the terms and conditions to continue");
+      toast.error("Please accept the terms and conditions to continue");
+      setLoading(false);
       return;
     }
 
     try {
+      const toastId = toast.loading("Logging in...");
       const result = await login({ 
         email: formData.email, 
         password: formData.password 
       });
       
       if (result.success) {
+        toast.update(toastId, {
+          render: "Login successful!",
+          type: "success",
+          isLoading: false,
+          autoClose: 2000
+        });
         navigate('/');
       } else {
+        toast.update(toastId, {
+          render: result.error,
+          type: "error",
+          isLoading: false
+        });
         setError(result.error);
       }
     } catch (error) {
+      toast.error(error.response?.data?.message || 'Login failed');
       setError(error.response?.data?.message || 'Login failed');
+    } finally {
+      setLoading(false);
     }
   }, [formData, login, navigate]);
 
   const handleSocialLogin = useCallback((provider) => {
-    console.log(`${provider} login`);
+    toast.info(`${provider} login coming soon!`);
   }, []);
 
   return (
@@ -164,9 +183,10 @@ export default function LoginPage() {
 
               <button
                 type="submit"
-                className="w-full h-11 bg-black text-white rounded hover:bg-blue-700 transition-colors"
+                disabled={loading}
+                className="w-full h-11 bg-black text-white rounded hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Log in with email
+                {loading ? "Logging in..." : "Log in with email"}
               </button>
             </form>
           </div>

@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import api from '../utils/axios';
+import { toast } from 'react-toastify';
 
 const AuthContext = createContext(null);
 
@@ -24,9 +25,11 @@ export const AuthProvider = ({ children }) => {
         setUser(response.data.user);
       } else {
         localStorage.removeItem('token');
+        toast.error('Session expired. Please login again.');
       }
     } catch (error) {
       localStorage.removeItem('token');
+      toast.error('Session expired. Please login again.');
     } finally {
       setLoading(false);
     }
@@ -38,15 +41,19 @@ export const AuthProvider = ({ children }) => {
       const { token, user } = response.data;
       localStorage.setItem('token', token);
       setUser(user);
+      toast.success('Login successful!');
       return { success: true };
     } catch (error) {
-      return { success: false, error: error.response?.data?.message || 'Login failed' };
+      const message = error.response?.data?.message || 'Login failed';
+      toast.error(message);
+      return { success: false, error: message };
     }
   };
 
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
+    toast.info('Logged out successfully');
   };
 
   return (

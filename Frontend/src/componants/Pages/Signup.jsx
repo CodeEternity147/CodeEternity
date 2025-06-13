@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../../utils/axios';
 import { useAuth } from '../../context/AuthContext';
+import { toast } from 'react-toastify';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Signup = () => {
     termsAccepted: false,
   });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -26,25 +28,23 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
     
     if (!formData.termsAccepted) {
-      setError("Please accept the Terms of Use and Privacy Policy to continue.");
+      toast.error("Please accept the Terms of Use and Privacy Policy to continue.");
+      setLoading(false);
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match!");
+      toast.error("Passwords do not match!");
+      setLoading(false);
       return;
     }
 
     try {
-      console.log('Sending registration request:', {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        passwordLength: formData.password.length
-      });
-
+      const toastId = toast.loading("Creating your account...");
+      
       const response = await api.post('/auth/register', {
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -52,26 +52,27 @@ const Signup = () => {
         password: formData.password,
       });
       
-      console.log('Registration response:', response.data);
+      toast.update(toastId, {
+        render: "Account created successfully!",
+        type: "success",
+        isLoading: false,
+        autoClose: 2000
+      });
       
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
         await login({ email: formData.email, password: formData.password });
+        toast.success("Welcome to CodeEternity!");
         navigate('/dashboard');
       }
     } catch (error) {
       console.error('Registration error From Frontend:', error);
-    
-      // If the server sent a message, show it. Otherwise, show a generic message.
-      const backendMessage =
-        error.response?.data?.message ||         // Custom backend error
-        error.response?.data?.error ||           // Alternate error key
-        error.message ||                         // Axios or network error
-        'Registration failed. Please try again.'; // Fallback message
-    
+      const backendMessage = error.response?.data?.message || error.message || 'Registration failed. Please try again.';
+      toast.error(backendMessage);
       setError(backendMessage);
+    } finally {
+      setLoading(false);
     }
-    
   };
 
   return (
@@ -163,9 +164,10 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800"
+            disabled={loading}
+            className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Sign up with email
+            {loading ? "Creating Account..." : "Sign up with email"}
           </button>
         </form>
 

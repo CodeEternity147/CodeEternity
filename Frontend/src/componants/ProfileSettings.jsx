@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../utils/axios";
 import img1 from "../assets/img1.svg";
+import { toast } from 'react-toastify';
 
 const ProfileSettings = () => {
   const [firstName, setFirstName] = useState("");
@@ -21,6 +22,7 @@ const ProfileSettings = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
+        const toastId = toast.loading("Loading profile...");
         const res = await api.get("/auth/me");
         const { firstName, lastName, dob, college, gender } = res.data.user;
         setFirstName(firstName || "");
@@ -28,8 +30,14 @@ const ProfileSettings = () => {
         setDob(dob ? dob.substring(0, 10) : "");
         setCollege(college || "");
         setGender(gender || "");
+        toast.update(toastId, {
+          render: "Profile loaded successfully",
+          type: "success",
+          isLoading: false,
+          autoClose: 2000
+        });
       } catch (err) {
-        setMessage({ type: "error", text: "Failed to load profile." });
+        toast.error("Failed to load profile. Please try again.");
       }
     };
 
@@ -39,10 +47,16 @@ const ProfileSettings = () => {
   const handleUpdate = async () => {
     setLoading(true);
     try {
+      const toastId = toast.loading("Updating profile...");
       await api.put("/auth/me", { firstName, lastName, dob, college, gender });
-      setMessage({ type: "success", text: "✅ Profile updated successfully!" });
+      toast.update(toastId, {
+        render: "Profile updated successfully!",
+        type: "success",
+        isLoading: false,
+        autoClose: 2000
+      });
     } catch (error) {
-      setMessage({ type: "error", text: "❌ Failed to update profile." });
+      toast.error(error.response?.data?.message || "Failed to update profile.");
     } finally {
       setLoading(false);
     }
@@ -54,29 +68,31 @@ const ProfileSettings = () => {
     const { currentPassword, newPassword, confirmPassword } = passwordData;
 
     if (newPassword !== confirmPassword) {
-      return setPasswordMessage({ type: "error", text: "❌ New passwords do not match!" });
+      toast.error("New passwords do not match!");
+      return;
     }
 
     if (newPassword.length < 6) {
-      return setPasswordMessage({
-        type: "error",
-        text: "❌ Password must be at least 6 characters!",
-      });
+      toast.error("Password must be at least 6 characters!");
+      return;
     }
 
     setPasswordLoading(true);
     try {
+      const toastId = toast.loading("Updating password...");
       await api.put("/auth/change-password", {
         currentPassword,
         newPassword,
       });
-      setPasswordMessage({ type: "success", text: "✅ Password updated successfully!" });
+      toast.update(toastId, {
+        render: "Password updated successfully!",
+        type: "success",
+        isLoading: false,
+        autoClose: 2000
+      });
       setPasswordData({ currentPassword: "", newPassword: "", confirmPassword: "" });
     } catch (error) {
-      setPasswordMessage({
-        type: "error",
-        text: error.response?.data?.message || "❌ Failed to update password.",
-      });
+      toast.error(error.response?.data?.message || "Failed to update password.");
     } finally {
       setPasswordLoading(false);
     }
@@ -132,7 +148,7 @@ const ProfileSettings = () => {
               <button
                 onClick={handleUpdate}
                 disabled={loading}
-                className="bg-purple-800 hover:bg-purple-700 text-white font-semibold py-3 px-10 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50"
+                className="bg-purple-800 hover:bg-purple-700 text-white font-semibold py-3 px-10 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Updating..." : "Update Profile"}
               </button>
@@ -175,7 +191,7 @@ const ProfileSettings = () => {
                 <button
                   onClick={handlePasswordChange}
                   disabled={passwordLoading}
-                  className="bg-purple-800 hover:bg-purple-700 text-white font-semibold py-3 px-10 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50"
+                  className="bg-purple-800 hover:bg-purple-700 text-white font-semibold py-3 px-10 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {passwordLoading ? "Updating..." : "Change Password"}
                 </button>
