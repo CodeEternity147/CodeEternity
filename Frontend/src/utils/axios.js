@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with default config
 const api = axios.create({
-  baseURL: 'https://temporary-9v8q.onrender.com/api',
+  baseURL: {REACT_APP_API_URL},
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
