@@ -18,8 +18,8 @@ const PaymentOption = () => {
   const plans = [
     {
       name: "Basic Plan",
-      price: "₹1",
-      duration: "1 Month",
+      price: "₹499",
+      duration: "3 Month",
       features: {
         "Basic Course Access": true,
         "Community Support": true,
