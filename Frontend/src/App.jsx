@@ -31,6 +31,9 @@ import PrivacyPolicy from "./componants/PrivacyPolicy";
 import TermsAndConditions from "./componants/TermsAndConditions";
 import ReturnPolicy from "./componants/ReturnPolicy";
 import WhatsAppChat from "./componants/WhatsAppChat";
+import PaymentOption from "./componants/Core/PaymentOption";
+import PaymentSuccess from "./componants/Pages/PaymentSuccess";
+import PaymentFailure from "./componants/Pages/PaymentFailure";
 
 function App() {
   const [selectedChildCourse, setSelectedChildCourse] = useState(null);
@@ -151,6 +154,24 @@ function App() {
                 />
               </MainLayout>
             }
+          />
+
+          <Route
+          path="/payment/:courseID"
+          element = {
+            <ProtectedRoute>
+              <PaymentOption/>
+            </ProtectedRoute>
+          }/>
+
+          <Route
+            path="/payment/success"
+            element={<PaymentSuccess />}
+          />
+
+          <Route
+            path="/payment/failure"
+            element={<PaymentFailure />}
           />
 
           <Route

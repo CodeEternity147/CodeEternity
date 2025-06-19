@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
+import payment from './routes/payment.js'
 import { errorHandler } from './middleware/errorHandler.js';
 import { authenticateToken } from './middleware/authMiddleware.js';
 import User from './models/User.js';
@@ -11,17 +12,32 @@ dotenv.config();
 
 const app = express();
 
-// Configure CORS correctly
+// Configure CORS for both development and production
+const allowedOrigins = [
+  'http://localhost:3000', // Development
+  'https://codeeternity.com', // Production
+  process.env.FRONTEND_URL // Environment variable
+].filter(Boolean); // Remove undefined values
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || 'https://codeeternityofficial.netlify.app',
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   })
 );
 
 // Handle preflight requests (for POST, PUT, etc.)
 app.options('*', cors({
-  origin: process.env.FRONTEND_URL || 'https://codeeternityofficial.netlify.app',
+  origin: allowedOrigins,
   credentials: true,
 }));
 
@@ -33,6 +49,7 @@ app.use(express.json({ limit: '10mb' }));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/payment', payment);
 
 // Token verification endpoint
 app.get('/api/auth/verify', authenticateToken, async (req, res) => {

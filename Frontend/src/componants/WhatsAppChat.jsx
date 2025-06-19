@@ -13,13 +13,19 @@ const WhatsAppChat = ({ showInMainLayout = false }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
 
-  // Show popup automatically after 3 seconds if user hasn't interacted
+  // Show popup automatically after 10 seconds and hide after 3 seconds
   useEffect(() => {
     if (!hasInteracted) {
-      const timer = setTimeout(() => {
+      const showTimer = setTimeout(() => {
         setShowPopup(true);
+        // Auto hide popup after 3 seconds
+        const hideTimer = setTimeout(() => {
+          setShowPopup(false);
+          setHasInteracted(true);
+        }, 3000);
+        return () => clearTimeout(hideTimer);
       }, 10000);
-      return () => clearTimeout(timer);
+      return () => clearTimeout(showTimer);
     }
   }, [hasInteracted]);
 
@@ -58,22 +64,16 @@ const WhatsAppChat = ({ showInMainLayout = false }) => {
         
         {/* Enhanced Popup Message with bounce effect */}
         {showPopup && (
-          <div className="absolute left-16 bottom-0 animate-bounce-in-left">
+          <div className="absolute left-16 bottom-0 animate-bounce-in-left
+                        sm:left-16 md:left-20
+                        sm:bottom-0 md:bottom-2
+                        z-[9999]">
             <div className="relative bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-2xl p-3 min-w-[240px] 
                           border border-gray-100 transform transition-all duration-500 hover:scale-105
                           backdrop-blur-sm bg-white/95">
               {/* Decorative glow */}
               <div className="absolute -inset-1 bg-gradient-to-r from-[#25D366]/20 to-[#128C7E]/20 
                             rounded-xl blur-lg opacity-75"></div>
-              
-              {/* Close button with hover effect */}
-              <button 
-                onClick={closePopup}
-                className="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-red-400 to-red-500 hover:from-red-500 hover:to-red-600 
-                         text-white rounded-full p-1 transition-all duration-200 transform hover:scale-110 shadow-lg"
-              >
-                <IoClose className="text-xs" />
-              </button>
               
               {/* Message content with enhanced styling */}
               <div className="flex items-center space-x-3 relative z-10">
@@ -116,7 +116,7 @@ const WhatsAppChat = ({ showInMainLayout = false }) => {
                    transition-all duration-500 transform hover:scale-110 hover:rotate-[360deg]
                    flex items-center justify-center border-2 border-white/40
                    hover:border-white/70 active:scale-105 overflow-hidden group
-                   animate-float-gentle"
+                   animate-float-gentle z-[9998]"
           aria-label="Chat on WhatsApp"
         >
           {/* Multi-layer glow effects */}

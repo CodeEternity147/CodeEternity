@@ -6,33 +6,35 @@ const CourseDetailModal = ({ selectedChildCourse, setSelectedChildCourse }) => {
   const navigate = useNavigate();
   const { courseId } = useParams();
 
+  const handlePaymentClick = () => {
+    try {
+      const encodedKey = encodeURIComponent(courseId);
+      console.log('Encoded key:', encodedKey);
+      navigate(`/payment/${encodedKey}`);
+    } catch (error) {
+      console.error('Error in handlePaymentClick:', error);
+    }
+  };
+
   useEffect(() => {
-    // console.log('CourseDetailModal mounted with course:', selectedChildCourse);
-    // console.log('CourseId from params:', courseId);
-    
     if (!selectedChildCourse) {
-      // console.log('No course selected, redirecting to whatweoffer');
       navigate('/whatweoffer');
       return;
     }
 
     const decodedCourseId = decodeURIComponent(courseId);
-    // console.log('Decoded courseId:', decodedCourseId);
 
     if (decodedCourseId !== selectedChildCourse.key) {
-      // console.log('CourseId mismatch, redirecting to whatweoffer');
       navigate('/whatweoffer');
     }
   }, [selectedChildCourse, courseId, navigate]);
 
   const handleClose = () => {
-    // console.log('Closing modal');
     setSelectedChildCourse(null);
     navigate('/whatweoffer');
   };
 
   if (!selectedChildCourse) {
-    // console.log('No course data available');
     return null;
   }
 
@@ -329,7 +331,7 @@ const CourseDetailModal = ({ selectedChildCourse, setSelectedChildCourse }) => {
             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 mb-2 sm:mb-3">Ready to Elevate Your Skills?</h3>
             <p className="text-slate-600 text-sm sm:text-base md:text-lg mb-6 sm:mb-8">Join thousands of successful students who transformed their careers with our courses.</p>
             <button 
-              onClick={() => window.open("https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform", "_blank")}
+              onClick={handlePaymentClick}
               className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white py-3 sm:py-4 px-6 sm:px-10 md:px-12 rounded-lg sm:rounded-xl font-semibold text-base sm:text-lg flex items-center justify-center mx-auto group transition-all duration-300 hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-pink-300"
             >
               Enroll in {selectedChildCourse.name}
