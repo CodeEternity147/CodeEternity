@@ -112,9 +112,9 @@ const Signup = () => {
       </div>
 
       {/* Main Container */}
-      <div className="relative z-10 w-4/5 h-4/5 max-w-6xl max-h-[800px] flex">
+      <div className="relative z-10 w-full h-full max-w-6xl lg:max-h-[800px] flex flex-col lg:flex-row overflow-y-auto lg:overflow-visible rounded-2xl lg:rounded-3xl shadow-2xl">
         {/* Left Side - Branding */}
-        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-violet-600/10 to-fuchsia-600/10 backdrop-blur-xl border border-white/10 rounded-l-3xl p-12 flex-col justify-center items-center relative overflow-hidden">
+        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-violet-600/10 to-fuchsia-600/10 backdrop-blur-xl border border-white/10 rounded-t-2xl lg:rounded-t-none lg:rounded-l-3xl p-8 lg:p-12 flex-col justify-center items-center relative overflow-hidden">
           {/* Animated Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
@@ -144,7 +144,7 @@ const Signup = () => {
         </div>
 
         {/* Right Side - Signup Form */}
-        <div className="w-full lg:w-1/2 bg-slate-900/80 backdrop-blur-2xl border border-white/20 rounded-3xl lg:rounded-l-none lg:rounded-r-3xl shadow-2xl flex items-center justify-center p-6 lg:p-8">
+        <div className="w-full lg:w-1/2 bg-slate-900/80 backdrop-blur-2xl border border-white/20 rounded-b-2xl lg:rounded-b-none lg:rounded-r-3xl shadow-2xl flex items-center justify-center p-4 sm:p-6 lg:p-8">
           <div className="w-full max-w-sm">
             {/* Form Header */}
             <div className="text-center mb-8">
