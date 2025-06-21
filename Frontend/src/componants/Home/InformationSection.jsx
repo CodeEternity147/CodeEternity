@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   FaAward,
@@ -18,6 +19,8 @@ const FeatureCard = ({ icon, title, description }) => {
 };
 
 const InformationSection = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="about" className="py-20  bg-[#fffbf4]  ">
       <div className="container mx-auto px-6">
@@ -37,7 +40,10 @@ const InformationSection = () => {
     <p className="text-gray-700 text-lg leading-relaxed">
       Our team includes experts from top tech firms like EY, HCL, and BYJU'S. We combine mentorship, real-time training, and cutting-edge solutions to deliver excellence.
     </p>
-    <button className="mt-4 inline-block bg-orange-400 text-white font-medium py-2 px-6 rounded-full shadow-md hover:shadow-lg transition hover:scale-105 duration-300">
+    <button 
+      className="mt-4 inline-block bg-orange-400 text-white font-medium py-2 px-6 rounded-full shadow-md hover:shadow-lg transition hover:scale-105 duration-300"
+      onClick={() => navigate('/whoweServe')}
+    >
       Know More
     </button>
   </div>

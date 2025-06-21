@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { useLocation } from 'react-router-dom';
 import { X, Code, Check, ArrowRight, AlertCircle, Users, Clock, Award, Star, BookOpen, Download, Terminal, UserCheck, Layers, Zap, BarChart3, Smile, CalendarDays, Target } from 'lucide-react'; // Added more icons
 
 const CourseDetailModal = ({ selectedChildCourse, setSelectedChildCourse }) => {
   const navigate = useNavigate();
   const { courseId } = useParams();
+  const { user } = useAuth();
+  const location = useLocation();
 
   const handlePaymentClick = () => {
+    if (!user) {
+      navigate('/login', { state: { from: location } });
+      return;
+    }
     try {
       const encodedKey = encodeURIComponent(courseId);
       console.log('Encoded key:', encodedKey);
@@ -314,14 +322,29 @@ const CourseDetailModal = ({ selectedChildCourse, setSelectedChildCourse }) => {
                     </li>
                   ))}
                 </ul>
-                <a 
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="block w-full text-center bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 hover:from-purple-700 hover:via-pink-600 hover:to-red-600 text-white py-2 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold text-base sm:text-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-                >
-                  Enroll Now
-                </a>
+                {user ? (
+                  <button 
+                    onClick={handlePaymentClick}
+                    className="block w-full text-center bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 hover:from-purple-700 hover:via-pink-600 hover:to-red-600 text-white py-2 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold text-base sm:text-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                  >
+                    Enroll Now
+                  </button>
+                ) : (
+                  <div className="space-y-2">
+                    <button 
+                      onClick={() => navigate('/login', { state: { from: location } })}
+                      className="block w-full text-center bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-2 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                    >
+                      Login to Enroll
+                    </button>
+                    <button 
+                      onClick={() => navigate('/signup', { state: { from: location } })}
+                      className="block w-full text-center bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white py-2 sm:py-3 px-4 sm:px-6 rounded-lg font-semibold text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                    >
+                      Create Account
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -330,13 +353,39 @@ const CourseDetailModal = ({ selectedChildCourse, setSelectedChildCourse }) => {
           <div className="text-center mt-6 sm:mt-10 md:mt-16 bg-gradient-to-r from-slate-50 to-gray-100 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 shadow-xl border border-slate-200">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 mb-2 sm:mb-3">Ready to Elevate Your Skills?</h3>
             <p className="text-slate-600 text-sm sm:text-base md:text-lg mb-6 sm:mb-8">Join thousands of successful students who transformed their careers with our courses.</p>
-            <button 
-              onClick={handlePaymentClick}
-              className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white py-3 sm:py-4 px-6 sm:px-10 md:px-12 rounded-lg sm:rounded-xl font-semibold text-base sm:text-lg flex items-center justify-center mx-auto group transition-all duration-300 hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-pink-300"
-            >
-              Enroll in {selectedChildCourse.name}
-              <ArrowRight size={18} sm:size={22} className="ml-2 sm:ml-3 group-hover:translate-x-1.5 transition-transform" />
-            </button>
+            
+            {user ? (
+              // User is logged in - show enroll button
+              <button 
+                onClick={handlePaymentClick}
+                className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white py-3 sm:py-4 px-6 sm:px-10 md:px-12 rounded-lg sm:rounded-xl font-semibold text-base sm:text-lg flex items-center justify-center mx-auto group transition-all duration-300 hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-pink-300"
+              >
+                Enroll in {selectedChildCourse.name}
+                <ArrowRight size={18} sm:size={22} className="ml-2 sm:ml-3 group-hover:translate-x-1.5 transition-transform" />
+              </button>
+            ) : (
+              // User is not logged in - show login and signup options
+              <div className="space-y-4 sm:space-y-6">
+                <p className="text-slate-600 text-sm sm:text-base font-medium">Please login or create an account to enroll</p>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+                  <button 
+                    onClick={() => navigate('/login', { state: { from: location } })}
+                    className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 sm:py-4 px-6 sm:px-10 md:px-12 rounded-lg sm:rounded-xl font-semibold text-base sm:text-lg flex items-center justify-center group transition-all duration-300 hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-purple-300"
+                  >
+                    Login to Enroll
+                    <ArrowRight size={18} sm:size={22} className="ml-2 sm:ml-3 group-hover:translate-x-1.5 transition-transform" />
+                  </button>
+                  <button 
+                    onClick={() => navigate('/signup', { state: { from: location } })}
+                    className="bg-gradient-to-r from-green-600 to-teal-600 text-white py-3 sm:py-4 px-6 sm:px-10 md:px-12 rounded-lg sm:rounded-xl font-semibold text-base sm:text-lg flex items-center justify-center group transition-all duration-300 hover:shadow-2xl hover:scale-105 focus:outline-none focus:ring-4 focus:ring-green-300"
+                  >
+                    Create Account
+                    <ArrowRight size={18} sm:size={22} className="ml-2 sm:ml-3 group-hover:translate-x-1.5 transition-transform" />
+                  </button>
+                </div>
+              </div>
+            )}
+            
             <p className="text-xs sm:text-sm text-slate-500 mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
                 <span className="flex items-center"><CalendarDays size={14} sm:size={16} className="mr-1.5 text-purple-500"/>Next batch starts Monday!</span>
                 <span className="flex items-center"><Users size={14} sm:size={16} className="mr-1.5 text-pink-500"/>Limited seats available.</span>

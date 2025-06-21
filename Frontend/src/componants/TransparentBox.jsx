@@ -121,7 +121,7 @@ export default function InternshipPopup() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
                   {[
                     { icon: "🚀", title: "Live Project Experience", desc: "Build real applications that matter", color: "from-purple-600 to-purple-800" },
-                    { icon: "👨‍💻", title: "Expert Mentorship", desc: "Learn from industry veterans", color: "from-purple-600 to-purple-800" },
+                    { icon: "👨‍💻", title: "100% Placement Guarantee", desc: "We guarantee placement support for every student.", color: "from-purple-600 to-purple-800" },
                     { icon: "🏆", title: "Certificate & Portfolio", desc: "Showcase your achievements", color: "from-gray-700 to-gray-900" }
                   ].map((item, index) => (
                     <div key={index} className={`group p-2 xs:p-3 sm:p-4 rounded-xl xs:rounded-2xl bg-gradient-to-r ${item.color} text-white transform transition-all duration-300 hover:scale-105 hover:rotate-1 animate-pulse`} style={{animationDelay: `${index * 200}ms`}}>

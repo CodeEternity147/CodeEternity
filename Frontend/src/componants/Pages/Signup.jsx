@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import api from '../../utils/axios';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
@@ -19,6 +19,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuth();
 
   const handleChange = (e) => {
@@ -71,7 +72,9 @@ const Signup = () => {
         localStorage.setItem('token', response.data.token);
         await login({ email: formData.email, password: formData.password });
         toast.success("Welcome to CodeEternity!");
-        navigate('/dashboard');
+        // Redirect to the page the user came from, or default to dashboard
+        const redirectTo = location.state?.from?.pathname || '/dashboard';
+        navigate(redirectTo, { replace: true });
       }
     } catch (error) {
       console.error('Registration error From Frontend:', error);

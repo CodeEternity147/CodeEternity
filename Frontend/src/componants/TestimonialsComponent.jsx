@@ -9,7 +9,7 @@ const testimonialData = [
     content: "Code Eternity transformed my career trajectory. Their advanced courses helped me master complex technologies that led to a promotion within months.",
     type: "placement",
     icon: <User />,
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+    rating: 5
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const testimonialData = [
     content: "As a client, I've hired multiple Code Eternity graduates. Their technical knowledge and problem-solving abilities are consistently impressive.",
     type: "client",
     icon: <Briefcase />,
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face"
+    rating: 5
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const testimonialData = [
     content: "Code Eternity's advanced JavaScript course gave me the skills to clear difficult technical interviews. I now work at one of India's top IT companies.",
     type: "placement",
     icon: <User />,
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+    rating: 4
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ const testimonialData = [
     content: "From a commerce background to a tech professional in just 6 months. The structured curriculum and project-based learning approach made all the difference.",
     type: "success",
     icon: <Award />,
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
+    rating: 5
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ const testimonialData = [
     content: "As a growing startup, we've hired multiple Code Eternity graduates. Their practical knowledge and ability to implement real-world solutions has been outstanding.",
     type: "client",
     icon: <Briefcase />,
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face"
+    rating: 4
   },
   {
     id: 6,
@@ -54,7 +54,7 @@ const testimonialData = [
     content: "The DSA bootcamp prepared me for the toughest coding interviews. I cracked Amazon's interview process on my first attempt!",
     type: "placement",
     icon: <User />,
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
+    rating: 5
   },
   {
     id: 7,
@@ -63,7 +63,7 @@ const testimonialData = [
     content: "The React masterclass was incredibly comprehensive. I went from beginner to building production-ready applications in just 8 weeks!",
     type: "success",
     icon: <Award />,
-    avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face"
+    rating: 4
   },
   {
     id: 8,
@@ -72,7 +72,7 @@ const testimonialData = [
     content: "Learning both design principles and React implementation helped me create a unique portfolio that stands out. Now I work remotely for international clients.",
     type: "success",
     icon: <Star />,
-    avatar: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face"
+    rating: 5
   },
   {
     id: 9,
@@ -81,7 +81,7 @@ const testimonialData = [
     content: "The Python and Data Science course was exceptional. The hands-on projects with real datasets prepared me perfectly for my role at Flipkart.",
     type: "placement",
     icon: <User />,
-    avatar: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=150&h=150&fit=crop&crop=face"
+    rating: 3
   },
   {
     id: 10,
@@ -90,7 +90,7 @@ const testimonialData = [
     content: "We've partnered with Code Eternity for our team's upskilling needs. The custom training programs have significantly improved our development workflow.",
     type: "client",
     icon: <Briefcase />,
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face"
+    rating: 4
   }
 ];
 
@@ -100,6 +100,16 @@ const TestimonialsComponent = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
   
+  // Function to get initials from name
+  const getInitials = (name) => {
+    return name
+      .split(' ')
+      .map(word => word.charAt(0))
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
   const filteredTestimonials = activeFilter === "all" 
     ? testimonialData 
     : testimonialData.filter(t => t.type === activeFilter);
@@ -185,12 +195,12 @@ const TestimonialsComponent = () => {
     }
   };
 
-  const renderStars = () => {
+  const renderStars = (rating = 5) => {
     return Array.from({ length: 5 }).map((_, i) => (
       <Star 
         key={i} 
         size={14} 
-        className="text-amber-400 fill-current"
+        className={`${i < rating ? 'text-amber-400 fill-current' : 'text-gray-300'}`}
       />
     ));
   };
@@ -278,8 +288,7 @@ const TestimonialsComponent = () => {
                     <div className="relative p-8">
                       {/* Type Badge */}
                       <div className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium mb-6 ${styles.tag}`}>
-                        {testimonial.icon}
-                        <span className="ml-1">{getTypeLabel(testimonial.type)}</span>
+                        <span>{getTypeLabel(testimonial.type)}</span>
                       </div>
 
                       {/* Quote Icon */}
@@ -292,37 +301,16 @@ const TestimonialsComponent = () => {
                         "{testimonial.content}"
                       </blockquote>
                       
-                      {/* Author Section */}
-                      <div className="flex items-center gap-4">
-                        <div className="relative">
-                          <div className={`w-14 h-14 rounded-2xl bg-gradient-to-r ${styles.gradient} p-0.5 group-hover:scale-110 transition-transform duration-300`}>
-                            <div className="w-full h-full rounded-2xl bg-white flex items-center justify-center text-white">
-                              <img 
-                                src={testimonial.avatar} 
-                                alt={testimonial.name}
-                                className="w-full h-full rounded-2xl object-cover"
-                                onError={(e) => {
-                                  e.target.style.display = 'none';
-                                  e.target.nextSibling.style.display = 'flex';
-                                }}
-                              />
-                              <div className={`w-full h-full rounded-2xl bg-gradient-to-r ${styles.gradient} items-center justify-center text-white hidden`}>
-                                {testimonial.icon}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-bold text-gray-900 text-lg group-hover:text-blue-600 transition-colors duration-300">
-                            {testimonial.name}
-                          </h4>
-                          <p className="text-gray-600 font-medium text-sm truncate">
-                            {testimonial.position}
-                          </p>
-                          <div className="flex items-center gap-1 mt-2">
-                            {renderStars()}
-                          </div>
+                      {/* Author Info (without avatar) */}
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-bold text-gray-900 text-lg group-hover:text-blue-600 transition-colors duration-300">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-gray-600 font-medium text-sm truncate">
+                          {testimonial.position}
+                        </p>
+                        <div className="flex items-center gap-1 mt-2">
+                          {renderStars(testimonial.rating)}
                         </div>
                       </div>
                     </div>

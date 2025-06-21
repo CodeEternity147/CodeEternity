@@ -376,7 +376,7 @@ const WhoWeServe = () => {
                 whileTap={{ scale: 0.98 }}
                 className="bg-white text-indigo-700 hover:bg-indigo-50 transition-colors duration-300 py-3 px-6 rounded-xl font-medium flex items-center justify-center w-full shadow-md"
               >
-                Read Case Study <FaArrowRight className="ml-2" />
+                That is about us 
               </motion.button>
             </motion.div>
 
@@ -411,7 +411,6 @@ const WhoWeServe = () => {
                   whileHover={{ x: 5 }}
                   className="text-indigo-600 hover:text-indigo-800 transition-colors duration-300 font-medium flex items-center group"
                 >
-                  Read more <FaArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </motion.button>
               </div>
             </motion.div>
@@ -460,18 +459,10 @@ const WhoWeServe = () => {
               <FaLightbulb size={28} className="text-indigo-500" />
             </div>
             <h3 className="text-3xl font-extrabold text-gray-800 mb-4">Ready to transform your business?</h3>
-            <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
-              Connect with our expert team to discover how our solutions can be tailored to your specific industry needs.
+            <p className="text-gray-600 text-lg leading-relaxed mb-8 max-w-2xl mx-auto text-center">
+              Our comprehensive solutions are designed to address the unique challenges and opportunities across different industry sectors, helping organizations achieve their digital transformation goals.
             </p>
-            <motion.button 
-              onClick={() => navigate('/contactCodeEternity')}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-medium py-4 px-10 rounded-xl transition-all duration-300 shadow-lg inline-flex items-center gap-2"
-            >
-              Schedule a Consultation
-              <FaArrowRight />
-            </motion.button>
+         
           </div>
         </motion.div>
       </motion.div>

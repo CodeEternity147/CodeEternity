@@ -1,5 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Mail, Lock, Eye, EyeOff, Loader2, Code2, Sparkles, Zap } from "lucide-react";
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { toast } from 'react-toastify';
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -11,25 +14,9 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  // Simulated auth functions for demo
-  const login = async (credentials) => {
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    if (credentials.email === "demo@company.com" && credentials.password === "password") {
-      return { success: true };
-    }
-    return { success: false, error: "Invalid credentials" };
-  };
-
-  const navigate = (path) => {
-    console.log(`Navigate to: ${path}`);
-  };
-
-  const toast = {
-    error: (msg) => console.log(`Error: ${msg}`),
-    info: (msg) => console.log(`Info: ${msg}`),
-    loading: (msg) => console.log(`Loading: ${msg}`),
-    update: (id, config) => console.log(`Updated: ${config.render}`)
-  };
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
 
   // Cleanup on unmount
   useEffect(() => {
@@ -70,20 +57,15 @@ export default function LoginPage() {
       });
       
       if (result.success) {
-        toast.update(toastId, {
-          render: "Login successful!",
-          type: "success",
-          isLoading: false,
-          autoClose: 2000
-        });
-        navigate('/');
+        toast.dismiss(toastId);
+        toast.success("Login successful!");
+        // Redirect to the page the user came from, or default to dashboard
+        const redirectTo = location.state?.from?.pathname || '/dashboard';
+        navigate(redirectTo, { replace: true });
       } else {
-        toast.update(toastId, {
-          render: result.error,
-          type: "error",
-          isLoading: false
-        });
-        setError(result.error);
+        toast.dismiss(toastId);
+        toast.error(result.error || 'Login failed');
+        setError(result.error || 'Login failed');
       }
     } catch (error) {
       toast.error(error.response?.data?.message || 'Login failed');
@@ -91,7 +73,7 @@ export default function LoginPage() {
     } finally {
       setLoading(false);
     }
-  }, [formData]);
+  }, [formData, login, navigate, location.state?.from?.pathname]);
 
   const handleSocialLogin = useCallback((provider) => {
     toast.info(`${provider} login coming soon!`);

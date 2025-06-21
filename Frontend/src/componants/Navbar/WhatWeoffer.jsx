@@ -120,7 +120,10 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
                     <div className="mt-10 bg-white/10 rounded-xl p-5 backdrop-blur-sm">
                       <h4 className="text-white text-sm font-medium mb-3">Need Guidance?</h4>
                       <p className="text-purple-100 text-xs mb-4">Connect with our career advisors for personalized recommendations</p>
-                      <button className="w-full bg-white text-purple-900 py-3 px-4 rounded-xl font-medium flex items-center justify-center group transition-all duration-300 hover:bg-purple-50">
+                      <button 
+                        className="w-full bg-white text-purple-900 py-3 px-4 rounded-xl font-medium flex items-center justify-center group transition-all duration-300 hover:bg-purple-50"
+                        onClick={() => navigate('/contactCodeEternity')}
+                      >
                         Schedule Call
                         <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                       </button>
@@ -231,12 +234,6 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
                       </div>
                     </div>
 
-                    <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-6 rounded-xl font-medium flex items-center justify-center group transition-all duration-300 hover:shadow-lg">
-                      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform">
-                      Welcome to CodeEternity
-                      </a>
-                      <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                    </button>
                   </div>
                 </div>
               </div>
@@ -285,13 +282,9 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
                       <div className="mt-6 pt-4 border-t border-gray-100">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center">
-                          <div className="flex -space-x-2">
-  <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Student" className="w-8 h-8 rounded-full border-2 border-white" />
-  <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Student" className="w-8 h-8 rounded-full border-2 border-white" />
-  <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Student" className="w-8 h-8 rounded-full border-2 border-white" />
-</div>
 
-                            <span className="text-xs text-gray-500 ml-2">+2.4k students</span>
+
+                            <span className="text-xs text-gray-500 ml-2">1000+ students</span>
                           </div>
                           <button className="text-purple-600 hover:text-purple-700">
                             <Heart size={18} />

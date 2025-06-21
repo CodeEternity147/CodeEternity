@@ -18,17 +18,20 @@ const PaymentOption = () => {
   const plans = [
     {
       name: "Basic Plan",
-      price: "₹499",
+      price: "₹1999",
       duration: "3 Month",
       features: {
         "Basic Course Access": true,
         "Community Support": true,
         "Basic Projects": true,
         "Email Support": true,
+        "Project Reviews": true,
         "Certificate": true,
         "Advanced Courses": false,
-        "Project Reviews": false,
+        "Career Guidance": false,
         "Live Sessions": false,
+        "1-on-1 Mentorship": false,
+        "Access to Webinars": false,
       },
       buttonText: "Get Started",
       popular: false,
@@ -37,17 +40,20 @@ const PaymentOption = () => {
     },
     {
       name: "Pro Plan",
-      price: "₹999",
+      price: "₹4999",
       duration: "3 Months",
       features: {
         "Basic Course Access": true,
         "Community Support": true,
         "Basic Projects": true,
         "Email Support": true,
-        "Advanced Courses": true,
         "Project Reviews": true,
-        "Live Sessions": true,
-        "Certificate": true
+        "Certificate": true,
+        "Advanced Courses": true,
+        "Career Guidance": true,
+        "Live Sessions": false,
+        "1-on-1 Mentorship": false,
+        "Access to Webinars": false,
       },
       buttonText: "Get Started",
       popular: true,
@@ -56,17 +62,20 @@ const PaymentOption = () => {
     },
     {
       name: "Premium Plan",
-      price: "₹1999",
+      price: "₹9999",
       duration: "6 Months",
       features: {
         "Basic Course Access": true,
         "Community Support": true,
         "Basic Projects": true,
         "Email Support": true,
-        "Advanced Courses": true,
         "Project Reviews": true,
+        "Certificate": true,
+        "Advanced Courses": true,
+        "Career Guidance": true,
         "Live Sessions": true,
-        "Certificate": true
+        "1-on-1 Mentorship": true,
+        "Access to Webinars": true,
       },
       buttonText: "Get Started",
       popular: false,
@@ -83,7 +92,10 @@ const PaymentOption = () => {
     "Advanced Courses",
     "Project Reviews",
     "Live Sessions",
-    "Certificate"
+    "Certificate",
+    "1-on-1 Mentorship",
+    "Career Guidance",
+    "Access to Webinars"
   ];
 
   const handlePlanPayment = async (plan) => {

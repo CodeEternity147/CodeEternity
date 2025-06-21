@@ -1,5 +1,6 @@
 import { FiArrowRight } from "react-icons/fi";
 import Lottie from "lottie-react";
+import { useNavigate } from "react-router-dom";
 import earthAnimation from '../../data/Animation - 1746380129171.json';
 import img5 from "../../assets/img5.svg";
 
@@ -55,6 +56,8 @@ const TrustedCompanies = () => {
 
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <section className="min-h-screen  bg-[#ffe27c] mt-28 pt-20 px-4 sm:px-6 md:px-10">
@@ -80,10 +83,16 @@ growth, making your aspirations our mission
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 pt-2">
-              <button className="bg-gray-900 text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors duration-300">
+              <button 
+                onClick={() => navigate('/whatWeOffer')}
+                className="bg-gray-900 text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors duration-300"
+              >
                 Get Started
               </button>
-              <button className="bg-amber-50 text-gray-900 px-6 py-3 rounded-full font-medium hover:bg-amber-100 transition-colors duration-300 flex items-center gap-2">
+              <button 
+                onClick={() => navigate('/whoweServe')}
+                className="bg-amber-50 text-gray-900 px-6 py-3 rounded-full font-medium hover:bg-amber-100 transition-colors duration-300 flex items-center gap-2"
+              >
                 Learn More
                 <FiArrowRight className="h-5 w-5" />
               </button>
