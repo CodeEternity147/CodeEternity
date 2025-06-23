@@ -1,6 +1,7 @@
 import React from "react";
 import img3 from "../../assets/img3.svg";
 import img4 from "../../assets/img4.svg";
+import { Link } from 'react-router-dom';
 
 const WhyJoinCodeEternity = () => {
   const cards = [
@@ -84,14 +85,12 @@ const WhyJoinCodeEternity = () => {
 
           {/* Button */}
           <div className="mt-14 text-center">
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform"
-                target="_blank"
-    rel="noopener noreferrer"
+            <Link
+              to="/whatweoffer"
               className="px-8 py-4 text-lg font-bold bg-orange-400 text-white rounded-full shadow-md transform transition duration-300 hover:bg-orange-600 hover:scale-105 hover:shadow-lg"
             >
-              Apply Now
-            </a>
+              Select Your Best-Fit Program
+            </Link>
           </div>
         </div>
       </section>

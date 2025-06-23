@@ -24,10 +24,10 @@ const sendEmail = async (to, subject, text) => {
 
 export const register = async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, mobile } = req.body;
     
     // Basic input validation
-    if (!firstName?.trim() || !lastName?.trim() || !email?.trim() || !password?.trim()) {
+    if (!firstName?.trim() || !lastName?.trim() || !email?.trim() || !password?.trim() || !mobile?.trim()) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -35,14 +35,18 @@ export const register = async (req, res) => {
       return res.status(400).json({ message: 'Invalid email format' });
     }
 
+    if (!/^\d{10}$/.test(mobile)) {
+      return res.status(400).json({ message: 'Invalid mobile number. Must be 10 digits.' });
+    }
+
     if (password.length < 6) {
       return res.status(400).json({ message: 'Password must be at least 6 characters long' });
     }
     
-    // Check if user exists with the same email
-    const userExists = await User.findOne({ email: email.toLowerCase() });
+    // Check if user exists with the same email or mobile
+    const userExists = await User.findOne({ $or: [ { email: email.toLowerCase() }, { mobile } ] });
     if (userExists) {
-      return res.status(400).json({ message: 'Email already registered' });
+      return res.status(400).json({ message: 'Email or mobile already registered' });
     }
 
     // Hash password with lower salt rounds for better performance
@@ -54,6 +58,7 @@ export const register = async (req, res) => {
       lastName: lastName.trim(),
       email: email.toLowerCase(),
       password: hashedPassword,
+      mobile,
       role: 'user'
     });
 
@@ -61,7 +66,7 @@ export const register = async (req, res) => {
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: '24h' }
+      { expiresIn: '64h' }
     );
 
     res.status(201).json({
@@ -71,12 +76,13 @@ export const register = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        mobile: user.mobile,
       }
     });
   } catch (err) {
     console.error('Registration error from Backend:', err);
     if (err.code === 11000) {
-      return res.status(400).json({ message: 'Email already registered' });
+      return res.status(400).json({ message: 'Email or mobile already registered' });
     }
     return res.status(500).json({ message: err.message || 'Registration failed. Please try again.' });
   }
@@ -84,10 +90,15 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const { email, password, mobile } = req.body;
+    let user;
+    if (email) {
+      user = await User.findOne({ email });
+    } else if (mobile) {
+      user = await User.findOne({ mobile });
+    }
     if (!user) {
-      return res.status(400).json({ message: 'No user found with this email.' });
+      return res.status(400).json({ message: 'No user found with this email or mobile.' });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
@@ -104,6 +115,7 @@ export const login = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        mobile: user.mobile,
       }
     });
   } catch (err) {
@@ -114,10 +126,10 @@ export const login = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const { firstName, lastName, dob , } = req.body;
+    const { firstName, lastName, dob, mobile } = req.body;
     
     // Input validation
-    if (!firstName && !lastName && !dob) {
+    if (!firstName && !lastName && !dob && !mobile) {
       return res.status(400).json({ message: 'At least one field must be provided for update' });
     }
 
@@ -129,12 +141,17 @@ export const updateProfile = async (req, res) => {
       return res.status(400).json({ message: 'Last name cannot be empty' });
     }
 
+    if (mobile && !/^\d{10}$/.test(mobile)) {
+      return res.status(400).json({ message: 'Invalid mobile number. Must be 10 digits.' });
+    }
+
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     if (firstName) user.firstName = firstName.trim();
     if (lastName) user.lastName = lastName.trim();
     if (dob) user.dob = dob;
+    if (mobile) user.mobile = mobile;
 
     await user.save();
 
@@ -145,7 +162,8 @@ export const updateProfile = async (req, res) => {
         lastName: user.lastName,
         email: user.email,
         dob: user.dob,
-        role: user.role
+        role: user.role,
+        mobile: user.mobile,
       }
     });
   } catch (err) {
@@ -189,7 +207,7 @@ export const changePassword = async (req, res) => {
 // Get current user info
 export const getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('firstName lastName email role dob');
+    const user = await User.findById(req.user.id).select('firstName lastName email role dob mobile');
     if (!user) return res.status(404).json({ message: 'User not found' });
     res.json({ user });
   } catch (err) {

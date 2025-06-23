@@ -9,6 +9,12 @@ const PaymentButton = ({ amount, orderId, customerDetails }) => {
     setLoading(true);
     setError(null);
 
+    if (!customerDetails?.mobile || !/^\d{10}$/.test(customerDetails.mobile)) {
+      setError('Please provide a valid 10-digit mobile number before making a payment.');
+      setLoading(false);
+      return;
+    }
+
     try {
       // Prepare order data
       const orderData = {
@@ -16,7 +22,7 @@ const PaymentButton = ({ amount, orderId, customerDetails }) => {
         amount: amount,
         customerName: customerDetails?.name || 'Guest User',
         customerEmail: customerDetails?.email || 'guest@example.com',
-        customerPhone: customerDetails?.phone || '9999999999'
+        customerPhone: customerDetails.mobile
       };
 
       console.log('Initiating payment with:', orderData);

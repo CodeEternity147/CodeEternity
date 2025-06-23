@@ -5,7 +5,7 @@ const PaymentTestPage = () => {
   const [customerDetails, setCustomerDetails] = useState({
     name: 'Test User',
     email: 'test@example.com',
-    phone: '9999999999'
+    mobile: '9999999999'
   });
 
   const [amount, setAmount] = useState(100);
@@ -57,12 +57,12 @@ const PaymentTestPage = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Customer Phone
+              Customer Mobile
             </label>
             <input
               type="tel"
-              value={customerDetails.phone}
-              onChange={(e) => setCustomerDetails(prev => ({ ...prev, phone: e.target.value }))}
+              value={customerDetails.mobile}
+              onChange={(e) => setCustomerDetails(prev => ({ ...prev, mobile: e.target.value }))}
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>

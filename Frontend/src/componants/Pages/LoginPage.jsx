@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Mail, Lock, Eye, EyeOff, Loader2, Code2, Sparkles, Zap } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, Loader2, Code2, Sparkles, Zap, Phone } from "lucide-react";
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 export default function LoginPage() {
   const [formData, setFormData] = useState({
     email: "",
+    mobile: "",
     password: "",
     termsAccepted: false
   });
@@ -23,6 +24,7 @@ export default function LoginPage() {
     return () => {
       setFormData({
         email: "",
+        mobile: "",
         password: "",
         termsAccepted: false
       });
@@ -46,11 +48,22 @@ export default function LoginPage() {
       setLoading(false);
       return;
     }
+    if (!formData.email && !formData.mobile) {
+      toast.error("Please enter your email or mobile number");
+      setLoading(false);
+      return;
+    }
+    if (formData.mobile && !/^[0-9]{10}$/.test(formData.mobile)) {
+      toast.error("Mobile number must be 10 digits.");
+      setLoading(false);
+      return;
+    }
 
     try {
       const toastId = toast.loading("Logging in...");
       const result = await login({ 
         email: formData.email, 
+        mobile: formData.mobile,
         password: formData.password 
       });
       
@@ -107,7 +120,7 @@ export default function LoginPage() {
       {/* Main Container */}
       <div className="relative z-10 w-full h-full max-w-6xl lg:max-h-[800px] flex flex-col lg:flex-row overflow-y-auto lg:overflow-visible rounded-2xl lg:rounded-3xl shadow-2xl">
         {/* Left Side - Branding */}
-        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-violet-600/10 to-fuchsia-600/10 backdrop-blur-xl border border-white/10 rounded-t-2xl lg:rounded-t-none lg:rounded-l-3xl p-8 lg:p-12 flex-col justify-center items-center relative overflow-hidden">
+        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-violet-600/10 to-fuchsia-600/10 backdrop-blur-xl border border-white/10 rounded-t-2xl lg:rounded-t-none lg:rounded-l-3xl p-6 lg:p-8 flex-col justify-center items-center relative overflow-hidden">
           {/* Animated Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
@@ -137,17 +150,17 @@ export default function LoginPage() {
         </div>
 
         {/* Right Side - Login Form */}
-        <div className="w-full lg:w-1/2 bg-slate-900/80 backdrop-blur-2xl border border-white/20 rounded-b-2xl lg:rounded-b-none lg:rounded-r-3xl shadow-2xl flex items-center justify-center p-4 sm:p-6 lg:p-8">
-          <div className="w-full max-w-sm">
+        <div className="w-full lg:w-1/2 bg-slate-900/80 backdrop-blur-2xl border border-white/20 rounded-b-2xl lg:rounded-b-none lg:rounded-r-3xl shadow-2xl flex items-center justify-center p-2 sm:p-4 md:p-6 lg:p-8">
+          <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
             {/* Form Header */}
-            <div className="text-center mb-8">
-              <div className="lg:hidden inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl mb-4 shadow-lg">
-                <Code2 className="w-8 h-8 text-white" />
+            <div className="text-center mb-6 sm:mb-8">
+              <div className="lg:hidden inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl mb-4 shadow-lg">
+                <Code2 className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
               </div>
-              <h2 className="text-3xl font-bold text-white mb-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                 Welcome Back
               </h2>
-              <p className="text-gray-400">Sign in to your account</p>
+              <p className="text-gray-400 text-sm sm:text-base">Sign in to your account</p>
             </div>
 
             {error && (
@@ -156,7 +169,7 @@ export default function LoginPage() {
               </div>
             )}
 
-            <div className="space-y-5">
+            <div className="space-y-4 sm:space-y-5">
               {/* Email Field */}
               <div className="relative group">
                 <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 transition-colors group-focus-within:text-violet-400" />
@@ -164,10 +177,23 @@ export default function LoginPage() {
                   type="email"
                   name="email"
                   placeholder="Work email"
-                  className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm"
+                  className="w-full pl-12 pr-4 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
                   value={formData.email}
                   onChange={handleChange}
-                  required
+                />
+              </div>
+              {/* Mobile Field */}
+              <div className="relative group">
+                <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 transition-colors group-focus-within:text-violet-400" />
+                <input
+                  type="tel"
+                  name="mobile"
+                  placeholder="Mobile Number"
+                  className="w-full pl-12 pr-4 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
+                  value={formData.mobile}
+                  onChange={handleChange}
+                  pattern="[0-9]{10}"
+                  maxLength={10}
                 />
               </div>
 
@@ -178,7 +204,7 @@ export default function LoginPage() {
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Password"
-                  className="w-full pl-12 pr-14 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm"
+                  className="w-full pl-12 pr-14 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
                   value={formData.password}
                   onChange={handleChange}
                   required
@@ -227,7 +253,7 @@ export default function LoginPage() {
                 type="submit"
                 disabled={loading}
                 onClick={handleSubmit}
-                className="w-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-violet-600 text-white py-4 px-6 rounded-xl font-semibold shadow-2xl hover:shadow-violet-500/25 transform transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-violet-500/50 bg-size-200 hover:bg-pos-100"
+                className="w-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-violet-600 text-white py-3 sm:py-4 px-6 rounded-xl font-semibold shadow-2xl hover:shadow-violet-500/25 transform transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-violet-500/50 bg-size-200 hover:bg-pos-100 text-sm sm:text-base"
               >
                 {loading ? (
                   <div className="flex items-center justify-center gap-3">

@@ -52,7 +52,7 @@ const BASE_URL = ENV === "PROD"
         customer_id: "cust_" + Date.now(),
         customer_name: req.body.customerName || "Guest User",
         customer_email: req.body.customerEmail || "guest@example.com",
-        customer_phone: req.body.customerPhone || "9999999999",
+        customer_phone: req.body.customerPhone, // Use real mobile from frontend
       };
   
       console.log("Customer details:", customerDetails);

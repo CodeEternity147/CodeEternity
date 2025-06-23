@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   role: { type: String, enum: ['user', 'admin'], default: 'user' },
   college: { type: String, default: "" },
   gender: { type: String, enum: ['male', 'female', 'other', ''], default: "" },
+  mobile: { type: String, required: true },
   resetOTP: { type: String },
   resetOTPExpiry: { type: Number }
 });

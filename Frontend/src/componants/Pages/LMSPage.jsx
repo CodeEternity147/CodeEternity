@@ -15,6 +15,8 @@ import {
   FaMobileAlt,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useAuth } from '../../context/AuthContext';
+
 const LMSPage = () => {
   const [isVisible, setIsVisible] = useState({
     hero: false,
@@ -24,6 +26,8 @@ const LMSPage = () => {
     testimonials: false,
     cta: false,
   });
+
+  const { user } = useAuth();
 
   useEffect(() => {
     setIsVisible({
@@ -174,12 +178,19 @@ const LMSPage = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 ">
-              Explore Courses
-            </button>
-            <button className="bg-transparent border-2 border-blue-500 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-500/20 transition-all duration-300">
-              Start Free Trial
-            </button>
+            {user ? (
+              <Link to="/whatweoffer">
+                <button className="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105 ">
+                  Explore Courses
+                </button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <button className="bg-blue-600 border-2 border-blue-500 px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-500/20 transition-all duration-300">
+                  Login to explore more
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -310,14 +321,11 @@ const LMSPage = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/signup">
-                <button className="bg-black border hover:bg-white  hover:text-black px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 transform hover:scale-105">
-                  Sign Up Now
+              <Link to="/whatweoffer">
+                <button className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105">
+                  View Demo
                 </button>
               </Link>
-              <button className="bg-white text-blue-900 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-bold transition-all duration-300 hover:scale-105">
-                View Demo
-              </button>
             </div>
           </div>
         </div>

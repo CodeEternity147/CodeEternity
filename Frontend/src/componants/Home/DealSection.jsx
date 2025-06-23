@@ -29,11 +29,7 @@ const DealSection = () => {
             <span className="text-sm md:text-base text-gray-700">expert mentors and developers</span>
           </div>
         </div>
-        <button // Replaced the Button component with a standard button
-          className="bg-[#141414] text-white hover:bg-gray-800 px-6 py-3 rounded-md"
-          >
-          Book a demo
-        </button>
+   
       </div>
     </div>
           </>

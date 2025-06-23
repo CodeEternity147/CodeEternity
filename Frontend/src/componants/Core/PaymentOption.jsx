@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createOrderAndCheckout } from '../../utils/payment';
 import { useAuth } from '../../context/AuthContext';
+import { toast } from 'react-toastify';
 
 const PaymentOption = () => {
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -100,9 +100,14 @@ const PaymentOption = () => {
 
   const handlePlanPayment = async (plan) => {
     try {
-      setError(null);
       setLoading(true);
       const amount = parseInt(plan.price.replace('₹', ''));
+
+      if (!user?.mobile || !/^\d{10}$/.test(user.mobile)) {
+        toast.error('First update your profile with mobile number');
+        setLoading(false);
+        return;
+      }
 
       // Prepare order data
       const orderData = {
@@ -110,14 +115,14 @@ const PaymentOption = () => {
         amount: amount,
         customerName: user?.firstName + ' ' + user?.lastName || 'Guest User',
         customerEmail: user?.email || 'guest@example.com',
-        customerPhone: user?.phone || '9999999999'
+        customerPhone: user.mobile
       };
 
       await createOrderAndCheckout(orderData);
-    //   alert(`Payment successful for ${plan.name}: ${plan.price}`);
+      // Optionally show a success toast here if needed
     } catch (error) {
       console.error('Payment error:', error);
-      setError(error.message || 'Failed to process payment. Please try again.');
+      toast.error(error.message || 'Failed to process payment. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -133,17 +138,6 @@ const PaymentOption = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {error && (
-          <div className="mb-8 p-4 bg-red-900/20 border border-red-500/30 text-red-300 rounded-lg backdrop-blur-sm animate-fade-in">
-            <div className="flex items-center">
-              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-              </svg>
-              {error}
-            </div>
-          </div>
-        )}
-
         <div className="text-center animate-fade-in-up">
           <h2 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-4">
             Choose Your Learning Plan
