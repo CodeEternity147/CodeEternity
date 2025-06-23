@@ -32,7 +32,6 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     setLoading(true);
     
     toast.dismiss();
@@ -77,10 +76,9 @@ const Signup = () => {
         navigate(redirectTo, { replace: true });
       }
     } catch (error) {
-      console.error('Registration error From Frontend:', error);
+      toast.dismiss();
       const backendMessage = error.response?.data?.message || error.message || 'Registration failed. Please try again.';
       toast.error(backendMessage);
-      setError(backendMessage);
     } finally {
       setLoading(false);
     }

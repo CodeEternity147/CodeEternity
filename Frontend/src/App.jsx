@@ -34,6 +34,10 @@ import WhatsAppChat from "./componants/WhatsAppChat";
 import PaymentOption from "./componants/Core/PaymentOption";
 import PaymentSuccess from "./componants/Pages/PaymentSuccess";
 import PaymentFailure from "./componants/Pages/PaymentFailure";
+import ForgotPassword from './componants/Pages/ForgotPassword';
+import ResetPassword from './componants/Pages/ResetPassword';
+import VerifyOTP from './componants/Pages/VerifyOTP';
+import SetNewPassword from './componants/Pages/SetNewPassword';
 
 function App() {
   const [selectedChildCourse, setSelectedChildCourse] = useState(null);
@@ -200,6 +204,15 @@ function App() {
               </MainLayout>
             }
           />
+
+          {/* Route for Forgot Password page */}
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          {/* Route for Reset Password page */}
+          <Route path="/reset-password" element={<ResetPassword />} />
+          {/* Route for Verify OTP page */}
+          <Route path="/verify-otp" element={<VerifyOTP />} />
+          {/* Route for Set New Password page */}
+          <Route path="/set-new-password" element={<SetNewPassword />} />
 
           {/* 404 Route - Must be last */}
           <Route path="*" element={<NotFound />} />

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Mail, Lock, Eye, EyeOff, Loader2, Code2, Sparkles, Zap } from "lucide-react";
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 
@@ -21,7 +21,6 @@ export default function LoginPage() {
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      setError("");
       setFormData({
         email: "",
         password: "",
@@ -40,7 +39,6 @@ export default function LoginPage() {
 
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
-    setError("");
     setLoading(true);
     
     if (!formData.termsAccepted) {
@@ -56,20 +54,19 @@ export default function LoginPage() {
         password: formData.password 
       });
       
+      toast.dismiss(toastId);
       if (result.success) {
-        toast.dismiss(toastId);
         toast.success("Login successful!");
         // Redirect to the page the user came from, or default to dashboard
         const redirectTo = location.state?.from?.pathname || '/dashboard';
         navigate(redirectTo, { replace: true });
       } else {
-        toast.dismiss(toastId);
         toast.error(result.error || 'Login failed');
-        setError(result.error || 'Login failed');
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Login failed');
-      setError(error.response?.data?.message || 'Login failed');
+      toast.dismiss();
+      const backendMessage = error.response?.data?.message || error.message || 'Login failed';
+      toast.error(backendMessage);
     } finally {
       setLoading(false);
     }
@@ -216,6 +213,13 @@ export default function LoginPage() {
                     Privacy Policy
                   </a>
                 </label>
+              </div>
+
+              {/* Forgot Password Link */}
+              <div className="text-right mt-2">
+                <span className="text-sm text-violet-400 hover:underline cursor-pointer" onClick={() => navigate('/forgot-password')}>
+                  Forgot Password?
+                </span>
               </div>
 
               {/* Submit Button */}

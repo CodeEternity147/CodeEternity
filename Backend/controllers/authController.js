@@ -1,6 +1,8 @@
 import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
+import crypto from 'crypto';
 
 // Input validation helper
 const validateEmail = (email) => {
@@ -8,6 +10,17 @@ const validateEmail = (email) => {
   return re.test(email);
 };
 
+// Helper to send email
+const sendEmail = async (to, subject, text) => {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+  await transporter.sendMail({ from: process.env.EMAIL_USER, to, subject, text });
+};
 
 export const register = async (req, res) => {
   try {
@@ -62,11 +75,10 @@ export const register = async (req, res) => {
     });
   } catch (err) {
     console.error('Registration error from Backend:', err);
-    // Send more specific error messages
     if (err.code === 11000) {
       return res.status(400).json({ message: 'Email already registered' });
     }
-   return  res.status(500).json({ message: 'Registration failed. Please try again.' });
+    return res.status(500).json({ message: err.message || 'Registration failed. Please try again.' });
   }
 };
 
@@ -75,20 +87,17 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: 'Invalid credentials from user not find' });
+      return res.status(400).json({ message: 'No user found with this email.' });
     }
-
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid credentials for password not match' });
+      return res.status(400).json({ message: 'Incorrect password.' });
     }
-
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: '1d' }
     );
-
     res.json({
       token,
       user: {
@@ -98,7 +107,8 @@ export const login = async (req, res) => {
       }
     });
   } catch (err) {
-    res.status(500).json({ message: "some error from backend while login" });
+    console.error('Login error:', err);
+    return res.status(500).json({ message: err.message || 'Login failed. Please try again.' });
   }
 };
 
@@ -184,5 +194,73 @@ export const getMe = async (req, res) => {
     res.json({ user });
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+};
+
+// Request OTP for password reset
+export const requestPasswordReset = async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!validateEmail(email)) {
+      return res.status(400).json({ message: 'Invalid email format' });
+    }
+    const user = await User.findOne({ email: email.toLowerCase() });
+    if (!user) {
+      return res.status(404).json({ message: 'Email not found. Please sign up.' });
+    }
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otpExpiry = Date.now() + 10 * 60 * 1000; // 10 minutes
+    user.resetOTP = otp;
+    user.resetOTPExpiry = otpExpiry;
+    await user.save();
+    await sendEmail(user.email, 'Your Password Reset OTP', `Your OTP is: ${otp}`);
+    res.status(200).json({ message: 'OTP sent to your email.' });
+  } catch (err) {
+    console.error('Request password reset error:', err);
+    return res.status(500).json({ message: err.message || 'Failed to send OTP. Please try again.' });
+  }
+};
+
+// Reset password with OTP
+export const resetPasswordWithOTP = async (req, res) => {
+  try {
+    const { email, otp, newPassword } = req.body;
+    if (!validateEmail(email) || !otp || !newPassword) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+    const user = await User.findOne({ email: email.toLowerCase() });
+    if (!user || user.resetOTP !== otp || Date.now() > user.resetOTPExpiry) {
+      return res.status(400).json({ message: 'Invalid or expired OTP' });
+    }
+    if (newPassword.length < 6) {
+      return res.status(400).json({ message: 'Password must be at least 6 characters long' });
+    }
+    const hashedPassword = await bcrypt.hash(newPassword, 8);
+    user.password = hashedPassword;
+    user.resetOTP = undefined;
+    user.resetOTPExpiry = undefined;
+    await user.save();
+    res.status(200).json({ message: 'Password reset successful' });
+  } catch (err) {
+    console.error('Reset password with OTP error:', err);
+    return res.status(500).json({ message: err.message || 'Failed to reset password. Please try again.' });
+  }
+};
+
+// Verify OTP endpoint
+export const verifyOTP = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+    if (!validateEmail(email) || !otp) {
+      return res.status(400).json({ message: 'Email and OTP are required' });
+    }
+    const user = await User.findOne({ email: email.toLowerCase() });
+    if (!user || user.resetOTP !== otp || Date.now() > user.resetOTPExpiry) {
+      return res.status(400).json({ message: 'Invalid or expired OTP' });
+    }
+    res.status(200).json({ message: 'OTP verified successfully' });
+  } catch (err) {
+    console.error('Verify OTP error:', err);
+    return res.status(500).json({ message: err.message || 'Failed to verify OTP. Please try again.' });
   }
 };

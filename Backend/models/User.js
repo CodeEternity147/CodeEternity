@@ -8,7 +8,9 @@ const userSchema = new mongoose.Schema({
   dob: { type: Date, required: false },
   role: { type: String, enum: ['user', 'admin'], default: 'user' },
   college: { type: String, default: "" },
-  gender: { type: String, enum: ['male', 'female', 'other', ''], default: "" }
+  gender: { type: String, enum: ['male', 'female', 'other', ''], default: "" },
+  resetOTP: { type: String },
+  resetOTPExpiry: { type: Number }
 });
 
 export default mongoose.model('User', userSchema);
