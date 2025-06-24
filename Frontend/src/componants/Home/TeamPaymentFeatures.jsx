@@ -74,37 +74,48 @@ const TeamPaymentFeatures = () => {
   return (
     <section className="bg-gradient-to-b from-[#FFF8F0] to-[#F9F4FF] py-16 w-full overflow-hidden">
       <div className={`text-center mb-12 px-4 py-8 transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-xl transform -rotate-1 scale-105"></div>
-          <div className="relative z-10 py-2 px-4">
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-800">Code</span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-purple-700">Eternity</span>
-              <div className="mt-1">
-                <span className="relative inline-block mr-2">
-                  <span className="relative text-indigo-700 z-10">Help you to Build</span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-indigo-200 rounded-md -z-10 transform -rotate-1"></span>
-                </span>
-                <span className="text-gray-800">Faster,</span>
-                <span className="relative inline-block ml-2">
-                  <span className="relative text-purple-700 z-10">Together</span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-purple-200 rounded-md -z-10 transform rotate-1"></span>
-                </span>
-              </div>
-            </h1>
-            
-            <p className="text-gray-600 max-w-2xl mx-auto mt-6 text-sm sm:text-base md:text-lg">
-              <span className="font-medium">Empowering businesses</span> with cutting-edge technology solutions and <span className="font-medium">digital transformation</span> services.
-            </p>
-            
-            <div className="mt-6 flex justify-center space-x-2">
-              <div className="h-1 w-16 rounded-full bg-indigo-300"></div>
-              <div className="h-1 w-8 rounded-full bg-purple-400"></div>
-              <div className="h-1 w-4 rounded-full bg-pink-300"></div>
-            </div>
-          </div>
+  <div className="relative">
+    <div className="absolute inset-0 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-xl transform -rotate-1 scale-105"></div>
+    <div className="relative z-10 py-2 px-4">
+      <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 leading-tight tracking-tight">
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-800">Code</span>
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-purple-700">Eternity</span>
+        <div className="mt-1">
+          <span className="relative inline-block mr-2">
+            <span className="relative text-indigo-700 z-10">Help you to Build</span>
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-indigo-200 rounded-md -z-10 transform -rotate-1"></span>
+          </span>
+          <span className="text-gray-800">Faster,</span>
+          <span className="relative inline-block ml-2">
+            <span className="relative text-purple-700 z-10">Together</span>
+            <span className="absolute bottom-0 left-0 w-full h-1 bg-purple-200 rounded-md -z-10 transform rotate-1"></span>
+          </span>
         </div>
+      </h1>
+                    
+      <p className="text-gray-600 max-w-2xl mx-auto mt-6 text-sm sm:text-base md:text-lg">
+        <span className="font-medium">Empowering businesses</span> with cutting-edge technology solutions and <span className="font-medium">digital transformation</span> services.
+      </p>
+                    
+      <div className="mt-8 flex justify-center">
+        <button className="group relative overflow-hidden bg-gradient-to-r from-indigo-600 to-purple-700 text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <span className="relative z-10 flex items-center space-x-2">
+            <span>Our Services - Future-Ready Offerings</span>
+            
+          </span>
+          <div className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-pink-400 to-yellow-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+        </button>
       </div>
+                    
+      <div className="mt-6 flex justify-center space-x-2">
+        <div className="h-1 w-16 rounded-full bg-indigo-300"></div>
+        <div className="h-1 w-8 rounded-full bg-purple-400"></div>
+        <div className="h-1 w-4 rounded-full bg-pink-300"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
       <div
         className="relative px-4 sm:px-6 overflow-visible"

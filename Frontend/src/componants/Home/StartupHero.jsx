@@ -67,7 +67,7 @@ const Hero = () => {
           <div className="lg:w-1/2 space-y-8">
             <div className="space-y-4">
               <span className="text-gray-600 font-medium uppercase tracking-wider">
-                CODEETERNITY
+                CODEETERNITY - Industry-Aligned Internship & 100% Placement 
               </span>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Empowering Talents, Engineering Solutions

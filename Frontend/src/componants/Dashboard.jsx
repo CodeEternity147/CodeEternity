@@ -6,6 +6,7 @@ import api from '../utils/axios';
 import ProfileSettings from "./ProfileSettings";
 import img8 from '../assets/img8.png';
 import img9 from '../assets/img9.avif';
+import Logo from '../assets/Logo.png'
 
 export default function Dashboard() {
   const [user, setUser] = useState({ firstName: "", lastName: "" });
@@ -106,9 +107,8 @@ export default function Dashboard() {
       <header className="flex items-center p-3 md:p-6 justify-between mb-4 md:mb-10 bg-white shadow-sm">
         {/* Left: CodeEternity Branding */}
         <div className="p-1 rounded-full">
-          <div className="text-lg md:text-2xl font-bold rounded-full px-2 md:px-4 py-1 md:py-2">
-            CodeEternity
-          </div>
+         
+          <img className="h-10" src={Logo} ></img>
         </div>
         
         {/* Mobile Menu Button */}
