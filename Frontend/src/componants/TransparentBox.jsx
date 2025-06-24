@@ -5,12 +5,15 @@ export default function InternshipPopup() {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-      setIsAnimating(true);
-    }, 5000);
-
-    return () => clearTimeout(timer);
+    // Only show if not already shown in this session
+    if (window.location.pathname === "/" && !sessionStorage.getItem("internshipPopupShown")) {
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+        setIsAnimating(true);
+        sessionStorage.setItem("internshipPopupShown", "true");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   const handleClose = () => {
@@ -24,7 +27,7 @@ export default function InternshipPopup() {
     <>
       {/* Simplified Backdrop */}
       <div 
-        className={`fixed inset-0 bg-gradient-to-br from-gray-900/90 via-black/80 to-blue-900/90 backdrop-blur-md z-[100] transition-all duration-700 ${
+        className={`fixed inset-0 bg-gradient-to-br from-gray-900/90 via-black/80 to-blue-900/90 backdrop-blur-md z-[9999] transition-all duration-700 ${
           isAnimating ? 'opacity-100' : 'opacity-0'
         }`}
         onClick={handleClose}
@@ -45,7 +48,7 @@ export default function InternshipPopup() {
       </div>
       
       {/* Popup Container */}
-      <div className={`fixed inset-0 flex items-center justify-center z-[101] p-2 transition-all duration-700 ${
+      <div className={`fixed inset-0 flex items-center justify-center z-[9999] p-2 transition-all duration-700 ${
         isAnimating ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-90 rotate-3'
       }`}>
         
@@ -62,7 +65,7 @@ export default function InternshipPopup() {
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className="absolute top-1 right-1 xs:top-2 xs:right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 z-20 w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gray-800/80 hover:bg-red-500/80 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm border border-gray-600 hover:border-red-400 group hover:rotate-90"
+              className="absolute top-1 right-1 xs:top-2 xs:right-2 sm:top-3 sm:right-3 md:top-4 md:right-4 z-[10000] w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gray-800/80 hover:bg-red-500/80 rounded-full flex items-center justify-center transition-all duration-300 backdrop-blur-sm border border-gray-600 hover:border-red-400 group hover:rotate-90"
             >
               <svg className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-gray-300 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

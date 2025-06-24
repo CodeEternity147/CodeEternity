@@ -231,11 +231,11 @@ export default function LoginPage() {
                 />
                 <label htmlFor="termsAccepted" className="text-sm text-gray-400 leading-5">
                   By continuing, you agree to the{' '}
-                  <a href="/terms" className="text-violet-400 hover:text-violet-300 font-medium transition-colors">
+                  <a href="/terms-and-conditions" className="text-violet-400 hover:text-violet-300 font-medium transition-colors">
                     Terms of Use
                   </a>
                   {' '}and{' '}
-                  <a href="/privacy" className="text-violet-400 hover:text-violet-300 font-medium transition-colors">
+                  <a href="/privacy-policy" className="text-violet-400 hover:text-violet-300 font-medium transition-colors">
                     Privacy Policy
                   </a>
                 </label>
