@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PaymentButton from '../Core/PaymentButton';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 const PaymentTestPage = () => {
+  useScrollToTop();
   const [customerDetails, setCustomerDetails] = useState({
     name: 'Test User',
     email: 'test@example.com',

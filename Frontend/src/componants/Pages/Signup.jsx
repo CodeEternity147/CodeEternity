@@ -4,8 +4,10 @@ import api from '../../utils/axios';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import { Eye, EyeOff, Mail, Lock, User, Sparkles, Zap, Code2, Phone } from 'lucide-react';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 const Signup = () => {
+  useScrollToTop();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',

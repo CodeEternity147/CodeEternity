@@ -5,8 +5,10 @@ import {
   FaBriefcase,
   FaMapMarkerAlt,
 } from 'react-icons/fa';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 const CareerPage = () => {
+  useScrollToTop();
   return (
     <div className="bg-purple-100 min-h-screen py-24 font-sans">
     <Header></Header>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 import {
   FaGraduationCap,
@@ -28,6 +29,8 @@ const LMSPage = () => {
   });
 
   const { user } = useAuth();
+
+  useScrollToTop();
 
   useEffect(() => {
     setIsVisible({

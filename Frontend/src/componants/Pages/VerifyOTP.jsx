@@ -3,8 +3,10 @@ import api from '../../utils/axios';
 import { Mail, KeyRound } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { useNavigate, useLocation } from 'react-router-dom';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 const VerifyOTP = () => {
+  useScrollToTop();
   const [form, setForm] = useState({ email: '', otp: '' });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

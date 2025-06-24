@@ -3,8 +3,10 @@ import api from '../../utils/axios';
 import { Mail } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 const ForgotPassword = () => {
+  useScrollToTop();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);

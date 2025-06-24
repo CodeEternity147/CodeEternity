@@ -3,8 +3,10 @@ import { Mail, Lock, Eye, EyeOff, Loader2, Code2, Sparkles, Zap, Phone } from "l
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 export default function LoginPage() {
+  useScrollToTop();
   const [formData, setFormData] = useState({
     email: "",
     mobile: "",

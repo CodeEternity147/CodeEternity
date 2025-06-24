@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import api from '../../utils/axios';
 import { Mail, Lock, KeyRound } from 'lucide-react';
 import { toast } from 'react-toastify';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 const ResetPassword = () => {
+  useScrollToTop();
   const [form, setForm] = useState({ email: '', otp: '', newPassword: '', confirmPassword: '' });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);

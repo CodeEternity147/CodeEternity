@@ -4,8 +4,10 @@ import { Lock } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 const SetNewPassword = () => {
+  useScrollToTop();
   const location = useLocation();
   const navigate = useNavigate();
   const { login } = useAuth();
