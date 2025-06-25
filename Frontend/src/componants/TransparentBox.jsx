@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function InternshipPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,6 +20,11 @@ export default function InternshipPopup() {
   const handleClose = () => {
     setIsAnimating(false);
     setTimeout(() => setIsVisible(false), 300);
+  };
+
+  const navigate = useNavigate();
+  const handleCTARedirect = () => {
+    navigate("/whatweoffer");
   };
 
   if (!isVisible) return null;
@@ -199,10 +205,9 @@ export default function InternshipPopup() {
 
               {/* CTA Section */}
               <div className="space-y-1.5 xs:space-y-2 sm:space-y-3">
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={handleCTARedirect}
                   className="group relative w-full bg-gradient-to-r from-purple-700 to-purple-800 text-white py-2 xs:py-3 sm:py-4 px-3 xs:px-4 sm:px-8 rounded-lg xs:rounded-xl sm:rounded-2xl font-bold text-sm xs:text-base sm:text-xl text-center inline-flex items-center justify-center gap-1.5 xs:gap-2 sm:gap-3 transition-all duration-500 transform hover:scale-105 hover:rotate-1 shadow-2xl hover:shadow-blue-500/50 overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
@@ -210,7 +215,7 @@ export default function InternshipPopup() {
                   <svg className="w-3 h-3 xs:w-4 xs:h-4 sm:w-6 sm:h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
-                </a>
+                </button>
                 
                 {/* Secondary CTA */}
                 <div className="text-center">
@@ -229,7 +234,7 @@ export default function InternshipPopup() {
                   <div className="flex text-yellow-500">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-4 sm:h-4 animate-pulse" style={{animationDelay: `${i * 100}ms`}} fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.414L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                       </svg>
                     ))}
                   </div>
