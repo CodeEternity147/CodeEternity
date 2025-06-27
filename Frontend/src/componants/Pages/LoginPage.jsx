@@ -9,7 +9,6 @@ export default function LoginPage() {
   useScrollToTop();
   const [formData, setFormData] = useState({
     email: "",
-    mobile: "",
     password: "",
     termsAccepted: false
   });
@@ -26,7 +25,6 @@ export default function LoginPage() {
     return () => {
       setFormData({
         email: "",
-        mobile: "",
         password: "",
         termsAccepted: false
       });
@@ -50,13 +48,8 @@ export default function LoginPage() {
       setLoading(false);
       return;
     }
-    if (!formData.email && !formData.mobile) {
-      toast.error("Please enter your email or mobile number");
-      setLoading(false);
-      return;
-    }
-    if (formData.mobile && !/^[0-9]{10}$/.test(formData.mobile)) {
-      toast.error("Mobile number must be 10 digits.");
+    if (!formData.email) {
+      toast.error("Please enter your email");
       setLoading(false);
       return;
     }
@@ -65,7 +58,6 @@ export default function LoginPage() {
       const toastId = toast.loading("Logging in...");
       const result = await login({ 
         email: formData.email, 
-        mobile: formData.mobile,
         password: formData.password 
       });
       
@@ -182,20 +174,6 @@ export default function LoginPage() {
                   className="w-full pl-12 pr-4 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
                   value={formData.email}
                   onChange={handleChange}
-                />
-              </div>
-              {/* Mobile Field */}
-              <div className="relative group">
-                <Phone className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 transition-colors group-focus-within:text-violet-400" />
-                <input
-                  type="tel"
-                  name="mobile"
-                  placeholder="Mobile Number"
-                  className="w-full pl-12 pr-4 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
-                  value={formData.mobile}
-                  onChange={handleChange}
-                  pattern="[0-9]{10}"
-                  maxLength={10}
                 />
               </div>
 
