@@ -108,7 +108,8 @@ export default function Dashboard() {
         {/* Left: CodeEternity Branding */}
         <div className="p-1 rounded-full">
          
-          <img className="h-10" src={Logo} ></img>
+          <img src={Logo} className="h-8 md:h-10 w-auto object-contain"
+          style={{ maxHeight: '40px' }} ></img>
         </div>
         
         {/* Mobile Menu Button */}

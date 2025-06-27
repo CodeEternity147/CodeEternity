@@ -126,10 +126,10 @@ export const login = async (req, res) => {
 
 export const updateProfile = async (req, res) => {
   try {
-    const { firstName, lastName, dob, mobile } = req.body;
+    const { firstName, lastName, dob, mobile, college, gender, academicDegree, degreeStatus } = req.body;
     
     // Input validation
-    if (!firstName && !lastName && !dob && !mobile) {
+    if (!firstName && !lastName && !dob && !mobile && !college && !gender && !academicDegree && !degreeStatus) {
       return res.status(400).json({ message: 'At least one field must be provided for update' });
     }
 
@@ -145,6 +145,14 @@ export const updateProfile = async (req, res) => {
       return res.status(400).json({ message: 'Invalid mobile number. Must be 10 digits.' });
     }
 
+    if (degreeStatus && !['pursuing', 'complete', ''].includes(degreeStatus)) {
+      return res.status(400).json({ message: 'Invalid degree status' });
+    }
+
+    if (gender && !['male', 'female', 'other', ''].includes(gender)) {
+      return res.status(400).json({ message: 'Invalid gender' });
+    }
+
     const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
@@ -152,6 +160,10 @@ export const updateProfile = async (req, res) => {
     if (lastName) user.lastName = lastName.trim();
     if (dob) user.dob = dob;
     if (mobile) user.mobile = mobile;
+    if (college !== undefined) user.college = college;
+    if (gender !== undefined) user.gender = gender;
+    if (academicDegree !== undefined) user.academicDegree = academicDegree;
+    if (degreeStatus !== undefined) user.degreeStatus = degreeStatus;
 
     await user.save();
 
@@ -164,6 +176,10 @@ export const updateProfile = async (req, res) => {
         dob: user.dob,
         role: user.role,
         mobile: user.mobile,
+        college: user.college,
+        gender: user.gender,
+        academicDegree: user.academicDegree,
+        degreeStatus: user.degreeStatus,
       }
     });
   } catch (err) {
@@ -207,7 +223,7 @@ export const changePassword = async (req, res) => {
 // Get current user info
 export const getMe = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('firstName lastName email role dob mobile');
+    const user = await User.findById(req.user.id).select('firstName lastName email role dob mobile college gender academicDegree degreeStatus');
     if (!user) return res.status(404).json({ message: 'User not found' });
     res.json({ user });
   } catch (err) {
