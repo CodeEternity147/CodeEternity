@@ -1,6 +1,9 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Mail, Lock, Eye, EyeOff, Loader2, Code2, Sparkles, Zap, Phone } from "lucide-react";
-import { useNavigate, useLocation, Link } from 'react-router-dom';
+import Lottie from "lottie-react";
+import loginanimaion from "../../data/Login.json"
+import svg from '../../assets/login.svg'
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import useScrollToTop from '../../hooks/useScrollToTop';
@@ -68,11 +71,12 @@ export default function LoginPage() {
         const redirectTo = location.state?.from?.pathname || '/dashboard';
         navigate(redirectTo, { replace: true });
       } else {
-        toast.error(result.error || 'Login failed');
+        let errorMsg = result && result.error ? result.error : 'Login failed';
+        toast.error(errorMsg);
       }
     } catch (error) {
       toast.dismiss();
-      const backendMessage = error.response?.data?.message || error.message || 'Login failed';
+      const backendMessage = error?.response?.data?.message || error?.message || 'Login failed';
       toast.error(backendMessage);
     } finally {
       setLoading(false);
@@ -84,107 +88,86 @@ export default function LoginPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden flex items-center justify-center p-4">
-      {/* Futuristic Grid Background */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }}></div>
-      </div>
-
-      {/* Animated Orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-violet-500/30 to-purple-500/30 rounded-full filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/30 to-blue-500/30 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[32rem] h-[32rem] bg-gradient-to-r from-fuchsia-500/20 to-pink-500/20 rounded-full filter blur-3xl animate-pulse delay-500"></div>
-      </div>
-
-      {/* Floating Tech Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <Code2 className="absolute top-20 left-20 text-violet-400/60 w-8 h-8 animate-float" />
-        <Zap className="absolute top-32 right-32 text-cyan-400/60 w-6 h-6 animate-float delay-700" />
-        <Sparkles className="absolute bottom-32 left-32 text-fuchsia-400/60 w-7 h-7 animate-float delay-1000" />
-        <Code2 className="absolute bottom-20 right-20 text-violet-400/60 w-5 h-5 animate-float delay-300" />
-      </div>
-
-      {/* Main Container */}
-      <div className="relative z-10 w-full h-full max-w-6xl lg:max-h-[800px] flex flex-col lg:flex-row overflow-y-auto lg:overflow-visible rounded-2xl lg:rounded-3xl shadow-2xl">
-        {/* Left Side - Branding */}
-        <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-violet-600/10 to-fuchsia-600/10 backdrop-blur-xl border border-white/10 rounded-t-2xl lg:rounded-t-none lg:rounded-l-3xl p-6 lg:p-8 flex-col justify-center items-center relative overflow-hidden">
-          {/* Animated Background Pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `
-                radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.8) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.8) 0%, transparent 50%)
-              `
-            }}></div>
-          </div>
-          
-          <div className="relative z-10 text-center">
-            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-2xl mb-8 shadow-2xl">
-              <Code2 className="w-12 h-12 text-white animate-pulse" />
+    <div className="max-h-screen bg-[#C4B1F9] flex flex-col lg:flex-row items-center justify-center relative overflow-x-hidden">
+      {/* Left Side - Marketing Content (visible on all screens) */}
+      <div className="flex flex-1 flex-col z-[999] relative overflow-hidden">
+        {/* Logo - Fixed at top left (desktop only) */}
+        <div className="hidden lg:block absolute top-6 left-8 z-20">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+              <Code2 className="w-7 h-7 text-purple-600" />
             </div>
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400 bg-clip-text text-transparent mb-6 leading-tight">
-              CodeEternity
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-            We Create Future
-            </p>
-            <div className="flex justify-center space-x-4">
-              <div className="w-3 h-3 bg-violet-500 rounded-full animate-bounce"></div>
-              <div className="w-3 h-3 bg-fuchsia-500 rounded-full animate-bounce delay-200"></div>
-              <div className="w-3 h-3 bg-cyan-500 rounded-full animate-bounce delay-400"></div>
-            </div>
+            <h1 className="text-2xl font-bold text-black">CodeEternity.</h1>
           </div>
         </div>
 
-        {/* Right Side - Login Form */}
-        <div className="w-full lg:w-1/2 bg-slate-900/80 backdrop-blur-2xl border border-white/20 rounded-b-2xl lg:rounded-b-none lg:rounded-r-3xl shadow-2xl flex items-center justify-center p-2 sm:p-4 md:p-6 lg:p-8">
-          <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
-            {/* Form Header */}
-            <div className="text-center mb-6 sm:mb-8">
-              <div className="lg:hidden inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-violet-500 to-fuchsia-500 rounded-xl mb-4 shadow-lg">
-                <Code2 className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
-                Welcome Back
-              </h2>
-              <p className="text-gray-400 text-sm sm:text-base">Sign in to your account</p>
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col justify-start lg:justify-center items-center px-3 lg:px-8 min-h-screen">
+          <div className="w-full lg:w-3/5 mx-auto flex flex-col items-center justify-center pt-4 lg:pt-0">
+            {/* Animation at the top */}
+            <div className="hidden lg:flex w-full justify-center items-center mb-1 lg:mb-0">
+              <Lottie animationData={loginanimaion} loop={true} className="w-1/2 lg:w-3/5 max-w-[180px] lg:max-w-[320px] max-h-auto" />
             </div>
+            {/* Main Heading and Content */}
+            <div className="w-full max-w-2xl text-center">
+              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-extrabold text-black leading-tight ">
+                Transform Your Tech Career
+              </h2>
+              <span className="bg-white px-3 py-2 mt-1 inline-block text-xl sm:text-xl lg:text-3xl font-bold">
+                With CodeEternity
+              </span>
+              <p className="text-base sm:text-lg lg:text-[18px] text-gray-800 mt-3 mb-4">
+                Certified training with real-world projects — from Web Dev to AI, level up your skills.
+              </p>
+              <button
+                onClick={() => navigate('/whatweoffer')}
+                className="inline-flex items-center px-5 py-2 bg-white rounded-lg text-black font-semibold hover:bg-gray-100 transition-all duration-200 shadow border border-gray-300 text-base mt-2 mb-2"
+              >
+                Explore Programs
+                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      {/* Right Side - Login Form */}
+      <div className="flex flex-col z-[999] border border-gray-300 shadow-4xl justify-center items-center w-full max-w-md bg-white rounded-xl shadow-2xl mx-auto my-2 lg:my-28 lg:mr-32 p-6 sm:p-8 mb-16">
+        <div className="w-full px-0 sm:px-8">
+          <div className="w-full max-w-sm mx-auto">
+            <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-6 lg:mb-8">Welcome Back</h3>
+            
             {error && (
-              <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl mb-6 text-sm backdrop-blur-sm">
+              <div className="bg-red-500/10 border border-red-500/20 text-red-500 px-4 py-3 rounded-xl mb-6 text-sm backdrop-blur-sm">
                 {error}
               </div>
             )}
 
-            <div className="space-y-4 sm:space-y-5">
+            <div className="space-y-3 lg:space-y-4">
               {/* Email Field */}
               <div className="relative group">
-                <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 transition-colors group-focus-within:text-violet-400" />
+                <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 transition-colors group-focus-within:text-purple-500" />
                 <input
                   type="email"
                   name="email"
                   placeholder="Work email"
-                  className="w-full pl-12 pr-4 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
+                  className="w-full pl-12 pr-4 py-3 lg:py-4 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-gray-50"
                   value={formData.email}
                   onChange={handleChange}
+                  required
                 />
               </div>
 
               {/* Password Field */}
               <div className="relative group">
-                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 transition-colors group-focus-within:text-violet-400" />
+                <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 transition-colors group-focus-within:text-purple-500" />
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Password"
-                  className="w-full pl-12 pr-14 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50 transition-all duration-300 backdrop-blur-sm text-sm sm:text-base"
+                  className="w-full pl-12 pr-14 py-3 lg:py-4 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-gray-50"
                   value={formData.password}
                   onChange={handleChange}
                   required
@@ -192,48 +175,60 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-violet-400 focus:outline-none transition-colors"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-purple-500 focus:outline-none transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
 
               {/* Terms Checkbox */}
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 py-1 lg:py-2">
                 <input
                   type="checkbox"
                   name="termsAccepted"
                   id="termsAccepted"
                   checked={formData.termsAccepted}
                   onChange={handleChange}
-                  className="mt-1.5 w-5 h-5 text-violet-600 bg-white/5 border-2 border-white/20 rounded focus:ring-violet-500 focus:ring-2"
+                  className="mt-1 w-5 h-5 text-purple-600 bg-white border-2 border-gray-300 rounded focus:ring-purple-500 focus:ring-2"
                   required
                 />
-                <label htmlFor="termsAccepted" className="text-sm text-gray-400 leading-5">
+                <label htmlFor="termsAccepted" className="text-xs lg:text-sm text-gray-600 leading-5">
                   By continuing, you agree to the{' '}
-                  <a href="/terms-and-conditions" className="text-violet-400 hover:text-violet-300 font-medium transition-colors">
+                  <button 
+                    type="button"
+                    onClick={() => navigate('/terms-and-conditions')}
+                    className="text-purple-600 hover:text-purple-700 font-medium transition-colors"
+                  >
                     Terms of Use
-                  </a>
+                  </button>
                   {' '}and{' '}
-                  <a href="/privacy-policy" className="text-violet-400 hover:text-violet-300 font-medium transition-colors">
+                  <button 
+                    type="button"
+                    onClick={() => navigate('/privacy-policy')}
+                    className="text-purple-600 hover:text-purple-700 font-medium transition-colors"
+                  >
                     Privacy Policy
-                  </a>
+                  </button>
                 </label>
               </div>
 
               {/* Forgot Password Link */}
-              <div className="text-right mt-2">
-                <span className="text-sm text-violet-400 hover:underline cursor-pointer" onClick={() => navigate('/forgot-password')}>
-                  Forgot Password?
-                </span>
+              <div className="text-right">
+                <button 
+                  type="button"
+                  onClick={() => navigate('/forgot-password')}
+                  className="text-xs lg:text-sm text-purple-600 hover:text-purple-700 hover:underline transition-colors"
+                >
+                  Forgot password?
+                </button>
               </div>
 
               {/* Submit Button */}
               <button
-                type="submit"
+                type="button"
                 disabled={loading}
                 onClick={handleSubmit}
-                className="w-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-violet-600 text-white py-3 sm:py-4 px-6 rounded-xl font-semibold shadow-2xl hover:shadow-violet-500/25 transform transition-all duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 focus:outline-none focus:ring-4 focus:ring-violet-500/50 bg-size-200 hover:bg-pos-100 text-sm sm:text-base"
+                className="w-full bg-black text-white py-3 lg:py-4 px-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center mt-4 lg:mt-6"
               >
                 {loading ? (
                   <div className="flex items-center justify-center gap-3">
@@ -249,37 +244,29 @@ export default function LoginPage() {
               </button>
             </div>
 
-            {/* Signup Link */}
-            <div className="text-center mt-8 pt-6 border-t border-white/10">
-              <p className="text-gray-400">
-                Don't have an account?{' '}
-                <a 
-                  href="/signup" 
-                  className="text-violet-400 hover:text-violet-300 font-semibold transition-colors duration-200"
-                >
-                  Sign up →
-                </a>
-              </p>
-            </div>
+            {/* Sign up link */}
+            <p className="mt-6 lg:mt-8 text-center text-xs lg:text-sm text-gray-600">
+              Don't have an account?{' '}
+              <button 
+                onClick={() => navigate('/signup')}
+                className="text-purple-600 hover:text-purple-700 font-semibold transition-colors duration-200"
+              >
+                Sign up →
+              </button>
+            </p>
           </div>
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(180deg); }
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        .bg-size-200 {
-          background-size: 200% 200%;
-        }
-        .hover\\:bg-pos-100:hover {
-          background-position: 100% 100%;
-        }
-      `}</style>
+      {/* SVG Image - visible on all screens */}
+      <div className="block pointer-events-none select-none">
+         <img 
+           src={svg} 
+           className="absolute left-[650px] top-0 h-full max-w-none max-h-full z-[0]"
+           style={{ right: 0, minWidth: '600px' }}
+           alt="Login Visual" 
+         />
+      </div>
     </div>
   );
 }

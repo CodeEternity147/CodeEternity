@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import api from '../../utils/axios';
-import { Mail } from 'lucide-react';
+import { Mail, Code2 } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import useScrollToTop from '../../hooks/useScrollToTop';
+import loginimg from '../../assets/login.svg'
 
 const ForgotPassword = () => {
   useScrollToTop();
@@ -29,18 +30,27 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-slate-900/80 rounded-2xl shadow-2xl p-8 border border-white/20">
-        <h2 className="text-3xl font-bold text-white mb-6 text-center">Forgot Password</h2>
-        <p className="text-gray-400 mb-6 text-center">Enter your email to receive an OTP for password reset.</p>
+    <div className="min-h-screen bg-[#C4B1F9] flex flex-col lg:flex-row items-center justify-center p-4 relative">
+      {/* Logo/Heading for mobile/tablet */}
+      <div className="block lg:hidden w-full flex justify-center mt-8 mb-4">
+        <div className="flex items-center space-x-3">
+          <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+            <Code2 className="w-7 h-7 text-purple-600" />
+          </div>
+          <h1 className="text-2xl font-bold text-black">CodeEternity</h1>
+        </div>
+      </div>
+      <div className="w-full z-[999] max-w-md bg-white rounded-xl shadow-2xl p-8 border border-white/20">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Forgot Password</h2>
+        <p className="text-gray-600 mb-6 text-center">Enter your email to receive an OTP for password reset.</p>
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="relative group">
-            <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5" />
+            <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 transition-colors group-focus-within:text-purple-500" />
             <input
               type="email"
               name="email"
               placeholder="Email"
-              className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500/50 focus:border-violet-500/50"
+              className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-gray-50"
               value={email}
               onChange={e => setEmail(e.target.value)}
               required
@@ -48,13 +58,40 @@ const ForgotPassword = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white font-bold rounded-xl shadow-lg hover:from-violet-600 hover:to-fuchsia-600 transition-all duration-300"
+            className="w-full bg-black text-white py-4 px-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center mt-6"
             disabled={loading}
           >
-            {loading ? 'Sending OTP...' : 'Send OTP'}
+            {loading ? (
+              <div className="flex items-center justify-center gap-3">
+                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                Sending OTP...
+              </div>
+            ) : (
+              <span className="flex items-center justify-center gap-2">
+                Send OTP
+              </span>
+            )}
           </button>
         </form>
-        {success && <p className="text-green-400 mt-4 text-center">Check your email for the OTP.</p>}
+        {success && <p className="text-green-500 mt-4 text-center">Check your email for the OTP.</p>}
+      </div>
+      {/* Logo/Heading for desktop (absolute, top left) */}
+      <div className="hidden lg:flex absolute top-6 left-8 z-20">
+        <div className="flex items-center space-x-3">
+          <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+            <Code2 className="w-7 h-7 text-purple-600" />
+          </div>
+          <h1 className="text-2xl font-bold text-black">CodeEternity</h1>
+        </div>
+      </div>
+      {/* SVG Image - only on large screens */}
+      <div className="hidden lg:block pointer-events-none select-none">
+        <img 
+          src={loginimg} 
+          className="absolute left-[150px] top-0 h-full max-w-none max-h-full z-[0]"
+          style={{ right: 0, minWidth: '600px' }}
+          alt="Login Visual" 
+        />
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import api from '../utils/axios';
-import { toast } from 'react-toastify';
 
 const AuthContext = createContext(null);
 
@@ -41,11 +40,14 @@ export const AuthProvider = ({ children }) => {
       const { token, user } = response.data;
       localStorage.setItem('token', token);
       setUser(user);
-      toast.success('Login successful!');
       return { success: true };
     } catch (error) {
-      const message = error.response?.data?.message || 'Login failed';
-      toast.error(message);
+      let message = 'Login failed';
+      if (error && error.message) {
+        message = error.message;
+      } else if (error && error.response && error.response.data && error.response.data.message) {
+        message = error.response.data.message;
+      }
       return { success: false, error: message };
     }
   };

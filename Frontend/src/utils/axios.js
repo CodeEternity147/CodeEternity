@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 // Create axios instance with default config
 const api = axios.create({
@@ -96,6 +97,7 @@ api.interceptors.response.use(
     // Handle validation errors
     if (error.response.status === 400) {
       const message = error.response.data.message || 'Invalid request';
+      console.log("axios" , message)
       return Promise.reject({ message });
     }
 
