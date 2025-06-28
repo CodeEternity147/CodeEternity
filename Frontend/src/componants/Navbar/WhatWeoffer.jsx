@@ -519,16 +519,16 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
 
   {/* Tabs Section */}
 <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:max-w-4xl mx-auto px-2 sm:px-4 mb-8 sm:mb-12">
-  <div className="bg-gradient-to-br from-indigo-50 to-purple-100 p-3 sm:p-4 rounded-2xl sm:rounded-3xl shadow-xl flex flex-wrap sm:flex-nowrap justify-between gap-3 sm:gap-4 border border-indigo-100">
+  <div className="bg-gradient-to-br from-indigo-50 to-purple-100 p-3 sm:p-4 rounded-2xl sm:rounded-3xl shadow-xl flex flex-wrap sm:flex-nowrap justify-between gap-1 sm:gap-4 border border-indigo-100">
     {tabs.map((tab, index) => (
       <button
         key={tab.id}
         onClick={() => setActiveTab(tab.id)}
         className={`
           ${index === 2 ? 'w-1/2 mx-auto mt-2 sm:mt-0 sm:mx-0 sm:w-auto sm:flex-1' : 'w-[48%] sm:w-auto sm:flex-1'}
-          text-xs sm:text-sm md:text-base lg:text-lg font-medium py-3 sm:py-4 px-2 sm:px-4 md:px-6 
+          text-[10px] sm:text-sm md:text-base lg:text-lg font-medium py-3 sm:py-4 px-2 sm:px-2 md:px-6 
           rounded-xl transition-all duration-500 flex items-center justify-center 
-          space-x-2 sm:space-x-3 overflow-hidden relative group
+          space-x-2 sm:space-x-1 overflow-hidden relative group
           ${
             activeTab === tab.id
               ? tab.id === 'training'
