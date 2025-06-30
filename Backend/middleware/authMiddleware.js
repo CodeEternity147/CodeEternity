@@ -29,6 +29,37 @@ export const authenticateToken = async (req, res, next) => {
   }
 };
 
+// Optional authentication - sets req.user if token is valid, but doesn't fail if no token
+export const optionalAuth = async (req, res, next) => {
+  try {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+      // No token provided, continue without authentication
+      req.user = null;
+      return next();
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    
+    // Verify user still exists in database
+    const user = await User.findById(decoded.id).select('-password');
+    if (!user) {
+      // User no longer exists, continue without authentication
+      req.user = null;
+      return next();
+    }
+
+    req.user = decoded;
+    next();
+  } catch (error) {
+    // Token is invalid, continue without authentication
+    req.user = null;
+    next();
+  }
+};
+
 export const admin = (req, res, next) => {
   if (req.user && req.user.role === 'admin') {
     next();

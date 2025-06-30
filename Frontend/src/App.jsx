@@ -38,6 +38,7 @@ import ForgotPassword from './componants/Pages/ForgotPassword';
 import ResetPassword from './componants/Pages/ResetPassword';
 import VerifyOTP from './componants/Pages/VerifyOTP';
 import SetNewPassword from './componants/Pages/SetNewPassword';
+import PaymentHistory from './componants/PaymentHistory';
 
 function App() {
   const [selectedChildCourse, setSelectedChildCourse] = useState(null);
@@ -213,6 +214,17 @@ function App() {
           <Route path="/verify-otp" element={<VerifyOTP />} />
           {/* Route for Set New Password page */}
           <Route path="/set-new-password" element={<SetNewPassword />} />
+
+          <Route
+            path="/dashboard/payment-history"
+            element={
+              <MainLayout showFooter={false} showtransparentbox={false} showHeader={false}>
+                <ProtectedRoute>
+                  <PaymentHistory />
+                </ProtectedRoute>
+              </MainLayout>
+            }
+          />
 
           {/* 404 Route - Must be last */}
           <Route path="*" element={<NotFound />} />

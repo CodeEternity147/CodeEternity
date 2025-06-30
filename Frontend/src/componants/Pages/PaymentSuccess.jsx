@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useScrollToTop from '../../hooks/useScrollToTop';
+import api from '../../utils/axios';
 
 const PaymentSuccess = () => {
   useScrollToTop();
@@ -9,6 +10,7 @@ const PaymentSuccess = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [paymentDetails, setPaymentDetails] = useState(null);
+  const [verifying, setVerifying] = useState(false);
 
   const orderId = searchParams.get('order_id');
   const paymentStatus = searchParams.get('payment_status');
@@ -17,45 +19,47 @@ const PaymentSuccess = () => {
     const handlePaymentSuccess = async () => {
       try {
         setLoading(true);
-        
-        // Log the payment success details
-        console.log('Payment Success Details:', {
-          orderId,
-          paymentStatus,
-          allParams: Object.fromEntries(searchParams.entries())
-        });
-
-        // You can make an API call here to verify the payment status
-        // const response = await api.get(`/api/payment/verify/${orderId}`);
-        
-        setPaymentDetails({
-          orderId,
-          status: paymentStatus || 'success',
-          timestamp: new Date().toLocaleString()
-        });
-
-        // Show success message
-        toast.success('Payment completed successfully!', {
-          position: "top-right",
-          autoClose: 5000,
-        });
-
+        if (!orderId) {
+          toast.error('No order ID found.');
+          navigate('/payment/failure');
+          return;
+        }
+        setVerifying(true);
+        // Always verify payment status with backend
+        const response = await api.get(`/payment/verify/${orderId}`);
+        if (response.data.success && response.data.payment) {
+          if (response.data.payment.status === 'PAID') {
+            setPaymentDetails({
+              ...response.data.payment,
+              verified: response.data.synced,
+              cashfreeStatus: response.data.cashfreeStatus
+            });
+            toast.success('Payment completed successfully!', {
+              position: "top-right",
+              autoClose: 5000,
+            });
+          } else {
+            // Not paid, redirect to failure page
+            navigate(`/payment/failure?order_id=${orderId}&payment_status=${response.data.payment.status}`);
+            return;
+          }
+        } else {
+          // No payment found, redirect to failure
+          navigate(`/payment/failure?order_id=${orderId}`);
+          return;
+        }
       } catch (error) {
-        console.error('Error handling payment success:', error);
-        toast.error('Error processing payment confirmation', {
-          position: "top-right",
-          autoClose: 5000,
-        });
+        // On error, redirect to failure page
+        navigate(`/payment/failure?order_id=${orderId}`);
       } finally {
+        setVerifying(false);
         setLoading(false);
       }
     };
-
     handlePaymentSuccess();
-  }, [orderId, paymentStatus, searchParams]);
+  }, [orderId, navigate]);
 
   const handleContinue = () => {
-    // Navigate to dashboard or home page
     navigate('/dashboard');
   };
 
@@ -127,12 +131,42 @@ const PaymentSuccess = () => {
                     </span>
                   </dd>
                 </div>
+                {paymentDetails.orderAmount && (
+                  <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">Amount</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      ₹{paymentDetails.orderAmount.toLocaleString('en-IN')}
+                    </dd>
+                  </div>
+                )}
+                {paymentDetails.paymentMode && (
+                  <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">Payment Mode</dt>
+                    <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {paymentDetails.paymentMode}
+                    </dd>
+                  </div>
+                )}
                 <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                   <dt className="text-sm font-medium text-gray-500">Date & Time</dt>
                   <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                    {paymentDetails.timestamp}
+                    {paymentDetails.createdAt ? new Date(paymentDetails.createdAt).toLocaleString() : paymentDetails.timestamp}
                   </dd>
                 </div>
+                {paymentDetails.verified !== undefined && (
+                  <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                    <dt className="text-sm font-medium text-gray-500">Verification</dt>
+                    <dd className="mt-1 text-sm sm:mt-0 sm:col-span-2">
+                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        paymentDetails.verified 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-yellow-100 text-yellow-800'
+                      }`}>
+                        {paymentDetails.verified ? 'Verified' : 'Pending Verification'}
+                      </span>
+                    </dd>
+                  </div>
+                )}
               </dl>
             </div>
           </div>

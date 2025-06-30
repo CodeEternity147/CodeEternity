@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
 import axios from 'axios';
+import crypto from 'crypto';
+import Payment from '../models/Payment.js';
 
 export const paymentcontroller = async (req, res) => {
 
@@ -37,13 +39,21 @@ const BASE_URL = ENV === "PROD"
         });
       }
   
-      console.log("Received request body:", req.body);
+      console.log("Processing payment request:", {
+        orderId: req.body.orderId,
+        amount: req.body.amount,
+        customerEmail: req.body.customerEmail,
+        environment: ENV
+      });
+  
       const { orderId, amount } = req.body;
   
-      if (!orderId || !amount) {
-        return res.status(400).json({ 
-          error: "Missing required fields",
-          details: "orderId and amount are required" 
+      // Check if payment already exists
+      const existingPayment = await Payment.findByOrderId(orderId);
+      if (existingPayment) {
+        return res.status(400).json({
+          error: "Duplicate order",
+          details: "An order with this ID already exists"
         });
       }
   
@@ -55,9 +65,8 @@ const BASE_URL = ENV === "PROD"
         customer_phone: req.body.customerPhone, // Use real mobile from frontend
       };
   
-      console.log("Customer details:", customerDetails);
       console.log("Using Cashfree credentials:", {
-        APP_ID: APP_ID.substring(0, 4) + "..." + APP_ID.substring(APP_ID.length - 4),
+        APP_ID: APP_ID ? "Present" : "Missing",
         ENV,
         API_URL: CASHFREE_API_URL
       });
@@ -79,7 +88,7 @@ const BASE_URL = ENV === "PROD"
         }
       };
   
-      console.log("Creating order with request:", orderRequest);
+      console.log("Creating order with Cashfree API...");
   
       // Make the API request to Cashfree
       const response = await axios({
@@ -95,24 +104,52 @@ const BASE_URL = ENV === "PROD"
         }
       });
   
-      console.log("Cashfree API Response:", response.data);
+      console.log("Cashfree API Response received:", {
+        orderId: response.data?.order_id,
+        status: response.data?.order_status,
+        hasSessionId: !!response.data?.payment_session_id
+      });
   
       // Validate response
       if (!response.data || !response.data.payment_session_id) {
         console.error("Invalid response from Cashfree:", response.data);
         throw new Error("Invalid response from payment gateway");
       }
-  
-      // Process the payment session (backend validation)
-      // Comment out or implement processPayment function
-      // const paymentResult = await processPayment(response.data.payment_session_id);
+
+      // Create Payment record in database after successful Cashfree order creation
+      const paymentData = {
+        orderId: orderId,
+        orderAmount: amount,
+        orderCurrency: "INR",
+        customerName: customerDetails.customer_name,
+        customerEmail: customerDetails.customer_email,
+        customerPhone: customerDetails.customer_phone,
+        paymentSessionId: response.data.payment_session_id,
+        paymentGateway: "cashfree",
+        status: "PENDING",
+        cashfreeOrderId: response.data.order_id,
+        cashfreeOrderToken: response.data.order_token || null,
+        metadata: {
+          customerId: customerDetails.customer_id,
+          environment: ENV,
+          originalOrderId: orderId
+        }
+      };
+
+      // Add customerId if user is authenticated
+      if (req.user && req.user.id) {
+        paymentData.customerId = req.user.id;
+      }
+
+      const payment = await Payment.create(paymentData);
+      console.log("Payment record created in database:", payment.orderId);
   
       // Construct payment link based on environment
       const paymentLink = ENV === "PROD" 
       ? `https://payments.cashfree.com/pg/orders/${response.data.order_id}/pay?session_id=${response.data.payment_session_id}`
       : `https://sandbox.cashfree.com/pg/orders/${response.data.order_id}/pay?session_id=${response.data.payment_session_id}`;
     
-      console.log("Generated payment link:", paymentLink);
+      console.log("Payment link generated successfully");
   
       // Return payment session ID and order info for frontend to use
       return res.json({
@@ -138,36 +175,94 @@ const BASE_URL = ENV === "PROD"
     }
   }
 
+// Webhook signature verification function
+const verifyWebhookSignature = (payload, signature, secret) => {
+  try {
+    const expectedSignature = crypto
+      .createHmac('sha256', secret)
+      .update(JSON.stringify(payload))
+      .digest('hex');
+    
+    return crypto.timingSafeEqual(
+      Buffer.from(signature, 'hex'),
+      Buffer.from(expectedSignature, 'hex')
+    );
+  } catch (error) {
+    console.error('Webhook signature verification error:', error);
+    return false;
+  }
+};
+
 // Webhook handler for payment notifications
 export const webhookHandler = async (req, res) => {
   try {
-    console.log("Webhook received:", req.body);
+    console.log("Webhook received for order:", req.body?.orderId);
     
-    // Verify webhook signature (recommended for production)
-    // const signature = req.headers['x-webhook-signature'];
-    // if (!verifyWebhookSignature(req.body, signature)) {
-    //   return res.status(401).json({ error: "Invalid signature" });
-    // }
+    // Verify webhook signature (CRITICAL for production)
+    const signature = req.headers['x-webhook-signature'];
+    const webhookSecret = process.env.CASHFREE_WEBHOOK_SECRET;
+    
+    if (!webhookSecret) {
+      console.error("Webhook secret not configured");
+      return res.status(500).json({ error: "Webhook configuration error" });
+    }
+    
+    if (!signature) {
+      console.error("No webhook signature provided");
+      return res.status(401).json({ error: "Missing webhook signature" });
+    }
+    
+    if (!verifyWebhookSignature(req.body, signature, webhookSecret)) {
+      console.error("Invalid webhook signature");
+      return res.status(401).json({ error: "Invalid webhook signature" });
+    }
+    
+    console.log("Webhook signature verified successfully");
     
     const { orderId, orderAmount, orderStatus, paymentMode, customerDetails } = req.body;
     
-    // Handle different payment statuses
+    // Find payment record by orderId or cashfreeOrderId
+    let payment = await Payment.findByOrderId(orderId);
+    if (!payment) {
+      // Try to find by cashfreeOrderId
+      payment = await Payment.findByCashfreeOrderId(orderId);
+    }
+    
+    if (!payment) {
+      console.error(`Payment record not found for order: ${orderId}`);
+      return res.status(404).json({ error: "Payment record not found" });
+    }
+
+    // Map Cashfree status to our status
+    let newStatus;
     switch (orderStatus) {
       case 'PAID':
+        newStatus = 'PAID';
         console.log(`Payment successful for order: ${orderId}`);
-        // Update your database, send confirmation email, etc.
         break;
       case 'FAILED':
+        newStatus = 'FAILED';
         console.log(`Payment failed for order: ${orderId}`);
-        // Handle failed payment
         break;
       case 'EXPIRED':
+        newStatus = 'EXPIRED';
         console.log(`Payment expired for order: ${orderId}`);
-        // Handle expired payment
         break;
       default:
+        newStatus = 'PENDING';
         console.log(`Unknown payment status: ${orderStatus} for order: ${orderId}`);
     }
+
+    // Update payment record
+    await payment.updateStatus(newStatus, req.body);
+    
+    // Update payment mode if provided
+    if (paymentMode) {
+      payment.paymentMode = paymentMode;
+      await payment.save();
+    }
+
+    console.log(`Payment status updated to ${newStatus} for order: ${payment.orderId}`);
     
     // Always respond with 200 to acknowledge receipt
     res.status(200).json({ status: "success", message: "Webhook received" });
@@ -204,5 +299,246 @@ export const testPaymentSetup = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+};
+
+// Test webhook endpoint for verification
+export const testWebhook = async (req, res) => {
+  try {
+    const webhookSecret = process.env.CASHFREE_WEBHOOK_SECRET;
+    
+    if (!webhookSecret) {
+      return res.status(500).json({ 
+        error: "Webhook secret not configured",
+        message: "Please add CASHFREE_WEBHOOK_SECRET to your environment variables"
+      });
+    }
+    
+    // Create a test payload similar to what Cashfree sends
+    const testPayload = {
+      orderId: "test_order_123",
+      orderAmount: 100,
+      orderStatus: "PAID",
+      paymentMode: "UPI",
+      customerDetails: {
+        customerEmail: "test@example.com",
+        customerPhone: "1234567890"
+      }
+    };
+    
+    // Generate test signature
+    const testSignature = crypto
+      .createHmac('sha256', webhookSecret)
+      .update(JSON.stringify(testPayload))
+      .digest('hex');
+    
+    res.json({
+      status: "success",
+      message: "Webhook configuration test",
+      webhookUrl: `${req.protocol}://${req.get('host')}/api/payment/webhook`,
+      testPayload,
+      testSignature: `x-webhook-signature: ${testSignature}`,
+      instructions: [
+        "1. Copy the webhook URL above",
+        "2. Add it to your Cashfree dashboard webhook settings",
+        "3. Copy the webhook secret from Cashfree dashboard",
+        "4. Add it to your .env file as CASHFREE_WEBHOOK_SECRET",
+        "5. Test with the signature above"
+      ]
+    });
+    
+  } catch (error) {
+    console.error("Test webhook error:", error);
+    res.status(500).json({ error: "Test webhook failed" });
+  }
+};
+
+// Get payment by order ID
+export const getPaymentByOrderId = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    
+    const payment = await Payment.findByOrderId(orderId);
+    if (!payment) {
+      return res.status(404).json({
+        error: "Payment not found",
+        details: "No payment found with this order ID"
+      });
+    }
+
+    res.json({
+      success: true,
+      payment: payment
+    });
+  } catch (error) {
+    console.error("Error fetching payment:", error);
+    res.status(500).json({
+      error: "Failed to fetch payment",
+      details: error.message
+    });
+  }
+};
+
+// Get payment history for a user
+export const getUserPaymentHistory = async (req, res) => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      return res.status(401).json({
+        error: "Authentication required",
+        details: "User must be logged in to view payment history"
+      });
+    }
+
+    const payments = await Payment.findByCustomer(userId);
+    
+    res.json({
+      success: true,
+      payments: payments,
+      count: payments.length
+    });
+  } catch (error) {
+    console.error("Error fetching user payment history:", error);
+    res.status(500).json({
+      error: "Failed to fetch payment history",
+      details: error.message
+    });
+  }
+};
+
+// Get all payments (admin only)
+export const getAllPayments = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 20;
+    const status = req.query.status;
+    const skip = (page - 1) * limit;
+
+    let query = {};
+    if (status) {
+      query.status = status;
+    }
+
+    const payments = await Payment.find(query)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+      .populate('customerId', 'firstName lastName email');
+
+    const total = await Payment.countDocuments(query);
+
+    res.json({
+      success: true,
+      payments: payments,
+      pagination: {
+        page,
+        limit,
+        total,
+        pages: Math.ceil(total / limit)
+      }
+    });
+  } catch (error) {
+    console.error("Error fetching all payments:", error);
+    res.status(500).json({
+      error: "Failed to fetch payments",
+      details: error.message
+    });
+  }
+};
+
+// Verify payment status with Cashfree
+export const verifyPaymentStatus = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    
+    const payment = await Payment.findByOrderId(orderId);
+    if (!payment) {
+      return res.status(404).json({
+        error: "Payment not found",
+        details: "No payment found with this order ID"
+      });
+    }
+
+    // Get Cashfree credentials
+    const APP_ID = process.env.CASHFREE_APP_ID;
+    const SECRET_KEY = process.env.CASHFREE_SECRET_KEY;
+    const ENV = process.env.NODE_ENV === 'production' ? "PROD" : "TEST";
+    
+    const CASHFREE_API_URL = ENV === "PROD" 
+      ? "https://api.cashfree.com/pg/orders"
+      : "https://sandbox.cashfree.com/pg/orders";
+
+    // Verify with Cashfree API
+    const response = await axios({
+      method: 'get',
+      url: `${CASHFREE_API_URL}/${payment.cashfreeOrderId}`,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'x-api-version': '2022-09-01',
+        'x-client-id': APP_ID.trim(),
+        'x-client-secret': SECRET_KEY.trim()
+      }
+    });
+
+    const cashfreeStatus = response.data.order_status;
+    
+    // Update local status if different
+    if (cashfreeStatus !== payment.status) {
+      await payment.updateStatus(cashfreeStatus, response.data);
+      console.log(`Payment status synced: ${payment.status} -> ${cashfreeStatus}`);
+    }
+
+    res.json({
+      success: true,
+      payment: payment,
+      cashfreeStatus: cashfreeStatus,
+      synced: cashfreeStatus === payment.status
+    });
+  } catch (error) {
+    console.error("Error verifying payment status:", error);
+    res.status(500).json({
+      error: "Failed to verify payment status",
+      details: error.message
+    });
+  }
+};
+
+// Get payment statistics
+export const getPaymentStats = async (req, res) => {
+  try {
+    const stats = await Payment.aggregate([
+      {
+        $group: {
+          _id: '$status',
+          count: { $sum: 1 },
+          totalAmount: { $sum: '$orderAmount' }
+        }
+      }
+    ]);
+
+    const totalPayments = await Payment.countDocuments();
+    const successfulPayments = await Payment.countDocuments({ status: 'PAID' });
+    const totalRevenue = await Payment.aggregate([
+      { $match: { status: 'PAID' } },
+      { $group: { _id: null, total: { $sum: '$orderAmount' } } }
+    ]);
+
+    res.json({
+      success: true,
+      stats: stats,
+      summary: {
+        totalPayments,
+        successfulPayments,
+        successRate: totalPayments > 0 ? (successfulPayments / totalPayments * 100).toFixed(2) : 0,
+        totalRevenue: totalRevenue[0]?.total || 0
+      }
+    });
+  } catch (error) {
+    console.error("Error fetching payment stats:", error);
+    res.status(500).json({
+      error: "Failed to fetch payment statistics",
+      details: error.message
+    });
   }
 };
