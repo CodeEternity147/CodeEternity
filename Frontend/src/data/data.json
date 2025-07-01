@@ -750,7 +750,7 @@
       "summary": "The future is intelligent.",
       "icon": "🧠",
       "iconBgColor": "#e0aaff",
-      "sideImg": "https://images.unsplash.com/photo-1706466614149-5e04fd018a49?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fEFJfGVufDB8fDB8fHww",
+      "sideImg": "https://images.unsplash.com/photo-1738003667850-a2fb736e31b3?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "sideImgAlt": "AI Image",
       "childCourses": [
         {
@@ -1142,6 +1142,623 @@
             "Optimization"
           ],
           "reactIcon": "FaRocket"
+        }
+      ]
+    },
+    {
+      "key": "Medical",
+      "index": 3,
+      "name": "Medical",
+      "description": "Innovative technologies transforming healthcare and medicine.",
+      "summary": "Empowering healthcare with technology.",
+      "icon": "🩺",
+      "iconBgColor": "#a0c4ff",
+      "sideImg": "https://images.unsplash.com/photo-1747224317356-6dd1a4a078fd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "sideImgAlt": "Medical Technology Image",
+      "childCourses": [
+        {
+          "key": "Medical_0",
+          "index": 0,
+          "name": "AI & Digital Tools in Clinical Research & Pharmacovigilance",
+          "description": "Explore how artificial intelligence and digital tools streamline drug monitoring, clinical trials, and safety protocols. Learn about AI-driven data analysis, automation in pharmacovigilance, and regulatory technology.",
+          "duration": "12",
+          "level": "Intermediate to Advanced",
+          "prerequisites": "Basic understanding of clinical research or pharmacy. Programming or data analysis experience helpful.",
+          "rating": 4.8,
+          "ratingCount": 1100,
+          "students": 1400,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Introduction to Clinical Research & Pharmacovigilance",
+                "• AI Applications in Drug Safety",
+                "• Digital Tools for Clinical Trials",
+                "• Regulatory Compliance & Data Integrity"
+              ],
+              "lessons": 4,
+              "students": 600
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Automating Adverse Event Reporting",
+                "• Data Mining for Drug Safety",
+                "• Digital Trial Management System Project"
+              ],
+              "lessons": 4,
+              "students": 500
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• AI-driven Pharmacovigilance Dashboard",
+                "• Clinical Trial Data Automation",
+                "• Regulatory Tech Implementation"
+              ],
+              "lessons": 4,
+              "students": 300
+            }
+          ],
+          "skills": [
+            "AI in Drug Safety",
+            "Clinical Data Automation",
+            "Pharmacovigilance",
+            "Regulatory Technology",
+            "Digital Clinical Trials",
+            "Data Mining",
+            "Adverse Event Reporting",
+            "Compliance Management"
+          ],
+          "reactIcon": "FaVials"
+        },
+        {
+          "key": "Medical_1",
+          "index": 1,
+          "name": "Smart Patient Care & Digital Nursing Practices",
+          "description": "Train in virtual patient care, digital documentation, tele-nursing, and smart hospital protocols. Emphasizes the use of digital tools for patient monitoring, workflow automation, and remote care.",
+          "duration": "12",
+          "level": "Beginner to Intermediate",
+          "prerequisites": "Background in nursing or healthcare preferred. Interest in digital health tools recommended.",
+          "rating": 4.7,
+          "ratingCount": 950,
+          "students": 1200,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Digital Nursing & Smart Hospital Overview",
+                "• Virtual Patient Care Platforms",
+                "• Digital Documentation & Workflow Automation",
+                "• Tele-nursing & Remote Monitoring"
+              ],
+              "lessons": 4,
+              "students": 500
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Implementing Digital Patient Records",
+                "• Virtual Care Simulation",
+                "• Smart Hospital Protocol Design"
+              ],
+              "lessons": 4,
+              "students": 400
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Tele-nursing Workflow Automation",
+                "• Digital Patient Monitoring System",
+                "• Smart Hospital Case Study"
+              ],
+              "lessons": 4,
+              "students": 300
+            }
+          ],
+          "skills": [
+            "Digital Nursing",
+            "Virtual Patient Care",
+            "Tele-nursing",
+            "Smart Hospital Protocols",
+            "Digital Documentation",
+            "Workflow Automation",
+            "Remote Patient Monitoring",
+            "Healthcare IT"
+          ],
+          "reactIcon": "FaProcedures"
+        },
+        {
+          "key": "Medical_2",
+          "index": 2,
+          "name": "Diagnostic Technology & Lab Automation",
+          "description": "Work with virtual lab simulations, automated diagnostics, and digital pathology systems. Ideal for those interested in lab technician roles and the future of diagnostics.",
+          "duration": "12",
+          "level": "Beginner to Advanced",
+          "prerequisites": "Interest in laboratory science or diagnostics. No prior experience required.",
+          "rating": 4.8,
+          "ratingCount": 1000,
+          "students": 1300,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Diagnostic Technology Landscape",
+                "• Virtual Lab Simulations",
+                "• Automated Diagnostic Systems",
+                "• Digital Pathology & Imaging"
+              ],
+              "lessons": 4,
+              "students": 600
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Virtual Lab Experimentation",
+                "• Automation of Diagnostic Workflows",
+                "• Digital Pathology Analysis"
+              ],
+              "lessons": 4,
+              "students": 400
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Automated Lab Management System",
+                "• Digital Diagnostic Reporting",
+                "• Virtual Pathology Platform"
+              ],
+              "lessons": 4,
+              "students": 300
+            }
+          ],
+          "skills": [
+            "Lab Automation",
+            "Diagnostic Technology",
+            "Virtual Lab Simulation",
+            "Digital Pathology",
+            "Automated Reporting",
+            "Lab IT Systems",
+            "Workflow Automation",
+            "Medical Imaging"
+          ],
+          "reactIcon": "FaMicroscope"
+        },
+        {
+          "key": "Medical_3",
+          "index": 3,
+          "name": "Telemedicine & Electronic Health Record (EHR) Systems",
+          "description": "Hands-on with modern healthcare IT: remote patient management, EHR handling, and teleconsultation tools. Covers secure data exchange, interoperability, and digital patient engagement.",
+          "duration": "12",
+          "level": "Beginner to Advanced",
+          "prerequisites": "Basic computer skills. Interest in healthcare IT or administration.",
+          "rating": 4.6,
+          "ratingCount": 900,
+          "students": 1100,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Telemedicine Platforms & Tools",
+                "• EHR Systems & Data Management",
+                "• Interoperability & Secure Data Exchange",
+                "• Digital Patient Engagement"
+              ],
+              "lessons": 4,
+              "students": 500
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• EHR System Implementation",
+                "• Teleconsultation Workflow Design",
+                "• Secure Data Exchange Project"
+              ],
+              "lessons": 4,
+              "students": 400
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Remote Patient Management Platform",
+                "• EHR Interoperability Solution",
+                "• Digital Patient Portal Development"
+              ],
+              "lessons": 4,
+              "students": 200
+            }
+          ],
+          "skills": [
+            "Telemedicine",
+            "EHR Systems",
+            "Healthcare IT",
+            "Data Interoperability",
+            "Digital Patient Engagement",
+            "Secure Data Exchange",
+            "Teleconsultation",
+            "Health Information Management"
+          ],
+          "reactIcon": "FaFileMedical"
+        },
+        {
+          "key": "Medical_4",
+          "index": 4,
+          "name": "Emergency Tech & AI-Enabled First Response",
+          "description": "Learn how AI and smart devices assist in emergency care, triage, and mobile health interventions. Includes real-time monitoring, emergency communication systems, and AI-driven triage tools.",
+          "duration": "12",
+          "level": "Intermediate",
+          "prerequisites": "Interest in emergency medicine or healthcare technology.",
+          "rating": 4.7,
+          "ratingCount": 800,
+          "students": 1000,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Emergency Tech Landscape",
+                "• AI in Emergency Triage",
+                "• Mobile Health Interventions",
+                "• Emergency Communication Systems"
+              ],
+              "lessons": 4,
+              "students": 400
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• AI-driven Triage Simulation",
+                "• Emergency Response App Development",
+                "• Real-time Monitoring Project"
+              ],
+              "lessons": 4,
+              "students": 350
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Smart Ambulance System",
+                "• Emergency Communication Platform",
+                "• Mobile Health Response Case Study"
+              ],
+              "lessons": 4,
+              "students": 250
+            }
+          ],
+          "skills": [
+            "Emergency Tech",
+            "AI in Triage",
+            "Mobile Health",
+            "Emergency Communication",
+            "Real-time Monitoring",
+            "First Response IT",
+            "Healthcare Apps",
+            "Crisis Management"
+          ],
+          "reactIcon": "FaAmbulance"
+        }
+      ]
+    },
+    {
+      "key": "Design",
+      "index": 4,
+      "name": "Design",
+      "description": "Creative innovation shaping the visual and experiential world.",
+      "summary": "Designing the future, one experience at a time.",
+      "icon": "🎨",
+      "iconBgColor": "#ffd6a5",
+      "sideImg": "https://images.unsplash.com/photo-1561070791-36c11767b26a?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "sideImgAlt": "Design Creative Image",
+      "childCourses": [
+        {
+          "key": "Design_0",
+          "index": 0,
+          "name": "UI/UX Design & Digital Experience",
+          "description": "Master the art of crafting intuitive, beautiful, and user-centered digital experiences. Learn wireframing, prototyping, usability testing, and the psychology behind delightful interfaces for web and mobile apps.",
+          "duration": "12",
+          "level": "Beginner to Advanced",
+          "prerequisites": "No prior experience required. Creative mindset and curiosity recommended.",
+          "rating": 4.9,
+          "ratingCount": 3200,
+          "students": 4100,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Principles of UI/UX Design",
+                "• User Research & Persona Creation",
+                "• Wireframing & Prototyping Tools",
+                "• Visual Hierarchy & Typography",
+                "• Color Theory & Accessibility"
+              ],
+              "lessons": 4,
+              "students": 1800
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Designing Mobile App Interfaces",
+                "• Usability Testing & Feedback Loops",
+                "• Interactive Prototyping Project"
+              ],
+              "lessons": 4,
+              "students": 1500
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Complete App Redesign Challenge",
+                "• UX Audit for a Live Product",
+                "• Portfolio-Ready Case Study"
+              ],
+              "lessons": 4,
+              "students": 800
+            }
+          ],
+          "skills": [
+            "UI/UX Design",
+            "Wireframing",
+            "Prototyping",
+            "User Research",
+            "Usability Testing",
+            "Interaction Design",
+            "Design Thinking",
+            "Figma/Adobe XD/Sketch"
+          ],
+          "reactIcon": "FaPalette"
+        },
+        {
+          "key": "Design_1",
+          "index": 1,
+          "name": "Graphic Design & Visual Storytelling",
+          "description": "Unleash your creativity with modern graphic design. Master branding, digital illustration, and visual storytelling for social media, marketing, and digital campaigns using industry-leading tools.",
+          "duration": "12",
+          "level": "Beginner to Advanced",
+          "prerequisites": "No prior experience required. Passion for creativity and visual arts recommended.",
+          "rating": 4.8,
+          "ratingCount": 2700,
+          "students": 3500,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Foundations of Graphic Design",
+                "• Color, Typography & Composition",
+                "• Branding & Identity Design",
+                "• Digital Illustration Techniques"
+              ],
+              "lessons": 4,
+              "students": 1500
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Social Media Campaign Design",
+                "• Logo & Brand Kit Creation",
+                "• Digital Poster & Ad Design"
+              ],
+              "lessons": 4,
+              "students": 1200
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Brand Identity for a Startup",
+                "• Visual Storytelling for a Cause",
+                "• Portfolio-Ready Design Showcase"
+              ],
+              "lessons": 4,
+              "students": 800
+            }
+          ],
+          "skills": [
+            "Graphic Design",
+            "Branding",
+            "Digital Illustration",
+            "Visual Storytelling",
+            "Adobe Photoshop/Illustrator",
+            "Social Media Design",
+            "Marketing Collateral",
+            "Creative Suite"
+          ],
+          "reactIcon": "FaPaintBrush"
+        },
+        {
+          "key": "Design_2",
+          "index": 2,
+          "name": "Fashion Design & Digital Trends",
+          "description": "Step into the world of fashion innovation. Learn digital fashion sketching, trend forecasting, sustainable design, and how technology is revolutionizing the fashion industry.",
+          "duration": "12",
+          "level": "Beginner to Intermediate",
+          "prerequisites": "Interest in fashion and creativity. No prior experience required.",
+          "rating": 4.7,
+          "ratingCount": 1800,
+          "students": 2200,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Fashion Design Principles",
+                "• Digital Fashion Illustration",
+                "• Trend Forecasting & Analysis",
+                "• Sustainable Fashion & Tech"
+              ],
+              "lessons": 4,
+              "students": 1000
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Digital Fashion Sketchbook",
+                "• Trend Board Creation",
+                "• Sustainable Design Project"
+              ],
+              "lessons": 4,
+              "students": 700
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Fashion Collection for a Digital Brand",
+                "• Tech-Integrated Wearable Design",
+                "• Fashion Portfolio Showcase"
+              ],
+              "lessons": 4,
+              "students": 500
+            }
+          ],
+          "skills": [
+            "Fashion Design",
+            "Digital Illustration",
+            "Trend Forecasting",
+            "Sustainable Design",
+            "Fashion Tech",
+            "Wearable Design",
+            "Portfolio Development",
+            "Fashion Marketing"
+          ],
+          "reactIcon": "FaTshirt"
+        },
+        {
+          "key": "Design_3",
+          "index": 3,
+          "name": "Motion Graphics & Animation",
+          "description": "Bring stories to life with dynamic motion graphics and animation. Learn 2D/3D animation, video editing, and visual effects for advertising, entertainment, and digital content creation.",
+          "duration": "12",
+          "level": "Beginner to Advanced",
+          "prerequisites": "Interest in animation or video. No prior experience required.",
+          "rating": 4.8,
+          "ratingCount": 2100,
+          "students": 2600,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Principles of Animation",
+                "• Motion Graphics Tools",
+                "• Storyboarding & Visual Scripting",
+                "• Video Editing & VFX"
+              ],
+              "lessons": 4,
+              "students": 1200
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Animated Explainer Video",
+                "• Social Media Motion Graphics",
+                "• Visual Effects Project"
+              ],
+              "lessons": 4,
+              "students": 900
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Brand Animation for a Startup",
+                "• Short Film Animation",
+                "• Portfolio-Ready Animation Reel"
+              ],
+              "lessons": 4,
+              "students": 500
+            }
+          ],
+          "skills": [
+            "Motion Graphics",
+            "2D/3D Animation",
+            "Video Editing",
+            "Visual Effects (VFX)",
+            "Storyboarding",
+            "After Effects/Premiere",
+            "Digital Content Creation",
+            "Animation Portfolio"
+          ],
+          "reactIcon": "FaFilm"
+        },
+        {
+          "key": "Design_4",
+          "index": 4,
+          "name": "Product Design & Creative Prototyping",
+          "description": "Innovate and design products that blend form and function. Learn user-centered product design, rapid prototyping, 3D modeling, and how to bring ideas to life for the modern market.",
+          "duration": "12",
+          "level": "Beginner to Advanced",
+          "prerequisites": "Interest in product design or engineering. No prior experience required.",
+          "rating": 4.9,
+          "ratingCount": 1600,
+          "students": 2000,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Product Design Principles",
+                "• User-Centered Design Process",
+                "• Rapid Prototyping Techniques",
+                "• 3D Modeling & CAD Tools"
+              ],
+              "lessons": 4,
+              "students": 900
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Product Concept Sketching",
+                "• 3D Prototype Development",
+                "• User Testing & Feedback"
+              ],
+              "lessons": 4,
+              "students": 700
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Innovative Product Launch Plan",
+                "• 3D Printed Prototype Showcase",
+                "• Product Design Portfolio"
+              ],
+              "lessons": 4,
+              "students": 400
+            }
+          ],
+          "skills": [
+            "Product Design",
+            "Prototyping",
+            "3D Modeling",
+            "User-Centered Design",
+            "CAD Tools",
+            "Rapid Prototyping",
+            "Product Innovation",
+            "Portfolio Development"
+          ],
+          "reactIcon": "FaCube"
         }
       ]
     }
