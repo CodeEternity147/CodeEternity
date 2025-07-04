@@ -7,7 +7,7 @@ import img5 from "../../assets/img5.svg";
 import msmeLogo from '../../assets/msme.png';
 import startupLogo from "../../assets/startup.png";
 import nsdcLogo from "../../assets/nsdc.png";
-import aicteLogo from "../../assets/aicte.png";
+import aicteLogo from "../../assets/AICTES.png";
 import iso9001Logo from "../../assets/Iso9001.png";
 
 const companies = [
