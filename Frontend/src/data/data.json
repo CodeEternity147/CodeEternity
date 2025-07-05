@@ -10,7 +10,7 @@
       "sideImg": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fGNvbXB1dGVyfGVufDB8fDB8fHww",
       "sideImgAlt": "CSE/IT Image",
       "iconBgColor": "#ffc8dd",
-      "targetAudience": "BTech/BE, BCA, MCA, BSc Computer Science, MSc Computer Science",
+      "targetAudience": "BTech/BE, MTech/ME, BCA, MCA, BSc Computer Science, MSc Computer Science, PhD in Computer Science, BSc IT, MSc IT, BSc Mathematics, MSc Mathematics, PhD in IT/CS",
       "childCourses": [
         {
           "key": "CSE/IT_0",
@@ -337,6 +337,71 @@
             "Serverless Computing"
           ],
           "reactIcon": "FaCloud"
+        },
+        {
+          "key": "CSE/IT_5",
+          "index": 5,
+          "name": "DevOps & CI/CD",
+          "description": "Master the practices and tools that combine software development (Dev) and IT operations (Ops) to shorten the development lifecycle and provide continuous delivery of high-quality software. Learn automation, containerization, orchestration, and infrastructure as code to streamline development and deployment processes.",
+          "duration": "12",
+          "level": "Intermediate to Advanced",
+          "prerequisites": "Basic programming knowledge and understanding of software development lifecycle. Familiarity with Linux systems helpful.",
+          "rating": 4.6,
+          "ratingCount": 2345,
+          "students": 2876,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• DevOps Culture and Principles",
+                "• Version Control with Git and GitHub",
+                "• CI/CD Pipeline Fundamentals",
+                "• Containerization with Docker",
+                "• Infrastructure as Code (IaC)",
+                "• Monitoring and Logging",
+                "• Cloud Platform Integration"
+              ],
+              "lessons": 4,
+              "students": 1500
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Automated CI/CD Pipeline Setup",
+                "• Docker Container Orchestration",
+                "• Infrastructure Automation with Terraform",
+                "• Monitoring Dashboard Creation",
+                "• Security Scanning Integration"
+              ],
+              "lessons": 4,
+              "students": 1200
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Complete DevOps Pipeline Implementation",
+                "• Multi-Environment Deployment Strategy",
+                "• Automated Testing and Deployment",
+                "• Cloud-Native Application Deployment"
+              ],
+              "lessons": 4,
+              "students": 800
+            }
+          ],
+          "skills": [
+            "Git & GitHub",
+            "Docker & Kubernetes",
+            "CI/CD Pipelines",
+            "Infrastructure as Code",
+            "Cloud Platforms",
+            "Monitoring & Logging",
+            "Automation",
+            "Security Practices"
+          ],
+          "reactIcon": "FaCogs"
         }
       ]
     },
@@ -350,7 +415,7 @@
       "sideImgAlt": "Management Image",
       "icon": "💼",
       "iconBgColor": "#b7e4c7",
-      "targetAudience": "BCom, MBA, BBA, MCom, BSc Business Administration, MSc Business Administration",
+      "targetAudience": "BCom, MCom, MBA, PGDM, BBA, BSc Business Administration, MSc Business Administration, PhD in Management, Executive MBA",
       "childCourses": [
         {
           "key": "Management_0",
@@ -754,7 +819,7 @@
       "iconBgColor": "#e0aaff",
       "sideImg": "https://images.unsplash.com/photo-1738003667850-a2fb736e31b3?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "sideImgAlt": "AI Image",
-      "targetAudience": "BTech/BE, BCA, MCA, BSc Computer Science, MSc Computer Science, BSc Mathematics, MSc Mathematics",
+      "targetAudience": "BTech/BE, MTech/ME, BCA, MCA, BSc Computer Science, MSc Computer Science, BSc Mathematics, MSc Mathematics, PhD in AI/ML/Data Science",
       "childCourses": [
         {
           "key": "AI_0",
@@ -1158,7 +1223,7 @@
       "iconBgColor": "#a0c4ff",
       "sideImg": "https://images.unsplash.com/photo-1747224317356-6dd1a4a078fd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "sideImgAlt": "Medical Technology Image",
-      "targetAudience": "BSc Nursing, BSc Medical Technology, BSc Biotechnology, BSc Microbiology, BSc Biochemistry, MSc Medical Technology",
+      "targetAudience": "BSc Nursing, MSc Nursing, BSc Medical Technology, MSc Medical Technology, BSc Biotechnology, MSc Biotechnology,  PhD in Medical Sciences, ANM, GNM, MBBS, MD, BDS, MDS, BPharm, DPharm, MPharm",
       "childCourses": [
         {
           "key": "Medical_0",
@@ -1454,6 +1519,71 @@
             "Crisis Management"
           ],
           "reactIcon": "FaAmbulance"
+        },
+        {
+          "key": "Medical_5",
+          "index": 5,
+          "name": "Healthcare Analytics & Big Data",
+          "description": "Master the application of data analytics and big data technologies in healthcare settings. Learn to analyze patient data, optimize healthcare operations, and develop predictive models for improved patient outcomes and healthcare delivery.",
+          "duration": "12",
+          "level": "Intermediate to Advanced",
+          "prerequisites": "Basic understanding of healthcare systems and data analysis concepts. Programming knowledge helpful but not required.",
+          "rating": 4.8,
+          "ratingCount": 1200,
+          "students": 1500,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Healthcare Data Analytics Fundamentals",
+                "• Big Data Technologies in Healthcare",
+                "• Patient Data Analysis and Visualization",
+                "• Predictive Modeling for Healthcare",
+                "• Healthcare Operations Analytics",
+                "• Clinical Decision Support Systems",
+                "• Healthcare Data Privacy and Security"
+              ],
+              "lessons": 4,
+              "students": 800
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Patient Outcome Prediction Models",
+                "• Healthcare Cost Analysis Project",
+                "• Clinical Data Visualization Dashboard",
+                "• Hospital Resource Optimization",
+                "• Healthcare Quality Metrics Analysis"
+              ],
+              "lessons": 4,
+              "students": 600
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Comprehensive Healthcare Analytics Platform",
+                "• Predictive Healthcare System",
+                "• Healthcare Operations Optimization",
+                "• Clinical Decision Support Implementation"
+              ],
+              "lessons": 4,
+              "students": 400
+            }
+          ],
+          "skills": [
+            "Healthcare Analytics",
+            "Big Data Processing",
+            "Predictive Modeling",
+            "Data Visualization",
+            "Clinical Decision Support",
+            "Healthcare Operations",
+            "Patient Data Analysis",
+            "Healthcare Quality Metrics"
+          ],
+          "reactIcon": "FaChartBar"
         }
       ]
     },
@@ -1467,7 +1597,7 @@
       "iconBgColor": "#ffd6a5",
       "sideImg": "https://images.unsplash.com/photo-1561070791-36c11767b26a?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "sideImgAlt": "Design Creative Image",
-      "targetAudience": "BDes, BFA, BSc Design, BSc Fashion Technology, BSc Animation, MSc Design, MFA",
+      "targetAudience": "BDes, MDes, BFA, MFA, BSc Design, MSc Design, BSc Fashion Technology, MSc Fashion Technology, BSc Animation, MSc Animation, PhD in Design/Animation/Fashion",
       "childCourses": [
         {
           "key": "Design_0",
@@ -1764,6 +1894,70 @@
             "Portfolio Development"
           ],
           "reactIcon": "FaCube"
+        },
+        {
+          "key": "Design_5",
+          "index": 5,
+          "name": "3D Design & Visualization",
+          "description": "Master the art of 3D modeling, rendering, and visualization for architecture, product design, and digital content creation. Learn industry-standard tools and techniques to create stunning 3D visuals and immersive experiences.",
+          "duration": "12",
+          "level": "Beginner to Advanced",
+          "prerequisites": "Basic computer skills and creative mindset. No prior 3D experience required.",
+          "rating": 4.7,
+          "ratingCount": 1800,
+          "students": 2200,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• 3D Modeling Fundamentals",
+                "• Texturing and Material Creation",
+                "• Lighting and Rendering Techniques",
+                "• 3D Animation Basics",
+                "• Architectural Visualization",
+                "• Product Visualization",
+                "• 3D Software Workflows"
+              ],
+              "lessons": 4,
+              "students": 1000
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Architectural 3D Model Creation",
+                "• Product Visualization Project",
+                "• 3D Animation Sequence",
+                "• Realistic Rendering Portfolio"
+              ],
+              "lessons": 4,
+              "students": 800
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Complete 3D Visualization Project",
+                "• Interactive 3D Experience",
+                "• Portfolio-Ready 3D Showcase",
+                "• Industry-Standard 3D Workflow"
+              ],
+              "lessons": 4,
+              "students": 400
+            }
+          ],
+          "skills": [
+            "3D Modeling",
+            "Texturing & Materials",
+            "Lighting & Rendering",
+            "3D Animation",
+            "Architectural Visualization",
+            "Product Visualization",
+            "3D Software Tools",
+            "Visual Effects"
+          ],
+          "reactIcon": "FaCube"
         }
       ]
     },
@@ -1777,7 +1971,7 @@
       "iconBgColor": "#a7f3d0",
       "sideImg": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGlnaXRhbCUyMG1hcmtldGluZ3xlbnwwfHwwfHx8MA%3D%3D",
       "sideImgAlt": "Digital Marketing Image",
-      "targetAudience": "BCom, MBA, BBA, BA, MA, BSc Marketing, BSc Communication, MSc Digital Marketing, BSc Business Administration",
+      "targetAudience": "BCom, MCom, MBA, PGDM, BBA, BA, MA, BSc Marketing, MSc Marketing, BSc Communication, MSc Communication, MSc Digital Marketing, BSc Business Administration, MSc Business Administration, PhD in Marketing/Business Administration",
       "childCourses": [
         {
           "key": "Digital Marketing_0",
