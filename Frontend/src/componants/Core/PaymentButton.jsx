@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createOrderAndCheckout } from '../../utils/payment';
 
-const PaymentButton = ({ amount, orderId, customerDetails }) => {
+const PaymentButton = ({ amount, orderId, customerDetails, courseName }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -22,15 +22,16 @@ const PaymentButton = ({ amount, orderId, customerDetails }) => {
         amount: amount,
         customerName: customerDetails?.name || 'Guest User',
         customerEmail: customerDetails?.email || 'guest@example.com',
-        customerPhone: customerDetails.mobile
+        customerPhone: customerDetails.mobile,
+        courseName: courseName || ''
       };
 
-      console.log('Initiating payment with:', orderData);
+      // console.log('Initiating payment with:', orderData);
 
       // Create order and render checkout
       const result = await createOrderAndCheckout(orderData);
       
-      console.log('Payment initiated successfully:', result);
+              // console.log('Payment initiated successfully:', result);
       
       // The checkout will open automatically
       // User will be redirected to Cashfree payment page

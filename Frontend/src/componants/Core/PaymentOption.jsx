@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { createOrderAndCheckout } from '../../utils/payment';
 import { useAuth } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
@@ -7,6 +7,8 @@ import { toast } from 'react-toastify';
 const PaymentOption = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const courseName = location.state?.courseName || '';
   const { user } = useAuth();
 
   useEffect(() => {
@@ -115,7 +117,8 @@ const PaymentOption = () => {
         amount: amount,
         customerName: user?.firstName + ' ' + user?.lastName || 'Guest User',
         customerEmail: user?.email || 'guest@example.com',
-        customerPhone: user.mobile
+        customerPhone: user.mobile,
+        courseName: courseName
       };
 
       await createOrderAndCheckout(orderData);
@@ -130,6 +133,15 @@ const PaymentOption = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Heading for course name */}
+      {courseName && (
+        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6 mb-8">
+          <h1 className="text-2xl font-bold text-gray-900 text-center">
+            Pay for {courseName}
+          </h1>
+        </div>
+      )}
+
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>

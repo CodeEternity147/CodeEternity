@@ -45,9 +45,9 @@ function App() {
   const navigate = useNavigate();
 
   const handleCourseSelect = (course) => {
-    console.log('Course selected in App:', course); // Debug log
+    // console.log('Course selected in App:', course); // Debug log
     if (!course) {
-      console.log('No course provided to handleCourseSelect'); // Debug log
+              // console.log('No course provided to handleCourseSelect'); // Debug log
       return;
     }
     setSelectedChildCourse(course);
@@ -56,7 +56,7 @@ function App() {
   // Effect to handle course selection changes
   useEffect(() => {
     if (selectedChildCourse) {
-      console.log('Selected course changed:', selectedChildCourse); // Debug log
+      // console.log('Selected course changed:', selectedChildCourse); // Debug log
     }
   }, [selectedChildCourse]);
 
@@ -161,13 +161,15 @@ function App() {
             }
           />
 
+          {/* Payment Page for all courses, receives courseName via navigation state */}
           <Route
-          path="/payment/:courseID"
-          element = {
-            <ProtectedRoute>
-              <PaymentOption/>
-            </ProtectedRoute>
-          }/>
+            path="/payment"
+            element={
+              <ProtectedRoute>
+                <PaymentOption />
+              </ProtectedRoute>
+            }
+          />
 
           <Route
             path="/payment/success"

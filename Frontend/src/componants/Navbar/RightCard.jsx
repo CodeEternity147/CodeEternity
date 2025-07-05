@@ -2,7 +2,7 @@ import * as FaIcons from 'react-icons/fa';
 import data from '../../data/data'; // adjust if path differs
 
 const RightCard = ({ index }) => {
-  console.log("RightCard index:", index);
+  // console.log("RightCard index:", index);
   const field = data.whatWeOffer[index];
   const bgColor = field.iconBgColor;
   

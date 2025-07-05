@@ -16,9 +16,7 @@ const CourseDetailModal = ({ selectedChildCourse, setSelectedChildCourse }) => {
       return;
     }
     try {
-      const encodedKey = encodeURIComponent(courseId);
-      console.log('Encoded key:', encodedKey);
-      navigate(`/payment/${encodedKey}`);
+      navigate('/payment', { state: { courseName: selectedChildCourse.name } });
     } catch (error) {
       console.error('Error in handlePaymentClick:', error);
     }

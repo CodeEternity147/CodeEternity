@@ -39,14 +39,14 @@ const BASE_URL = ENV === "PROD"
         });
       }
   
-      console.log("Processing payment request:", {
-        orderId: req.body.orderId,
-        amount: req.body.amount,
-        customerEmail: req.body.customerEmail,
-        environment: ENV
-      });
+      // console.log("Processing payment request:", {
+      //   orderId: req.body.orderId,
+      //   amount: req.body.amount,
+      //   customerEmail: req.body.customerEmail,
+      //   environment: ENV
+      // });
   
-      const { orderId, amount } = req.body;
+      const { orderId, amount, courseName } = req.body;
   
       // Check if payment already exists
       const existingPayment = await Payment.findByOrderId(orderId);
@@ -62,24 +62,47 @@ const BASE_URL = ENV === "PROD"
         customer_id: "cust_" + Date.now(),
         customer_name: req.body.customerName || "Guest User",
         customer_email: req.body.customerEmail || "guest@example.com",
-        customer_phone: req.body.customerPhone, // Use real mobile from frontend
+        customer_phone: req.body.customerPhone
       };
   
-      console.log("Using Cashfree credentials:", {
-        APP_ID: APP_ID ? "Present" : "Missing",
-        ENV,
-        API_URL: CASHFREE_API_URL
-      });
+      // console.log("Using Cashfree credentials:", {
+      //   APP_ID: APP_ID ? "Present" : "Missing",
+      //   ENV,
+      //   API_URL: CASHFREE_API_URL
+      // });
   
+      // const orderRequest = {
+      //   order_id: orderId,
+      //   order_amount: amount,
+      //   order_currency: "INR",
+      //   customer_details: {
+      //     customer_id: customerDetails.customer_id,
+      //     customer_name: customerDetails.customer_name,
+      //     customer_email: customerDetails.customer_email,
+      //     customer_phone: customerDetails.customer_phone
+      //   },
+      //   order_meta: {
+      //     return_url: `${BASE_URL}/payment/success?order_id={order_id}`,
+      //     notify_url: `${BASE_URL}/api/payment/webhook`,
+      //     failure_url: `${BASE_URL}/payment/failure?order_id={order_id}`,
+      //     order_note: courseName || ''
+      //   }
+      // };
+  
+
       const orderRequest = {
         order_id: orderId,
         order_amount: amount,
         order_currency: "INR",
+        order_note: courseName || '',  // ✅ Moved to top-level
+        order_tags: {
+          course_name: courseName || 'Unknown Course'  // ✅ Optional structured metadata
+        },
         customer_details: {
           customer_id: customerDetails.customer_id,
           customer_name: customerDetails.customer_name,
           customer_email: customerDetails.customer_email,
-          customer_phone: customerDetails.customer_phone,
+          customer_phone: customerDetails.customer_phone
         },
         order_meta: {
           return_url: `${BASE_URL}/payment/success?order_id={order_id}`,
@@ -87,8 +110,8 @@ const BASE_URL = ENV === "PROD"
           failure_url: `${BASE_URL}/payment/failure?order_id={order_id}`
         }
       };
-  
-      console.log("Creating order with Cashfree API...");
+      
+      // console.log("Creating order with Cashfree API..." , orderRequest.order_tags.course_name );
   
       // Make the API request to Cashfree
       const response = await axios({
@@ -104,11 +127,11 @@ const BASE_URL = ENV === "PROD"
         }
       });
   
-      console.log("Cashfree API Response received:", {
-        orderId: response.data?.order_id,
-        status: response.data?.order_status,
-        hasSessionId: !!response.data?.payment_session_id
-      });
+      // console.log("Cashfree API Response received:", {
+      //   orderId: response.data?.order_id,
+      //   status: response.data?.order_status,
+      //   hasSessionId: !!response.data?.payment_session_id
+      // });
   
       // Validate response
       if (!response.data || !response.data.payment_session_id) {
@@ -132,7 +155,8 @@ const BASE_URL = ENV === "PROD"
         metadata: {
           customerId: customerDetails.customer_id,
           environment: ENV,
-          originalOrderId: orderId
+          originalOrderId: orderId,
+          courseName: courseName || ''
         }
       };
 
@@ -142,14 +166,14 @@ const BASE_URL = ENV === "PROD"
       }
 
       const payment = await Payment.create(paymentData);
-      console.log("Payment record created in database:", payment.orderId);
+      // console.log("Payment record created in database:", payment.orderId);
   
       // Construct payment link based on environment
       const paymentLink = ENV === "PROD" 
       ? `https://payments.cashfree.com/pg/orders/${response.data.order_id}/pay?session_id=${response.data.payment_session_id}`
       : `https://sandbox.cashfree.com/pg/orders/${response.data.order_id}/pay?session_id=${response.data.payment_session_id}`;
     
-      console.log("Payment link generated successfully");
+      // console.log("Payment link generated successfully");
   
       // Return payment session ID and order info for frontend to use
       return res.json({
@@ -196,7 +220,7 @@ const verifyWebhookSignature = (payload, signature, secret) => {
 // Webhook handler for payment notifications
 export const webhookHandler = async (req, res) => {
   try {
-    console.log("Webhook received for order:", req.body?.orderId);
+    // console.log("Webhook received for order:", req.body?.orderId);
     
     // Verify webhook signature (CRITICAL for production)
     const signature = req.headers['x-webhook-signature'];
@@ -217,7 +241,7 @@ export const webhookHandler = async (req, res) => {
       return res.status(401).json({ error: "Invalid webhook signature" });
     }
     
-    console.log("Webhook signature verified successfully");
+    // console.log("Webhook signature verified successfully");
     
     const { orderId, orderAmount, orderStatus, paymentMode, customerDetails } = req.body;
     

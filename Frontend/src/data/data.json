@@ -10,6 +10,7 @@
       "sideImg": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTh8fGNvbXB1dGVyfGVufDB8fDB8fHww",
       "sideImgAlt": "CSE/IT Image",
       "iconBgColor": "#ffc8dd",
+      "targetAudience": "BTech/BE, BCA, MCA, BSc Computer Science, MSc Computer Science",
       "childCourses": [
         {
           "key": "CSE/IT_0",
@@ -349,6 +350,7 @@
       "sideImgAlt": "Management Image",
       "icon": "💼",
       "iconBgColor": "#b7e4c7",
+      "targetAudience": "BCom, MBA, BBA, MCom, BSc Business Administration, MSc Business Administration",
       "childCourses": [
         {
           "key": "Management_0",
@@ -752,6 +754,7 @@
       "iconBgColor": "#e0aaff",
       "sideImg": "https://images.unsplash.com/photo-1738003667850-a2fb736e31b3?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "sideImgAlt": "AI Image",
+      "targetAudience": "BTech/BE, BCA, MCA, BSc Computer Science, MSc Computer Science, BSc Mathematics, MSc Mathematics",
       "childCourses": [
         {
           "key": "AI_0",
@@ -1155,6 +1158,7 @@
       "iconBgColor": "#a0c4ff",
       "sideImg": "https://images.unsplash.com/photo-1747224317356-6dd1a4a078fd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "sideImgAlt": "Medical Technology Image",
+      "targetAudience": "BSc Nursing, BSc Medical Technology, BSc Biotechnology, BSc Microbiology, BSc Biochemistry, MSc Medical Technology",
       "childCourses": [
         {
           "key": "Medical_0",
@@ -1463,6 +1467,7 @@
       "iconBgColor": "#ffd6a5",
       "sideImg": "https://images.unsplash.com/photo-1561070791-36c11767b26a?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "sideImgAlt": "Design Creative Image",
+      "targetAudience": "BDes, BFA, BSc Design, BSc Fashion Technology, BSc Animation, MSc Design, MFA",
       "childCourses": [
         {
           "key": "Design_0",
@@ -1759,6 +1764,410 @@
             "Portfolio Development"
           ],
           "reactIcon": "FaCube"
+        }
+      ]
+    },
+    {
+      "key": "Digital Marketing",
+      "index": 5,
+      "name": "Digital Marketing",
+      "description": "Modern marketing strategies for the digital age.",
+      "summary": "Driving growth through digital channels.",
+      "icon": "📱",
+      "iconBgColor": "#a7f3d0",
+      "sideImg": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGlnaXRhbCUyMG1hcmtldGluZ3xlbnwwfHwwfHx8MA%3D%3D",
+      "sideImgAlt": "Digital Marketing Image",
+      "targetAudience": "BCom, MBA, BBA, BA, MA, BSc Marketing, BSc Communication, MSc Digital Marketing, BSc Business Administration",
+      "childCourses": [
+        {
+          "key": "Digital Marketing_0",
+          "index": 0,
+          "name": "Social Media Marketing",
+          "description": "Master the art of building brand presence and engaging audiences across social media platforms. Learn content creation, community management, platform-specific strategies, and analytics to drive meaningful engagement and conversions.",
+          "duration": "12",
+          "level": "Beginner to Advanced",
+          "prerequisites": "Basic understanding of social media platforms. Creative mindset and communication skills preferred.",
+          "rating": 4.7,
+          "ratingCount": 2156,
+          "students": 2876,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Social Media Strategy and Platform Overview",
+                "• Content Creation and Visual Design",
+                "• Community Management and Engagement",
+                "• Platform-Specific Best Practices",
+                "• Social Media Analytics and Metrics",
+                "• Influencer Collaboration Strategies",
+                "• Crisis Management and Brand Protection"
+              ],
+              "lessons": 4,
+              "students": 1800
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Social Media Content Calendar Creation",
+                "• Community Engagement Campaign Design",
+                "• Platform-Specific Content Strategy",
+                "• Influencer Outreach and Collaboration",
+                "• Social Media Analytics Dashboard"
+              ],
+              "lessons": 4,
+              "students": 1200
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Brand Social Media Strategy Development",
+                "• Multi-Platform Campaign Execution",
+                "• Influencer Marketing Campaign",
+                "• Social Media Crisis Management"
+              ],
+              "lessons": 4,
+              "students": 876
+            }
+          ],
+          "skills": [
+            "Social Media Strategy",
+            "Content Creation",
+            "Community Management",
+            "Platform Analytics",
+            "Influencer Marketing",
+            "Crisis Management",
+            "Brand Building",
+            "Engagement Optimization"
+          ],
+          "reactIcon": "FaShareAlt"
+        },
+        {
+          "key": "Digital Marketing_1",
+          "index": 1,
+          "name": "Affiliate Marketing",
+          "description": "Learn to build profitable affiliate marketing businesses through strategic partnerships, conversion optimization, and relationship management. Master commission-based marketing strategies across various niches and platforms.",
+          "duration": "12",
+          "level": "Beginner to Intermediate",
+          "prerequisites": "Basic marketing knowledge. Interest in commission-based business models.",
+          "rating": 4.6,
+          "ratingCount": 1876,
+          "students": 2345,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Affiliate Marketing Fundamentals",
+                "• Network Selection and Partnership Building",
+                "• Conversion Optimization Strategies",
+                "• Traffic Generation Methods",
+                "• Commission Tracking and Analytics",
+                "• Niche Selection and Research",
+                "• Compliance and Legal Considerations"
+              ],
+              "lessons": 4,
+              "students": 1500
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Affiliate Network Setup and Optimization",
+                "• Landing Page Design and Testing",
+                "• Traffic Generation Campaign",
+                "• Conversion Rate Optimization",
+                "• Analytics and Performance Tracking"
+              ],
+              "lessons": 4,
+              "students": 1000
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Complete Affiliate Marketing Business",
+                "• Multi-Niche Portfolio Development",
+                "• Automated Commission System",
+                "• Scalable Affiliate Network"
+              ],
+              "lessons": 4,
+              "students": 845
+            }
+          ],
+          "skills": [
+            "Affiliate Networks",
+            "Conversion Optimization",
+            "Traffic Generation",
+            "Commission Tracking",
+            "Niche Research",
+            "Partnership Building",
+            "Analytics",
+            "Automation"
+          ],
+          "reactIcon": "FaHandshake"
+        },
+        {
+          "key": "Digital Marketing_2",
+          "index": 2,
+          "name": "Content Marketing",
+          "description": "Develop compelling content strategies that attract, engage, and convert audiences. Master blog writing, SEO content, email marketing, and storytelling techniques to build brand authority and drive organic growth.",
+          "duration": "12",
+          "level": "Beginner to Advanced",
+          "prerequisites": "Good writing skills and creativity. Basic understanding of marketing concepts.",
+          "rating": 4.8,
+          "ratingCount": 2345,
+          "students": 2987,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Content Strategy and Planning",
+                "• SEO Content Writing and Optimization",
+                "• Email Marketing and Automation",
+                "• Storytelling and Brand Voice",
+                "• Content Distribution Channels",
+                "• Analytics and Performance Measurement",
+                "• Content Calendar Management"
+              ],
+              "lessons": 4,
+              "students": 2000
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Content Calendar Development",
+                "• SEO-Optimized Blog Writing",
+                "• Email Marketing Campaign Design",
+                "• Content Distribution Strategy",
+                "• Performance Analytics Setup"
+              ],
+              "lessons": 4,
+              "students": 1500
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Brand Content Strategy Development",
+                "• Multi-Channel Content Campaign",
+                "• Email Marketing Automation System",
+                "• Content Performance Optimization"
+              ],
+              "lessons": 4,
+              "students": 987
+            }
+          ],
+          "skills": [
+            "Content Strategy",
+            "SEO Writing",
+            "Email Marketing",
+            "Storytelling",
+            "Brand Voice",
+            "Content Distribution",
+            "Analytics",
+            "Automation"
+          ],
+          "reactIcon": "FaPenFancy"
+        },
+        {
+          "key": "Digital Marketing_3",
+          "index": 3,
+          "name": "Influencer Marketing",
+          "description": "Master the art of influencer partnerships and collaborations. Learn to identify, approach, and work with influencers to amplify brand reach, build authentic relationships, and drive measurable results.",
+          "duration": "12",
+          "level": "Intermediate",
+          "prerequisites": "Basic marketing knowledge. Understanding of social media platforms.",
+          "rating": 4.5,
+          "ratingCount": 1654,
+          "students": 1987,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Influencer Marketing Strategy",
+                "• Influencer Identification and Research",
+                "• Outreach and Relationship Building",
+                "• Campaign Planning and Execution",
+                "• Authenticity and Brand Alignment",
+                "• ROI Measurement and Analytics",
+                "• Legal and Compliance Considerations"
+              ],
+              "lessons": 4,
+              "students": 1200
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Influencer Database Creation",
+                "• Outreach Campaign Development",
+                "• Campaign Brief and Guidelines",
+                "• Performance Tracking System",
+                "• Relationship Management Tools"
+              ],
+              "lessons": 4,
+              "students": 800
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Complete Influencer Campaign",
+                "• Multi-Influencer Collaboration",
+                "• Long-term Partnership Strategy",
+                "• Influencer Marketing ROI System"
+              ],
+              "lessons": 4,
+              "students": 600
+            }
+          ],
+          "skills": [
+            "Influencer Research",
+            "Relationship Building",
+            "Campaign Planning",
+            "Authenticity Management",
+            "ROI Measurement",
+            "Compliance",
+            "Analytics",
+            "Partnership Strategy"
+          ],
+          "reactIcon": "FaUsers"
+        },
+        {
+          "key": "Digital Marketing_4",
+          "index": 4,
+          "name": "E-commerce Marketing",
+          "description": "Specialize in marketing strategies for online stores and digital marketplaces. Learn conversion optimization, customer retention, product launches, and multi-channel marketing for e-commerce success.",
+          "duration": "12",
+          "level": "Intermediate to Advanced",
+          "prerequisites": "Basic understanding of e-commerce platforms. Marketing experience helpful.",
+          "rating": 4.7,
+          "ratingCount": 1987,
+          "students": 2456,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• E-commerce Marketing Fundamentals",
+                "• Conversion Rate Optimization",
+                "• Customer Retention Strategies",
+                "• Product Launch Marketing",
+                "• Multi-Channel Marketing",
+                "• Email Marketing for E-commerce",
+                "• Analytics and Performance Tracking"
+              ],
+              "lessons": 4,
+              "students": 1600
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• E-commerce Store Optimization",
+                "• Email Marketing Campaign Design",
+                "• Product Launch Strategy",
+                "• Customer Retention Program",
+                "• Multi-Channel Campaign"
+              ],
+              "lessons": 4,
+              "students": 1200
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Complete E-commerce Marketing Strategy",
+                "• Multi-Platform Store Optimization",
+                "• Automated Email Marketing System",
+                "• Customer Lifetime Value Optimization"
+              ],
+              "lessons": 4,
+              "students": 856
+            }
+          ],
+          "skills": [
+            "E-commerce Strategy",
+            "Conversion Optimization",
+            "Customer Retention",
+            "Product Launches",
+            "Multi-Channel Marketing",
+            "Email Marketing",
+            "Analytics",
+            "Automation"
+          ],
+          "reactIcon": "FaShoppingCart"
+        },
+        {
+          "key": "Digital Marketing_5",
+          "index": 5,
+          "name": "Performance Marketing",
+          "description": "Master data-driven marketing strategies including Google Ads, Facebook Ads, and analytics. Learn to optimize campaigns for maximum ROI, implement tracking systems, and scale successful campaigns.",
+          "duration": "12",
+          "level": "Intermediate to Advanced",
+          "prerequisites": "Basic marketing knowledge. Analytical mindset and data interpretation skills.",
+          "rating": 4.9,
+          "ratingCount": 2876,
+          "students": 3456,
+          "curriculum": [
+            {
+              "module": "Course Overview & Fundamentals",
+              "weeks": "Week 1-4",
+              "description": [
+                "• Performance Marketing Fundamentals",
+                "• Google Ads and PPC Campaigns",
+                "• Facebook and Social Media Ads",
+                "• Analytics and Tracking Setup",
+                "• A/B Testing and Optimization",
+                "• Conversion Tracking",
+                "• Budget Management and Scaling"
+              ],
+              "lessons": 4,
+              "students": 2200
+            },
+            {
+              "module": "Practical Assignments",
+              "weeks": "Week 5-8",
+              "description": [
+                "• Google Ads Campaign Setup",
+                "• Facebook Ads Campaign Design",
+                "• Analytics Dashboard Creation",
+                "• A/B Testing Implementation",
+                "• Conversion Tracking Setup"
+              ],
+              "lessons": 4,
+              "students": 1800
+            },
+            {
+              "module": "Real World Projects",
+              "weeks": "Week 9-12",
+              "description": [
+                "• Multi-Platform Ad Campaign",
+                "• Automated Optimization System",
+                "• Scalable Performance Marketing",
+                "• ROI Optimization Strategy"
+              ],
+              "lessons": 4,
+              "students": 1200
+            }
+          ],
+          "skills": [
+            "Google Ads",
+            "Facebook Ads",
+            "Analytics",
+            "A/B Testing",
+            "Conversion Tracking",
+            "Budget Management",
+            "Campaign Optimization",
+            "ROI Scaling"
+          ],
+          "reactIcon": "FaChartLine"
         }
       ]
     }

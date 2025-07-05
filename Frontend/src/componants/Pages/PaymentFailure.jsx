@@ -20,12 +20,12 @@ const PaymentFailure = () => {
         setLoading(true);
         
         // Log the payment failure details
-        console.log('Payment Failure Details:', {
-          orderId,
-          paymentStatus,
-          errorMessage,
-          allParams: Object.fromEntries(searchParams.entries())
-        });
+        // console.log('Payment Failure Details:', {
+        //   orderId,
+        //   paymentStatus,
+        //   errorMessage,
+        //   allParams: Object.fromEntries(searchParams.entries())
+        // });
 
         setPaymentDetails({
           orderId,

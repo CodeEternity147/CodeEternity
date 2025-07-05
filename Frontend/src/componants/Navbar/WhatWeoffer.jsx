@@ -18,7 +18,7 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('WhatWeOffer component mounted with props:', { selectedChildCourse, setSelectedChildCourse }); // Debug log
+    // console.log('WhatWeOffer component mounted with props:', { selectedChildCourse, setSelectedChildCourse }); // Debug log
   }, [selectedChildCourse, setSelectedChildCourse]);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
   };
 
   const handleCourseClick = (course, category) => {
-    console.log('Course clicked:', course); // Debug log
+    // console.log('Course clicked:', course); // Debug log
     if (typeof setSelectedChildCourse !== 'function') {
       console.error('setSelectedChildCourse is not a function:', setSelectedChildCourse); // Debug log
       return;
@@ -54,7 +54,7 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
       category,
       key: course.key || `${category}_${course.index}` // Ensure key exists
     };
-    console.log('Course with category:', courseWithCategory); // Debug log
+    // console.log('Course with category:', courseWithCategory); // Debug log
     
     try {
       // First set the selected course
@@ -62,7 +62,7 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
       
       // Encode the course key to handle special characters in the URL
       const encodedKey = encodeURIComponent(courseWithCategory.key);
-      console.log('Encoded key:', encodedKey); // Debug log
+      // console.log('Encoded key:', encodedKey); // Debug log
       
       // Then navigate to the course detail page with encoded key
       navigate(`/course/${encodedKey}`);
@@ -136,23 +136,48 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
               <div className="col-span-12 lg:col-span-6  order-1 lg:order-2">
                 <div className="bg-white  rounded-3xl shadow-xl overflow-hidden">
                   <div className="p-8">
-                    <div className="flex items-center mb-6">
-                      <div className="h-10 w-10 bg-purple-100 rounded-xl flex items-center justify-center">
-                        <span className="text-purple-600">
-                          {selectedItem === 0 ? <BookOpen size={20} /> :
-                            selectedItem === 1 ? <Target size={20} /> :
-                              selectedItem === 2 ? <Users size={20} /> : <Award size={20} />}
-                        </span>
+                  
+
+
+                    {/* Combined Courses & Target Audience */}
+                    <div>
+                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl px-5 py-4 border border-blue-200 shadow-sm mb-6">
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="flex items-center">
+                            <div className="h-10 w-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mr-4">
+                              <Users size={20} className="text-white" />
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold text-gray-800">Available Courses - {whatWeOffer[selectedItem]?.name}</h3>
+                              <p className="text-blue-600 text-sm">Perfect for your career path</p>
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <div className="text-2xl font-bold text-blue-700">{whatWeOffer[selectedItem]?.childCourses?.length || 0}</div>
+                            <div className="text-blue-600 text-xs">Courses</div>
+                          </div>
+                        </div>
+                        
+                        {whatWeOffer[selectedItem] && whatWeOffer[selectedItem].targetAudience && (
+                          <div className="bg-white/60 rounded-xl p-4 mb-4 border border-blue-200">
+                            <div className="flex items-center mb-2">
+                              <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
+                              <span className="text-sm font-semibold text-blue-700">Suitable For</span>
+                            </div>
+                            <div className="flex flex-wrap gap-1.5">
+                              {whatWeOffer[selectedItem].targetAudience.split(', ').map((degree, index) => (
+                                <span 
+                                  key={index}
+                                  className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full hover:bg-blue-200 transition-all duration-200 border border-blue-200"
+                                >
+                                  {degree.trim()}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <h2 className="text-2xl font-bold ml-4 text-gray-800">
-                        {whatWeOffer[selectedItem] ? whatWeOffer[selectedItem].name : "Program Details"}
-                      </h2>
-                    </div>
-
-
-                    {/* Child Courses List */}
-                    <div className="mt-8">
-                      <h3 className="text-lg font-bold text-gray-800 mb-4">Available Courses</h3>
+                      
                       <div className="space-y-3">
                         {whatWeOffer[selectedItem] && whatWeOffer[selectedItem].childCourses && whatWeOffer[selectedItem].childCourses.map((course, index) => {
                             const Icon = FaIcons[course.reactIcon];
@@ -160,7 +185,7 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
 
                           return (
                             
-                             <div key={index} className="bg-gray-50 rounded-xl p-4 flex items-center justify-between hover:bg-gray-100 transition-colors">
+                             <div key={index} className=" shadow-sm rounded-xl p-4 flex items-center justify-between hover:bg-gray-100 transition-colors">
                               
                               
                             <div className="flex items-center">
@@ -181,7 +206,7 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
                             </div>
                             <button
                               onClick={() => {
-                                console.log('Button clicked for course:', course); // Debug log
+                                // console.log('Button clicked for course:', course); // Debug log
                                 handleCourseClick(course, whatWeOffer[selectedItem].name);
                               }}
                               className="bg-purple-600 flex items-center cursor-pointer text-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-purple-700 transition-colors"

@@ -24,12 +24,12 @@ api.interceptors.request.use(
     }
 
     // Log request data
-    console.log('Request:', {
-      url: config.url,
-      method: config.method,
-      data: config.data,
-      headers: config.headers
-    });
+    // console.log('Request:', {
+    //   url: config.url,
+    //   method: config.method,
+    //   data: config.data,
+    //   headers: config.headers
+    // });
     
     return config;
   },
@@ -42,19 +42,19 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => {
     // Log successful response
-    console.log('Response:', {
-      status: response.status,
-      data: response.data
-    });
+    // console.log('Response:', {
+    //   status: response.status,
+    //   data: response.data
+    // });
     return response;
   },
   async (error) => {
     // Log error response
-    console.log('Error:', {
-      status: error.response?.status,
-      data: error.response?.data,
-      message: error.message
-    });
+    // console.log('Error:', {
+    //   status: error.response?.status,
+    //   data: error.response?.data,
+    //   message: error.message
+    // });
 
     const originalRequest = error.config;
 
@@ -97,7 +97,7 @@ api.interceptors.response.use(
     // Handle validation errors
     if (error.response.status === 400) {
       const message = error.response.data.message || 'Invalid request';
-      console.log("axios" , message)
+      // console.log("axios" , message)
       return Promise.reject({ message });
     }
 

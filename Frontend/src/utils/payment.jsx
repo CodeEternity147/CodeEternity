@@ -12,7 +12,7 @@ const initializeCashfree = async () => {
     cashfree = await load({
       mode: import.meta.env.PROD ? "production" : "sandbox" // Use production for live payments
     });
-    console.log("Cashfree SDK initialized successfully");
+    // console.log("Cashfree SDK initialized successfully");
     return cashfree;
   } catch (error) {
     console.error("Error initializing Cashfree SDK:", error);
@@ -32,7 +32,7 @@ const renderCheckout = async (paymentSessionId) => {
       redirectTarget: "_self", // or "_blank" for new tab
     };
 
-    console.log("Rendering checkout with session ID:", paymentSessionId);
+    // console.log("Rendering checkout with session ID:", paymentSessionId);
     return await cashfree.checkout(checkoutOptions);
   } catch (error) {
     console.error("Error rendering checkout:", error);
@@ -43,16 +43,16 @@ const renderCheckout = async (paymentSessionId) => {
 // Create order and render checkout
 const createOrderAndCheckout = async (orderData) => {
   try {
-    console.log("Creating order with data:", orderData);
+    // console.log("Creating order with data:", orderData);
     
     // Debug: Log the axios baseURL
-    console.log("Axios baseURL:", api.defaults.baseURL);
-    console.log("Full URL being requested:", `${api.defaults.baseURL}/payment/create-order`);
+          // console.log("Axios baseURL:", api.defaults.baseURL);
+      // console.log("Full URL being requested:", `${api.defaults.baseURL}/payment/create-order`);
     
     // First create order on backend using axios
     const response = await api.post('/payment/create-order', orderData);
     
-    console.log("Order creation result:", response.data);
+          // console.log("Order creation result:", response.data);
     
     if (!response.data.success) {
       throw new Error(response.data.message || 'Failed to create order');

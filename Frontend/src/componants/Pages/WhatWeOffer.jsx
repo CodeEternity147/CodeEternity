@@ -5,7 +5,7 @@ import useScrollToTop from '../../hooks/useScrollToTop';
 
 const WhatWeOffer = ({ selectedChildCourse, setSelectedChildCourse }) => {
     useScrollToTop();
-    console.log('WhatWeOffer page props:', { selectedChildCourse, setSelectedChildCourse }); // Debug log
+    // console.log('WhatWeOffer page props:', { selectedChildCourse, setSelectedChildCourse }); // Debug log
 
     return (
         <div className=' ' >
