@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaArrowDown, FaArrowUp, FaBars, FaTimes } from "react-icons/fa";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import Logo from '../../assets/Logo.png';
+import Logo from '../../assets/LogoFinal.png';
 
 function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -49,8 +49,8 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
         <img
           src={Logo}
           alt="CodeEternity Logo"
-          className="h-8 md:h-10 w-auto object-contain"
-          style={{ maxHeight: '40px' }}
+          className=" w-[150px] md:w-[180px] scale-120 pl-2 object-contain"
+          style={{ maxHeight: '50px' }}
         />
 
         {/* Desktop Nav */}
