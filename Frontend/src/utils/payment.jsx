@@ -9,8 +9,10 @@ const BACKEND_URL = import.meta.env.VITE_API_URL;
 // Initialize Cashfree SDK
 const initializeCashfree = async () => {
   try {
+    // Log the mode for debugging
+    console.log("Cashfree SDK mode:", import.meta.env.VITE_PROD === "true" ? "production" : "sandbox");
     cashfree = await load({
-      mode: import.meta.env.VITE_PROD ? "production" : "sandbox" // Use production for live payments
+      mode: import.meta.env.VITE_PROD === "true" ? "production" : "sandbox" // Use production for live payments
     });
     // console.log("Cashfree SDK initialized successfully");
     return cashfree;

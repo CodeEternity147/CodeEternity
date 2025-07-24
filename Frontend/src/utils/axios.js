@@ -97,8 +97,9 @@ api.interceptors.response.use(
     // Handle validation errors
     if (error.response.status === 400) {
       const message = error.response.data.message || 'Invalid request';
-      // console.log("axios" , message)
-      return Promise.reject({ message });
+      // If backend provides details, include them
+      const details = error.response.data.details || null;
+      return Promise.reject({ message, details });
     }
 
     return Promise.reject(error);

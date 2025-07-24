@@ -111,6 +111,12 @@ const PaymentOption = () => {
         return;
       }
 
+      if (!courseName || courseName.trim().length < 1) {
+        toast.error('Course name is missing. Please return to the course page and try again.');
+        setLoading(false);
+        return;
+      }
+
       // Prepare order data
       const orderData = {
         orderId: `order_${Date.now()}`,
@@ -125,7 +131,9 @@ const PaymentOption = () => {
       // Optionally show a success toast here if needed
     } catch (error) {
       console.error('Payment error:', error);
-      toast.error(error.message || 'Failed to process payment. Please try again.');
+      // Show backend validation error if present
+      const backendMsg = error?.details || error?.response?.data?.message;
+      toast.error(backendMsg || error.message || 'Failed to process payment. Please try again.');
     } finally {
       setLoading(false);
     }

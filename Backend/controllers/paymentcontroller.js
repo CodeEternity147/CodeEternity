@@ -132,6 +132,7 @@ const BASE_URL = ENV === "PROD"
       //   status: response.data?.order_status,
       //   hasSessionId: !!response.data?.payment_session_id
       // });
+      // console.log("Cashfree API Response received:", response.data);
   
       // Validate response
       if (!response.data || !response.data.payment_session_id) {
