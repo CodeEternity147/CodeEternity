@@ -9,7 +9,7 @@ dotenv.config();
 
 const APP_ID = process.env.CASHFREE_APP_ID;
 const SECRET_KEY = process.env.CASHFREE_SECRET_KEY;
-const ENV = process.env.NODE_ENV === 'production' ? "PROD" : "TEST"; // Use environment variable
+const ENV = process.env.NODE_ENV == 'production' ? "PROD" : "TEST"; // Use environment variable
 
 // Validate credentials
 if (!APP_ID || !SECRET_KEY) {
@@ -170,7 +170,7 @@ const BASE_URL = ENV === "PROD"
       // console.log("Payment record created in database:", payment.orderId);
   
       // Construct payment link based on environment
-      const paymentLink = ENV === "PROD" 
+      const paymentLink = ENV == "PROD" 
       ? `https://payments.cashfree.com/pg/orders/${response.data.order_id}/pay?session_id=${response.data.payment_session_id}`
       : `https://sandbox.cashfree.com/pg/orders/${response.data.order_id}/pay?session_id=${response.data.payment_session_id}`;
     
