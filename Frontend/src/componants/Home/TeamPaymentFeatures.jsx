@@ -129,7 +129,7 @@ const TeamPaymentFeatures = () => {
         >
           {visibleFeatures.map((feature, idx) => (
             <Link
-              to="/contactCodeEternity"
+              to="/service-form"
               key={`${feature.title}-${idx}`}
               className="flex flex-col justify-end items-center shadow-xl hover:shadow-2xl transition-all duration-500 ease-out transform hover:scale-105 group relative cursor-pointer"
               style={{

@@ -63,8 +63,8 @@ const CareerPage = () => {
         </p>
         <p className="flex justify-center items-center gap-3 text-indigo-600 text-lg font-semibold hover:text-indigo-800 transition-colors cursor-pointer">
           <FaEnvelope className="text-xl" />
-          <a href="mailto:info@codeeternity.com" className="underline">
-            info@codeeternity.com
+          <a href="mailto:careers@codeeternity.com" className="underline">
+            careers@codeeternity.com
           </a>
         </p>
         <p className="flex justify-center items-center gap-3 mt-6 text-gray-600 text-sm md:text-base font-medium">

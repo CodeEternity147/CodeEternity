@@ -39,6 +39,8 @@ import ResetPassword from './componants/Pages/ResetPassword';
 import VerifyOTP from './componants/Pages/VerifyOTP';
 import SetNewPassword from './componants/Pages/SetNewPassword';
 import PaymentHistory from './componants/PaymentHistory';
+import PlacementProgramCourseDetails from "./componants/Pages/PlacementProgramCourseDetails";
+import ServiceForm from "./componants/Pages/ServiceForm"; 
 
 function App() {
   const [selectedChildCourse, setSelectedChildCourse] = useState(null);
@@ -161,6 +163,16 @@ function App() {
             }
           />
 
+          {/* Route for Placement Program Course Details */}
+          <Route
+            path="/placement-program/:programKey"
+            element={
+              <MainLayout showFooter={false} showtransparentbox={false}>
+                <PlacementProgramCourseDetails />
+              </MainLayout>
+            }
+          />
+
           {/* Payment Page for all courses, receives courseName via navigation state */}
           <Route
             path="/payment"
@@ -224,6 +236,14 @@ function App() {
                 <ProtectedRoute>
                   <PaymentHistory />
                 </ProtectedRoute>
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/service-form"
+            element={
+              <MainLayout showFooter={false} showtransparentbox={false} showHeader={false}>
+                <ServiceForm />
               </MainLayout>
             }
           />

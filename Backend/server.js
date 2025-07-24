@@ -4,6 +4,7 @@ import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import payment from './routes/payment.js'
+import contactRoutes from './routes/contactRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { authenticateToken } from './middleware/authMiddleware.js';
 import { securityMiddleware } from './middleware/securityMiddleware.js';
@@ -50,6 +51,7 @@ app.use(express.json({ limit: '10mb' }));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/payment', payment);
+app.use('/api', contactRoutes);
 
 // Token verification endpoint
 app.get('/api/auth/verify', authenticateToken, async (req, res) => {

@@ -41,7 +41,14 @@ export const validatePaymentRequest = [
     .notEmpty()
     .withMessage('Customer phone is required')
     .matches(/^\d{10}$/)
-    .withMessage('Phone number must be exactly 10 digits')
+    .withMessage('Phone number must be exactly 10 digits'),
+
+  // Course name validation
+  body('courseName')
+    .optional()
+    .trim()
+    .isLength({ min: 1, max: 100 })
+    .withMessage('Course name must be between 1 and 100 characters')
 ];
 
 // Validation middleware

@@ -4,13 +4,13 @@ import api from './axios.js';
 let cashfree;
 
 // Backend API URL - adjust this based on your backend port
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = import.meta.env.VITE_API_URL;
 
 // Initialize Cashfree SDK
 const initializeCashfree = async () => {
   try {
     cashfree = await load({
-      mode: import.meta.env.PROD ? "production" : "sandbox" // Use production for live payments
+      mode: import.meta.env.VITE_PROD ? "production" : "sandbox" // Use production for live payments
     });
     // console.log("Cashfree SDK initialized successfully");
     return cashfree;

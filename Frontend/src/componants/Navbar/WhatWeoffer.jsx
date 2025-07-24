@@ -348,8 +348,8 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
                       </div>
 
                       <img
-                        src={program.image}
-                        alt={program.title}
+                        src={program.sideImg}
+                        alt={program.sideImgAlt}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                     </div>
@@ -358,21 +358,21 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
                       <div className="flex justify-between items-center mb-4">
                         <div className="flex items-center bg-emerald-50 text-emerald-700 px-3 py-1 rounded-lg text-xs font-medium">
                           <Clock size={14} className="mr-1" />
-                          {index === 0 ? '16 Weeks' : index === 1 ? '12 Weeks' : '24 Weeks'}
+                          {program.duration} Weeks
                         </div>
                         <div className="flex items-center text-amber-400">
                           {[...Array(5)].map((_, i) => (
-                            <Star key={i} size={14} fill={i < 4 ? "currentColor" : "none"} stroke={i < 4 ? "none" : "currentColor"} />
+                            <Star key={i} size={14} fill={i < Math.round(program.rating) ? "currentColor" : "none"} stroke={i < Math.round(program.rating) ? "none" : "currentColor"} />
                           ))}
-                          <span className="ml-1 text-gray-600 text-xs">4.0</span>
+                          <span className="ml-1 text-gray-600 text-xs">{program.rating}</span>
                         </div>
                       </div>
 
-                      <h3 className="text-xl font-bold mb-3 text-gray-800">{program.title}</h3>
+                      <h3 className="text-xl font-bold mb-3 text-gray-800">{program.name}</h3>
                       <p className="text-gray-600 mb-5">{program.description}</p>
 
                       <div className="space-y-3 mb-6">
-                        {program.features.slice(0, expandedPrograms[index] ? program.features.length : 3).map((feature, idx) => (
+                        {program.skills.slice(0, expandedPrograms[index] ? program.skills.length : 3).map((feature, idx) => (
                           <div key={idx} className="flex items-start text-gray-700">
                             <div className="mt-1 bg-emerald-100 text-emerald-600 p-1 rounded-full mr-3">
                               <Check size={12} />
@@ -388,11 +388,11 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
                           <div className="text-emerald-700 font-bold">₹{6 + index * 2}L - ₹{10 + index * 3}L</div>
                         </div>
 
-                        <button className="w-full bg-emerald-50 text-emerald-700 border border-emerald-100 py-3 px-4 rounded-xl font-medium flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white transition-all duration-300">
-                          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform">
-                          Apply Now
-                          </a>
-                          
+                        <button
+                          className="w-full bg-emerald-50 text-emerald-700 border border-emerald-100 py-3 px-4 rounded-xl font-medium flex items-center justify-center group-hover:bg-emerald-700 group-hover:text-white transition-all duration-300"
+                          onClick={() => navigate(`/placement-program/${encodeURIComponent(program.key)}`)}
+                        >
+                          View Details
                           <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                         </button>
                       </div>

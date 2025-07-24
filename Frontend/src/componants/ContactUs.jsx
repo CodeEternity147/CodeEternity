@@ -1,32 +1,47 @@
 "use client";
 
 import { useState } from "react";
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import Lottie from "lottie-react";
 import animationData from '../data/contactPage.json';
 import img7 from "../assets/img7.svg"; // Import your SVG as an image
-import features from '../data/FeatureData';
+import data from '../data/data.json';
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({ 
     name: "", 
     email: "", 
-    service: "", 
+    parentCategory: "", 
+    childCourse: "", 
     message: "" 
   });
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name === 'parentCategory') {
+      // Reset child course when parent changes
+      setFormData({ ...formData, [name]: value, childCourse: "" });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true);
 
-    setTimeout(() => {
-      setFormData({ name: "", email: "", service: "", message: "" });
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/contact`, formData);
+      toast.success(response.data.message);
+      setFormData({ name: "", email: "", parentCategory: "", childCourse: "", message: "" });
+    } catch (error) { 
+      const errorMessage = error.response?.data?.message || 'An unexpected error occurred.';
+      toast.error(errorMessage);
+    } finally {
       setSubmitted(false);
-    }, 3000);
+    }
   };
 
   return (
@@ -45,8 +60,8 @@ export default function ContactUs() {
           <Lottie animationData={animationData} loop className="w-full max-w-md" />
           <div className="mt-6 text-center px-4">
             <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight">
-              Got questions or ideas? <br />
-              <span className="bg-white px-2 inline-block mt-2">Reach out</span> — we'd love to hear from you!
+            Got doubts about this placement/internship  <br />
+              <span className="bg-white px-2 inline-block mt-2"> program?</span> — Ask us directly.
             </h1>
             <p className="text-base md:text-lg text-gray-700 mt-4">
               Made for curious minds and creative teams everywhere.
@@ -62,10 +77,13 @@ export default function ContactUs() {
 
         {/* Right form */}
         <div className="relative z-10 w-full md:w-1/2 flex items-center justify-center">
-          <div className="bg-white rounded-3xl p-8 md:p-16 shadow-2xl w-full max-w-md">
+          <div className="bg-white rounded-3xl p-4 mt-1 md:p-8 shadow-2xl w-full max-w-md">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Raise your query</h2>
             <p className="text-gray-500 mb-6 text-sm">
               Have a question, suggestion, or just doubt about our services? Fill out the form and we'll get back to you soon.
+            </p>
+            <p className="text-gray-500 mb-6 text-sm">
+              Alternatively, you can email our HR department at <a href="mailto:hr@codeeternity.com" className="text-indigo-600 hover:underline">hr@codeeternity.com</a>.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -90,23 +108,49 @@ export default function ContactUs() {
               />
 
               <div>
-                <label htmlFor="service" className="block text-gray-700 font-medium mb-2">
-                  Choose the Service
+                <label htmlFor="parentCategory" className="block text-gray-700 font-medium mb-2">
+                  Choose Category
                 </label>
                 <select
-                  id="service"
-                  name="service"
-                  value={formData.service}
+                  id="parentCategory"
+                  name="parentCategory"
+                  value={formData.parentCategory}
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-indigo-500 outline-none"
                 >
-                  <option value="">Select a service</option>
-                  {features.map((feature, index) => (
-                    <option key={index} value={feature.title}>
-                      {feature.title}
+                  <option value="">Select a category</option>
+                  {data.whatWeOffer.map((category, index) => (
+                    <option key={index} value={category.key}>
+                      {category.name}
                     </option>
                   ))}
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="childCourse" className="block text-gray-700 font-medium mb-2">
+                  Choose Course
+                </label>
+                <select
+                  id="childCourse"
+                  name="childCourse"
+                  value={formData.childCourse}
+                  onChange={handleChange}
+                  required
+                  disabled={!formData.parentCategory}
+                  className="w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-indigo-500 outline-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+                >
+                  <option value="">Select a course</option>
+                  {formData.parentCategory && 
+                    data.whatWeOffer
+                      .find(category => category.key === formData.parentCategory)
+                      ?.childCourses.map((course, index) => (
+                        <option key={index} value={course.key}>
+                          {course.name}
+                        </option>
+                      ))
+                  }
                 </select>
               </div>
 

@@ -48,7 +48,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h3 className="text-2xl font-bold mb-5">Contact Us</h3>
-            <p className="text-sm"><strong>Email:</strong> info@codeeternity.com</p>
+            <p className="text-sm"><strong>Email:</strong> info@codeeternity.com & support@codeetenity.com</p>
             <p className="text-sm"><strong>Phone:</strong> +91 8874 700 800</p>
             <p className="text-sm">Noida, Uttar Pradesh, India</p>
           </div>
@@ -84,13 +84,13 @@ const Footer = () => {
 
             <div className="relative w-full">
               <input
-                type="email"
-                placeholder="What's your e-mail?"
+                type="text"
+                placeholder="Explore what we offer"
                 className="w-full bg-white rounded-full py-3 pl-6 pr-12 text-black focus:outline-none"
               />
-              <button className="absolute right-1 top-1 bottom-1 bg-[#1b1b1b] border border-[#faf4ee] rounded-full px-4 text-2xl hover:bg-gray-700">
-                →
-              </button>
+              <Link to="/whatWeOffer"   className="absolute right-1 top-1 bottom-1 bg-[#1b1b1b] border border-[#faf4ee] rounded-full px-4 text-2xl hover:bg-gray-700">
+                ↑
+              </Link>
             </div>
 
             <p className="text-xs text-[#cccccc]">
@@ -101,7 +101,7 @@ const Footer = () => {
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
     <FaFacebookF className="hover:text-blue-400 cursor-pointer" />
   </a>
-  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+  <a href="https://x.com/Code__Eternity?t=qpkxturidDzixL85BcTByA&s=09" target="_blank" rel="noopener noreferrer">
     <FaXTwitter className="hover:text-blue-400 cursor-pointer" />
   </a>
   <a href="https://www.linkedin.com/company/codeeternity/" target="_blank" rel="noopener noreferrer">
@@ -119,9 +119,9 @@ const Footer = () => {
             <div className="grid grid-cols-2 gap-x-6 gap-y-2">
               <a href="/whatWeOffer" className="hover:text-blue-400">About Us</a>
               <a href="/career" className="hover:text-blue-400">Careers</a>
-              <a href="#" className="hover:text-blue-400">G2 Customer Reviews</a>
-              <a href="#" className="hover:text-blue-400">Press & Media</a>
-              <a href="#" className="hover:text-blue-400">Pricing</a>
+              <a onClick={() => window.scrollTo({ top: 4900, behavior: 'smooth' })} className="hover:text-blue-400"> Student Reviews</a>
+              <Link  to="/whoWeServe" className="hover:text-blue-400">Who we serve</Link>
+              <a onClick={() => window.scrollTo({ top: 3250, behavior: 'smooth' })} className="hover:text-blue-400">Our Story</a>
             </div>
 
             <div className="flex items-center gap-2 mt-6">

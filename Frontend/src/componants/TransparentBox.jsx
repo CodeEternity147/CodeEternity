@@ -137,7 +137,7 @@ export default function InternshipPopup() {
                   },
                   { 
                     icon: "👨‍💻", 
-                    title: "100% Job Placement Guarantee", 
+                    title: "Complete Job Placement Support", 
                     desc: "We provide full support to ensure your successful placement.", 
                     color: "from-purple-600 to-purple-800" 
                   },
@@ -211,7 +211,7 @@ export default function InternshipPopup() {
                   className="group relative w-full bg-gradient-to-r from-purple-700 to-purple-800 text-white py-2 xs:py-3 sm:py-4 px-3 xs:px-4 sm:px-8 rounded-lg xs:rounded-xl sm:rounded-2xl font-bold text-sm xs:text-base sm:text-xl text-center inline-flex items-center justify-center gap-1.5 xs:gap-2 sm:gap-3 transition-all duration-500 transform hover:scale-105 hover:rotate-1 shadow-2xl hover:shadow-blue-500/50 overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                  <span className="relative z-10">🚀 Secure Your Future With 100% placement guarantee</span>
+                  <span className="relative z-10">🚀 Secure Your Future with Guaranteed Placement</span>
                   <svg className="w-3 h-3 xs:w-4 xs:h-4 sm:w-6 sm:h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>

@@ -82,7 +82,7 @@ const CourseDetailModal = ({ selectedChildCourse, setSelectedChildCourse }) => {
               </div>
               <div>
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2">{selectedChildCourse.name}</h2>
-                <p className="text-purple-300 text-xs sm:text-sm md:text-lg">{selectedChildCourse.category} • Premium Course</p>
+                <p className="text-purple-300 text-xs sm:text-sm md:text-lg">{selectedChildCourse.category} • Placement Support Program with Assured Outcomes</p>
                 <div className="flex flex-wrap items-center mt-2 sm:mt-3 gap-2 sm:gap-3 md:gap-4">
                   <div className="flex items-center bg-yellow-400/20 px-2 py-1 rounded-md">
                     <Star className="text-yellow-300 mr-1" size={12} sm:size={14} />

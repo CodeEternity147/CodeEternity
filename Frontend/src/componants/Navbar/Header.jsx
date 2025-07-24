@@ -49,7 +49,7 @@ function Header({ showOffer, setshowOffer, showServe, setshowServe }) {
         <img
           src={Logo}
           alt="CodeEternity Logo"
-          className=" w-[150px] md:w-[180px] scale-120 pl-2 object-contain"
+          className=" w-[150px] md:w-[200px] scale-120 pl-2 object-contain"
           style={{ maxHeight: '50px' }}
         />
 
