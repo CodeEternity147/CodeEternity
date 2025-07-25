@@ -9,7 +9,8 @@ dotenv.config();
 
 const APP_ID = process.env.CASHFREE_APP_ID;
 const SECRET_KEY = process.env.CASHFREE_SECRET_KEY;
-const ENV = process.env.NODE_ENV == 'production' ? "PROD" : "TEST"; // Use environment variable
+// const ENV = process.env.NODE_ENV === 'production' ? "PROD" : "TEST"; // Use environment variable
+const ENV = "PROD";
 
 // Validate credentials
 if (!APP_ID || !SECRET_KEY) {
@@ -20,14 +21,18 @@ if (!APP_ID || !SECRET_KEY) {
 }
 
 // Use the correct API endpoint based on environment
-const CASHFREE_API_URL = ENV === "PROD" 
-  ? "https://api.cashfree.com/pg/orders"
-  : "https://sandbox.cashfree.com/pg/orders";
+// const CASHFREE_API_URL = ENV === "PROD" 
+//   ? "https://api.cashfree.com/pg/orders"
+//   : "https://sandbox.cashfree.com/pg/orders";
+const CASHFREE_API_URL = "https://api.cashfree.com/pg/orders";
+
 
 // Define base URLs based on environment
-const BASE_URL = ENV === "PROD" 
-  ? process.env.FRONTEND_URL || "https://codeeternity.com"
-  : "http://localhost:3000"; // Adjust port as needed for your frontend
+// const BASE_URL = ENV === "PROD" 
+//   ? process.env.FRONTEND_URL || "https://codeeternity.com"
+//   : "http://localhost:3000"; // Adjust port as needed for your frontend
+const BASE_URL = "https://codeeternity.com";
+
 
   
     try {
@@ -170,9 +175,11 @@ const BASE_URL = ENV === "PROD"
       // console.log("Payment record created in database:", payment.orderId);
   
       // Construct payment link based on environment
-      const paymentLink = ENV == "PROD" 
-      ? `https://payments.cashfree.com/pg/orders/${response.data.order_id}/pay?session_id=${response.data.payment_session_id}`
-      : `https://sandbox.cashfree.com/pg/orders/${response.data.order_id}/pay?session_id=${response.data.payment_session_id}`;
+      // const paymentLink = ENV === "PROD" 
+      // ? `https://payments.cashfree.com/pg/orders/${response.data.order_id}/pay?session_id=${response.data.payment_session_id}`
+      // : `https://sandbox.cashfree.com/pg/orders/${response.data.order_id}/pay?session_id=${response.data.payment_session_id}`;
+
+      const paymentLink = `https://payments.cashfree.com/pg/orders/${response.data.order_id}/pay?session_id=${response.data.payment_session_id}`;
     
       // console.log("Payment link generated successfully");
   
