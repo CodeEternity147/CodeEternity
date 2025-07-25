@@ -12,7 +12,8 @@ const initializeCashfree = async () => {
     // Log the mode for debugging
     console.log("Cashfree SDK mode:", import.meta.env.VITE_PROD === "true" ? "production" : "sandbox");
     cashfree = await load({
-      mode: import.meta.env.VITE_PROD === "true" ? "production" : "sandbox" // Use production for live payments
+      // mode: import.meta.env.VITE_PROD === "true" ? "production" : "sandbox" // Use production for live payments
+      mode: "production"
     });
     // console.log("Cashfree SDK initialized successfully");
     return cashfree;
