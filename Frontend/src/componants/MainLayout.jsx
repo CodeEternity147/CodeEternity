@@ -7,7 +7,7 @@ import Footer from './Footer';
 import ChatBot from './ChatBot';
 import WhatsAppChat from './WhatsAppChat';
 
-const MainLayout = ({ children, showFooter = true, showtransparentbox = true, showHeader = true }) => {
+const MainLayout = ({ children, showFooter = true, showtransparentbox = true, showHeader = true , showWhatsAppChat = true, showAichatbox = true }) => {
   return (
     <div className="relative z-10 bg-[#fffaf4]">
       {/* Header */}
@@ -23,12 +23,14 @@ const MainLayout = ({ children, showFooter = true, showtransparentbox = true, sh
       {/* Fixed Transparent Box */}
       {showtransparentbox && <TransparentBox />}
 
-      <div className='fixed bottom-4 right-4 z-[90]'>
-        <ChatBot />
-      </div>
+      {showAichatbox && (
+        <div className='fixed bottom-4 right-4 z-[90]'>
+          <ChatBot />
+        </div>
+      )}
 
       {/* WhatsApp Chat */}
-      <WhatsAppChat showInMainLayout={true} />
+      <WhatsAppChat showInMainLayout={showWhatsAppChat} />
 
       {showFooter && <Footer />}
     </div>

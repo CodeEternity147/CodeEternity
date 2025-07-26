@@ -228,14 +228,6 @@ const placementPrograms = [
       'Understand software development lifecycle'
     ],
 
-    skills: [
-      'Job Interview Mastery',
-      'Full-Stack Project Delivery',
-      'Team Collaboration',
-      'Problem Solving',
-      'Professional Communication'
-    ],
-
     technologies: [
       { name: 'React', level: 'Advanced', icon: '⚛️' },
       { name: 'Node.js', level: 'Advanced', icon: '🟢' },
@@ -256,6 +248,15 @@ const placementPrograms = [
       communitySupport: 'Active Discord community'
     },
 
+    skills: [
+      'Full-Stack Web Development',
+      'React.js for Frontend',
+      'Node.js & Express.js for Backend',
+      'Database Management with MongoDB',
+      'RESTful API Design & Development',
+      'Version Control with Git & GitHub',
+      'Software Testing & Debugging',
+    ],
     reactIcon: 'FaCode',
 
     faqs: [
@@ -502,11 +503,14 @@ const placementPrograms = [
     },
 
     skills: [
-      'Sales Pitching',
-      'Digital Campaigns',
-      'CRM & Analytics',
-      'Client Communication',
-      'Interview Success'
+      'Sales Strategy & Execution',
+      'Digital Marketing & SEO/SEM',
+      'CRM & Sales Analytics',
+      'Lead Generation & Conversion',
+      'Content Marketing & Social Media',
+      'Negotiation & Closing Techniques',
+      'Client Relationship Management',
+      'Marketing Campaign Management'
     ],
 
     reactIcon: 'FaChartLine',
@@ -772,15 +776,15 @@ const placementPrograms = [
       alumniNetwork: '3,000+ alumni',
       communitySupport: 'LinkedIn HR community'
     },
-
     skills: [
-      'Recruitment',
-      'HR Analytics',
-      'Digital HR Tools',
-      'Employee Engagement',
-      'Interview Success'
+      'End-to-End Recruitment Cycle',
+      'HR Analytics & Reporting',
+      'Modern HRMS Platforms',
+      'Employee Engagement & Relations',
+      'Performance Management Systems',
+      'Compensation & Benefits Design',
+      'Corporate HR Strategy'
     ],
-
     reactIcon: 'FaUsers',
 
     faqs: [

@@ -167,7 +167,7 @@ function App() {
           <Route
             path="/placement-program/:programKey"
             element={
-              <MainLayout showFooter={false} showtransparentbox={false}>
+              <MainLayout showFooter={false} showtransparentbox={false} showWhatsAppChat={false} showAichatbox={false} >
                 <PlacementProgramCourseDetails />
               </MainLayout>
             }

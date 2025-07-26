@@ -11,6 +11,7 @@ export default defineConfig({
     sourcemap: true
   },
   server: {
+    host: true,
     port: 3000,
     open: true,
     historyApiFallback: true,

@@ -13,7 +13,7 @@
     "@cashfreepayments/cashfree-js": "^1.0.5",
     "axios": "^1.9.0",
     "dotenv": "^16.5.0",
-    "framer-motion": "^12.15.0",
+    "framer-motion": "^12.23.9",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.507.0",
     "react": "^19.0.0",
