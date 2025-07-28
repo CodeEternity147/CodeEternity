@@ -14,7 +14,7 @@ import {
   DollarSign, Calendar, BookOpen, Heart, Zap, Globe, Gift, 
   CheckCircle, MapPin, Building, Briefcase,
   Cross, ArrowRight, X, Menu ,HelpCircle,
-  MoonIcon
+  MoonIcon,IndianRupee 
 } from 'lucide-react';
 import * as FaIcons from 'react-icons/fa';
 
@@ -147,7 +147,7 @@ const PlacementProgramCourseDetails = () => {
     }
 
     try {
-      const orderAmount = 20000;
+      const orderAmount = 19999;
       setLoading(true);
       if (!user?.mobile || !/^\d{10}$/.test(user.mobile)) {
         toast.error('First update your profile with mobile number');
@@ -687,7 +687,7 @@ const PlacementProgramCourseDetails = () => {
 
                     <AnimatedSection delay={300}>
                       <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white text-center shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                        <DollarSign className="mx-auto mb-3 sm:mb-4" size={32} />
+                        <IndianRupee className="mx-auto mb-3 sm:mb-4" size={32} />
                         <div className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">₹8.5L</div>
                         <div className="text-sm sm:text-base font-semibold opacity-90">Avg Package</div>
                       </div>
@@ -846,8 +846,8 @@ const PlacementProgramCourseDetails = () => {
                             <div className="text-center my-10 sm:my-8">
                               <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mb-2 sm:mb-4">Complete Program</h3>
                               <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-2 sm:mb-4">
-                                ₹20,000
-                                <span className="text-lg sm:text-xl text-gray-400 line-through ml-2">₹50,000</span>
+                                ₹19,999
+                                <span className="text-lg sm:text-xl text-gray-400 line-through ml-2">₹49,999</span>
                               </div>
                               <p className="text-sm sm:text-base text-gray-600">Full access to the program with job guarantee</p>
                             </div>
@@ -1006,7 +1006,7 @@ const PlacementProgramCourseDetails = () => {
                 <div className="text-xs sm:text-sm text-gray-600">Join thousands who have transformed their careers</div>
               </div>
               <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 w-full sm:w-auto">
-                <div className="text-2xl sm:text-3xl font-bold text-emerald-600">₹20,000</div>
+                <div className="text-2xl sm:text-3xl font-bold text-emerald-600">₹19,999</div>
                 {user ? 
                 <button
                 onClick={handlePaymentClick}

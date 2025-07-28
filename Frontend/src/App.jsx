@@ -41,10 +41,21 @@ import SetNewPassword from './componants/Pages/SetNewPassword';
 import PaymentHistory from './componants/PaymentHistory';
 import PlacementProgramCourseDetails from "./componants/Pages/PlacementProgramCourseDetails";
 import ServiceForm from "./componants/Pages/ServiceForm"; 
+import LoadingScreen from "./componants/LoadingScreen";
 
 function App() {
   const [selectedChildCourse, setSelectedChildCourse] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+
+  // Simulate loading time and hide loading screen
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1800); // Show loading for 2 seconds
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleCourseSelect = (course) => {
     // console.log('Course selected in App:', course); // Debug log
@@ -61,6 +72,11 @@ function App() {
       // console.log('Selected course changed:', selectedChildCourse); // Debug log
     }
   }, [selectedChildCourse]);
+
+  // Show loading screen while loading
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <ErrorBoundary>

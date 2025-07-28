@@ -3,23 +3,23 @@ const placementPrograms = [
     key: 'Placement_0',
     index: 0,
     name: 'Full-Stack Placement Accelerator',
-    description: 'A 24-week, intensive, outcome-driven program designed to guarantee you a job as a full-stack developer. Get hands-on mentorship, real-world projects, and direct interviews with our hiring partners. If you don\'t get placed, you get your money back—guaranteed.',
-    summary: '100% Placement Guarantee. Become a job-ready developer in 4 months.',
+    description: 'A 12-week, intensive, outcome-driven program designed to guarantee you a job as a full-stack developer. Get hands-on mentorship, real-world projects, and direct interviews with our hiring partners. If you don\'t get placed, you get your money back—guaranteed.',
+    summary: '100% Placement Guarantee. Become a job-ready developer in 3 months.',
     icon: '💻',
     iconBgColor: '#34d399',
     sideImg: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c3VjY2Vzc3xlbnwwfHwwfHx8MA%3D%3D',
     sideImgAlt: 'Placement Accelerator',
     targetAudience: 'Final year students, recent graduates, career switchers',
-    duration: '24',
+    duration: '12',
     level: 'Job-Ready',
     prerequisites: 'Basic programming knowledge. Determination to get placed.',
     rating: 4.9,
     ratingCount: 4100,
     students: 5000,
     
-    guaranteeTerms: '100% job guarantee within 6 months of graduation or your full fee refunded. Minimum CTC: ₹4LPA.',
+    guaranteeTerms: '100% job guarantee within 3 months of graduation - or your full fee refunded. Minimum CTC: ₹4LPA.',
     guaranteeDetails: {
-      timeframe: '6 months post-graduation',
+      timeframe: '3 months post-graduation',
       minimumSalary: '₹4,00,000',
       refundPolicy: 'Full fee refund if not placed within guarantee period',
       conditions: [
@@ -33,9 +33,9 @@ const placementPrograms = [
     },
 
     pricing: {
-      originalPrice: '₹24,999',
+      originalPrice: '₹49,999',
       currentPrice: '₹19,999',
-      discount: '20%',
+      discount: '60%',
       emiOptions: [
         { duration: '2 months', amount: '₹10,000' },
         { duration: '3 months', amount: '₹7,000' },
@@ -108,7 +108,7 @@ const placementPrograms = [
     successStories: [
       { 
         name: 'Amit S.', 
-        text: 'I landed a 6LPA job at TCS within 2 weeks of graduating!', 
+        text: 'I landed a 6LPA job at TCS within 12 weeks of graduating!', 
         avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
         company: 'TCS',
         salary: '₹6L',
@@ -156,7 +156,7 @@ const placementPrograms = [
       },
       {
         module: 'Full-Stack Mastery',
-        weeks: 'Week 5-12',
+        weeks: 'Week 5-8',
         description: [
           '• React, Node.js, Express, MongoDB',
           '• REST APIs & deployment',
@@ -171,7 +171,7 @@ const placementPrograms = [
       },
       {
         module: 'Placement Sprint',
-        weeks: 'Week 13-16',
+        weeks: 'Week 9-12',
         description: [
           '• Mock interviews with hiring managers',
           '• Direct interviews with partners',
@@ -297,7 +297,7 @@ const placementPrograms = [
     ratingCount: 3200,
     students: 3500,
 
-    guaranteeTerms: '100% job guarantee within 4 months of graduation or your full fee refunded. Minimum CTC: ₹3LPA.',
+    guaranteeTerms: '100% job guarantee within 3 months of graduation - or your full fee refunded. Minimum CTC: ₹3LPA.',
     guaranteeDetails: {
       timeframe: '4 months post-graduation',
       minimumSalary: '₹3,00,000',
@@ -313,9 +313,9 @@ const placementPrograms = [
     },
 
     pricing: {
-      originalPrice: '₹24,999',
+      originalPrice: '₹49,999',
       currentPrice: '₹19,999',
-      discount: '20%',
+      discount: '60%',
       emiOptions: [
         { duration: '6 months', amount: '₹11,667' },
         { duration: '12 months', amount: '₹5,834' },
@@ -539,21 +539,21 @@ const placementPrograms = [
     key: 'Placement_2',
     index: 2,
     name: 'HR Placement Fast-Track',
-    description: 'A 10-week, placement-focused HR program with guaranteed interviews and job offers. Learn modern HR practices, get mentored by industry experts, and access our exclusive hiring network.',
+    description: 'A 12-week, placement-focused HR program with guaranteed interviews and job offers. Learn modern HR practices, get mentored by industry experts, and access our exclusive hiring network.',
     summary: 'Get placed in HR—fast, or your money back.',
     icon: '🧑‍💼',
     iconBgColor: '#a78bfa',
     sideImg: 'https://plus.unsplash.com/premium_photo-1663957827693-632e502843e7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbmFnZW1lbnR8ZW58MHx8MHx8fDA%3D',
     sideImgAlt: 'HR Placement Fast-Track',
     targetAudience: 'Graduates, MBA HR, aspiring HR professionals',
-    duration: '10',
+    duration: '12',
     level: 'Job-Ready',
     prerequisites: 'Interest in HR. Willingness to learn and get placed.',
     rating: 4.7,
     ratingCount: 750,
     students: 1200,
 
-    guaranteeTerms: '100% job guarantee within 3 months of graduation or your full fee refunded. Minimum CTC: ₹2.5LPA.',
+    guaranteeTerms: '100% job guarantee within 3 months of graduation - or your full fee refunded. Minimum CTC: ₹2.5LPA.',
     guaranteeDetails: {
       timeframe: '3 months post-graduation',
       minimumSalary: '₹2,50,000',
@@ -569,9 +569,9 @@ const placementPrograms = [
     },
 
     pricing: {
-      originalPrice: '₹24,999',
+      originalPrice: '₹49,999',
       currentPrice: '₹19,999',
-      discount: '20%',
+      discount: '60%',
       emiOptions: [
         { duration: '6 months', amount: '₹10,000' },
         { duration: '12 months', amount: '₹5,000' },
@@ -670,7 +670,7 @@ const placementPrograms = [
     curriculum: [
       {
         module: 'HR Fundamentals',
-        weeks: 'Week 1-3',
+        weeks: 'Week 1-4',
         description: [
           '• Recruitment & onboarding',
           '• HR analytics',
@@ -685,7 +685,7 @@ const placementPrograms = [
       },
       {
         module: 'Modern HR Tools',
-        weeks: 'Week 4-7',
+        weeks: 'Week 5-8',
         description: [
           '• HRMS & payroll',
           '• Performance management',
@@ -700,7 +700,7 @@ const placementPrograms = [
       },
       {
         module: 'Placement Success',
-        weeks: 'Week 8-10',
+        weeks: 'Week 9-12',
         description: [
           '• Mock HR interviews',
           '• Direct recruiter connects',
