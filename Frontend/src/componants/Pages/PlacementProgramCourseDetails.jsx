@@ -8,6 +8,8 @@ import { useAuth } from '../../context/AuthContext';
 import { createOrderAndCheckout } from '../../utils/payment';
 import { useLocation } from 'react-router-dom';
 import placementPrograms from '../../data/placementPrograms';
+
+import useScrollToTop from '../../hooks/useScrollToTop'
 import { 
   ArrowLeft, Users, Clock, Layers, Star, Check, AlertCircle, ShieldCheck, 
   Sparkles, Trophy, Target, TrendingUp, Award, Play, ChevronRight,
@@ -33,6 +35,7 @@ const AnimatedSection = ({ children, delay = 0, className = "" }) => (
 const AnimatedCounter = ({ end, duration = 2000, prefix = "", suffix = "" }) => {
   const [count, setCount] = useState(0);
   
+  useScrollToTop();
   useEffect(() => {
     let startTime;
     const animate = (currentTime) => {
