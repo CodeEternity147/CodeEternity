@@ -204,27 +204,66 @@ const ServiceForm = () => {
                     <label htmlFor="course" className="block text-sm font-medium text-slate-700 mb-2">
                       Course Interest
                     </label>
-                    <select
-                      id="course"
-                      name="course"
-                      value={formData.course}
-                      onChange={handleInputChange}
-                      onFocus={() => setFocusedField('course')}
-                      onBlur={() => setFocusedField('')}
-                      required
-                      className={`w-full px-4 py-3 border-2 rounded-lg transition-all duration-300 bg-white ${
-                        focusedField === 'course' 
-                          ? 'border-blue-500 bg-blue-50 shadow-lg' 
-                          : 'border-slate-200 hover:border-slate-300'
-                      } focus:outline-none`}
-                    >
-                        {option.map((item, index) => (
-                            <option key={index} value={item.title}>
-                                {item.title}
-                            </option>
-                        ))}
-                      <option value="">Select a course</option>
-                    </select>
+                    <div className="relative group">
+                      <select
+                        id="course"
+                        name="course"
+                        value={formData.course}
+                        onChange={handleInputChange}
+                        onFocus={() => setFocusedField('course')}
+                        onBlur={() => setFocusedField('')}
+                        required
+                        className={`w-full px-5 py-4 pr-14 border-2 rounded-2xl transition-all duration-300 bg-white appearance-none cursor-pointer shadow-sm hover:shadow-lg ${
+                          focusedField === 'course' 
+                            ? 'border-blue-500 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 shadow-2xl shadow-blue-500/30 border-opacity-80' 
+                            : 'border-slate-200 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10'
+                        } focus:outline-none focus:ring-4 focus:ring-blue-500/30 focus:ring-opacity-50`}
+                      >
+                        <option value="" disabled className="text-slate-400 font-medium bg-gradient-to-r from-slate-50 to-gray-50">
+                          🎯 Select your preferred course
+                        </option>
+                        {option.map((item, index) => {
+                          // Define icons for different course types
+                          const getIcon = (title) => {
+                            if (title.toLowerCase().includes('app')) return '📱';
+                            if (title.toLowerCase().includes('web')) return '💻';
+                            if (title.toLowerCase().includes('chatbot')) return '🤖';
+                            if (title.toLowerCase().includes('cloud')) return '☁️';
+                            if (title.toLowerCase().includes('market')) return '🛒';
+                            if (title.toLowerCase().includes('lms') || title.toLowerCase().includes('erp') || title.toLowerCase().includes('ems')) return '🏢';
+                            return '📚';
+                          };
+                          
+                                                     return (
+                             <option key={index} value={item.title} className="py-4 px-3 font-medium text-slate-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-700 transition-all duration-200 my-1">
+                               {getIcon(item.title)} {item.title}
+                             </option>
+                           );
+                        })}
+                      </select>
+                      
+                      {/* Enhanced custom dropdown arrow */}
+                      <div className="absolute inset-y-0 right-0 flex items-center pr-5 pointer-events-none">
+                        <div className={`w-7 h-7 transition-all duration-300 ${
+                          focusedField === 'course' ? 'rotate-180 scale-110' : 'group-hover:scale-110'
+                        }`}>
+                          <svg className="w-7 h-7 text-slate-400 group-hover:text-blue-500 transition-all duration-300 drop-shadow-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7"></path>
+                          </svg>
+                        </div>
+                      </div>
+                      
+                      {/* Enhanced focus indicator with glow effect */}
+                      {focusedField === 'course' && (
+                        <div className="absolute inset-0 border-2 border-blue-500 rounded-xl pointer-events-none animate-pulse-glow"></div>
+                      )}
+                      
+                      {/* Enhanced background glow on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/8 via-indigo-500/6 to-purple-500/8 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none blur-sm"></div>
+                      
+                      {/* Inner glow effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/3 to-indigo-500/3 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
                   </div>
 
                   <div>
@@ -275,6 +314,63 @@ const ServiceForm = () => {
         
         .animate-float {
           animation: float 4s ease-in-out infinite;
+        }
+
+        /* Enhanced dropdown styling */
+        select option {
+          padding: 16px 20px;
+          font-size: 14px;
+          background: white;
+          color: #374151;
+          border: none;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          margin: 4px 0;
+          border-radius: 8px;
+        }
+
+        select option:hover {
+          background: #f3f4f6;
+          color: #1f2937;
+        }
+
+        select option:checked {
+          background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+          color: white;
+          font-weight: 600;
+        }
+
+        /* Custom scrollbar for dropdown */
+        select::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        select::-webkit-scrollbar-track {
+          background: #f1f5f9;
+          border-radius: 4px;
+        }
+
+        select::-webkit-scrollbar-thumb {
+          background: #cbd5e1;
+          border-radius: 4px;
+        }
+
+        select::-webkit-scrollbar-thumb:hover {
+          background: #94a3b8;
+        }
+
+        /* Enhanced focus animations */
+        @keyframes pulse-glow {
+          0%, 100% {
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+          }
+          50% {
+            box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+          }
+        }
+
+        .animate-pulse-glow {
+          animation: pulse-glow 2s infinite;
         }
       `}</style>
     </div>
