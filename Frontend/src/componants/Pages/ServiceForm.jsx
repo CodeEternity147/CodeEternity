@@ -6,6 +6,7 @@ const ServiceForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    mobile: '',
     course: '',
     description: ''
   });
@@ -15,17 +16,27 @@ const ServiceForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    
+    // For mobile field, only allow numbers
+    if (name === 'mobile') {
+      const numericValue = value.replace(/[^0-9]/g, '');
+      setFormData(prev => ({
+        ...prev,
+        [name]: numericValue
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { name, email, course, description } = formData;
-    if (!name || !email || !course || !description) {
+    const { name, email, mobile, course, description } = formData;
+    if (!name || !email || !mobile || !course || !description) {
       toast.error('Please fill out all fields before submitting.');
       return;
     }
@@ -36,6 +47,7 @@ const ServiceForm = () => {
       const response = await axios.post('/api/contact', {
         name: name,
         email: email,
+        mobile: mobile,
         parentCategory: 'Service Form Inquiry',
         childCourse: course,
         message: description,
@@ -49,6 +61,7 @@ const ServiceForm = () => {
           setFormData({
             name: '',
             email: '',
+            mobile: '',
             course: '',
             description: ''
           });
@@ -81,9 +94,9 @@ const ServiceForm = () => {
               </div>
               
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
-                Get Professional
+              Request a custom quotation 
                 <span className="block text-blue-400 mt-2">
-                  Help Today
+              free of charge
                 </span>
               </h1>
               
@@ -201,8 +214,30 @@ const ServiceForm = () => {
                   </div>
 
                   <div>
+                    <label htmlFor="mobile" className="block text-sm font-medium text-slate-700 mb-2">
+                      Mobile Number
+                    </label>
+                    <input
+                      type="tel"
+                      id="mobile"
+                      name="mobile"
+                      value={formData.mobile}
+                      onChange={handleInputChange}
+                      onFocus={() => setFocusedField('mobile')}
+                      onBlur={() => setFocusedField('')}
+                      required
+                      className={`w-full px-4 py-3 border-2 rounded-lg transition-all duration-300 ${
+                        focusedField === 'mobile' 
+                          ? 'border-blue-500 bg-blue-50 shadow-lg' 
+                          : 'border-slate-200 hover:border-slate-300'
+                      } focus:outline-none`}
+                      placeholder="Enter your mobile number"
+                    />
+                  </div>
+
+                  <div>
                     <label htmlFor="course" className="block text-sm font-medium text-slate-700 mb-2">
-                      Course Interest
+                    Select Service Type
                     </label>
                     <div className="relative group">
                       <select
@@ -220,7 +255,7 @@ const ServiceForm = () => {
                         } focus:outline-none focus:ring-4 focus:ring-blue-500/30 focus:ring-opacity-50`}
                       >
                         <option value="" disabled className="text-slate-400 font-medium bg-gradient-to-r from-slate-50 to-gray-50">
-                          🎯 Select your preferred course
+                          🎯 Select your preferred service type
                         </option>
                         {option.map((item, index) => {
                           // Define icons for different course types
