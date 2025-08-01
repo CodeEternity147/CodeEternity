@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 // Create axios instance with default config
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || (import.meta.env.PROD ? 'https://api.codeeternity.com' : 'http://localhost:5000'),
+  baseURL: import.meta.env.VITE_API_URL || (import.meta.env.PROD ? 'https://api.codeeternity.com' : 'http://localhost:5000/api'),
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
@@ -22,18 +22,11 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-
-    // Log request data
-    // console.log('Request:', {
-    //   url: config.url,
-    //   method: config.method,
-    //   data: config.data,
-    //   headers: config.headers
-    // });
     
     return config;
   },
   (error) => {
+    console.error('Axios request error:', error);
     return Promise.reject(error);
   }
 );
@@ -41,21 +34,9 @@ api.interceptors.request.use(
 // Response interceptor with retry logic
 api.interceptors.response.use(
   (response) => {
-    // Log successful response
-    // console.log('Response:', {
-    //   status: response.status,
-    //   data: response.data
-    // });
     return response;
   },
   async (error) => {
-    // Log error response
-    // console.log('Error:', {
-    //   status: error.response?.status,
-    //   data: error.response?.data,
-    //   message: error.message
-    // });
-
     const originalRequest = error.config;
 
     // Handle 401 Unauthorized errors

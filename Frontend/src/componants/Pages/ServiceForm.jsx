@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../../utils/axios';
 import option from "../../data/FeatureData"
 import { toast } from 'react-toastify';
 const ServiceForm = () => {
@@ -44,13 +44,12 @@ const ServiceForm = () => {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('/api/contact', {
+      const response = await api.post('/service-form', {
         name: name,
         email: email,
         mobile: mobile,
-        parentCategory: 'Service Form Inquiry',
-        childCourse: course,
-        message: description,
+        course: course,
+        description: description
       });
 
       if (response.status === 200) {

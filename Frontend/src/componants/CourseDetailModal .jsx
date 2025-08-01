@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useLocation } from 'react-router-dom';
+import useScrollToTop from '../hooks/useScrollToTop';
 import { X, Code, Check, ArrowRight, AlertCircle, Users, Clock, Award, Star, BookOpen, Download, Terminal, UserCheck, Layers, Zap, BarChart3, Smile, CalendarDays, Target } from 'lucide-react'; // Added more icons
 
 const CourseDetailModal = ({ selectedChildCourse, setSelectedChildCourse }) => {
+  useScrollToTop();
   const navigate = useNavigate();
   const { courseId } = useParams();
   const { user } = useAuth();

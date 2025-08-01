@@ -148,7 +148,7 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
                               <Users size={20} className="text-white" />
                             </div>
                             <div>
-                              <h3 className="text-xl font-bold text-gray-800">Available Courses - {whatWeOffer[selectedItem]?.name}</h3>
+                              <h3 className="text-xl font-bold text-gray-800">Available Programs - {whatWeOffer[selectedItem]?.name}</h3>
                               <p className="text-blue-600 text-sm">Perfect for your career path</p>
                             </div>
                           </div>

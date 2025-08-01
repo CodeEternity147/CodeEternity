@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import axios from 'axios';
+import api from '../utils/axios';
 import { toast } from 'react-toastify';
 import Lottie from "lottie-react";
 import animationData from '../data/contactPage.json';
@@ -33,7 +33,7 @@ export default function ContactUs() {
     setSubmitted(true);
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/contact`, formData);
+      const response = await api.post('/contact', formData);
       toast.success(response.data.message);
       setFormData({ name: "", email: "", parentCategory: "", childCourse: "", message: "" });
     } catch (error) { 
