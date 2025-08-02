@@ -1,62 +1,38 @@
 const studentPrograms = [
     {
-      title: 'STEM Enrichment Program',
-      description: 'Explore the exciting world of Science, Technology, Engineering, and Mathematics.',
-      image: 'https://img.freepik.com/free-vector/stem-education-concept-illustration_114360-7904.jpg',
+      title: 'Communication & Interpersonal Skills',
+      description: 'Master the art of effective communication and build strong interpersonal relationships.',
+      image: 'https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fENvbW11bmljYXRpb24lMjAlMjYlMjBJbnRlcnBlcnNvbmFsJTIwU2tpbGxzfGVufDB8fDB8fHww',
       features: [
-        'Hands-on Science Experiments',
-        'Coding & Robotics',
-        'Mathematical Problem Solving',
-        'Engineering Projects',
-        'Scientific Research Skills'
+        'Public Speaking & Presentation Skills',
+        'Active Listening Techniques',
+        'Conflict Resolution & Negotiation',
+        'Team Collaboration',
+        'Cross-cultural Communication'
       ]
     },
     {
-      title: 'Arts and Humanities Program',
-      description: 'Discover creativity and cultural understanding through arts and humanities.',
-      image: 'https://img.freepik.com/free-vector/art-concept-illustration_114360-8087.jpg',
+      title: 'Leadership and Personal Excellence',
+      description: 'Develop essential life skills and leadership qualities for personal and professional growth.',
+      image: 'https://plus.unsplash.com/premium_photo-1661963828727-823941143490?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fExlYWRlcnNoaXB8ZW58MHx8MHx8fDA%3D',
       features: [
-        'Visual Arts & Design',
-        'Creative Writing',
-        'Cultural Studies',
-        'Performing Arts',
-        'Digital Media Arts'
+        'Goal Setting & Time Management',
+        'Emotional Intelligence',
+        'Problem Solving & Critical Thinking',
+        'Adaptability & Resilience',
+        'Self-confidence Building'
       ]
     },
     {
-      title: 'Leadership Development Program',
-      description: 'Build essential leadership skills and personal development.',
-      image: 'https://img.freepik.com/free-vector/leadership-concept-illustration_114360-1063.jpg',
+      title: 'Professional Skills & Career Readiness',
+      description: 'Prepare for the professional world with essential workplace skills and career development.',
+      image: 'https://plus.unsplash.com/premium_photo-1682095247293-eaffffb5782b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8UHJvZmVzc2lvbmFsJTIwU2tpbGxzJTIwJTI2JTIwQ2FyZWVyJTIwUmVhZGluZXNzfGVufDB8fDB8fHww',
       features: [
-        'Team Building Activities',
-        'Public Speaking',
-        'Project Management',
-        'Conflict Resolution',
-        'Strategic Thinking'
-      ]
-    },
-    {
-      title: 'Entrepreneurship Program',
-      description: 'Learn the fundamentals of business and entrepreneurship.',
-      image: 'https://img.freepik.com/free-vector/business-team-putting-together-jigsaw-puzzle-isolated-flat-vector-illustration-cartoon-partners-working-connection-teamwork-partnership-cooperation-concept_74855-9814.jpg',
-      features: [
-        'Business Planning',
-        'Market Research',
-        'Financial Literacy',
-        'Innovation & Creativity',
-        'Pitch Presentation Skills'
-      ]
-    },
-    {
-      title: 'Technology Skills Program',
-      description: 'Master essential technology skills for the digital age of today',
-      image: 'https://img.freepik.com/free-vector/computer-technology-isometric-concept_1284-17390.jpg',
-      features: [
-        'Digital Literacy',
-        'Coding Basics',
-        'Digital Tools & Software',
-        'Online Safety',
-        'Tech Problem Solving'
+        'Resume Writing & Interview Skills',
+        'Networking & Relationship Building',
+        'Professional Etiquette',
+        'Digital Literacy & Online Presence',
+        'Work Ethics & Responsibility'
       ]
     }
   ];

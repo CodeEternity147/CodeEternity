@@ -409,119 +409,150 @@ function WhatWeOffer({ selectedChildCourse, setSelectedChildCourse }) {
 
       case 'career':
         return (
-          <div className={`transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="relative mb-24">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-900 to-purple-500 skew-y-3 transform origin-top-left rounded-3xl -z-10"></div>
-              <div className="container mx-auto px-6 py-20">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                  <div>
-                    <span className="inline-flex items-center bg-white/20 text-white px-4 py-2 rounded-full text-sm font-medium mb-6 backdrop-blur-sm">
-                      <Globe size={16} className="mr-2" />
-                      FUTURE LEADERS
+          <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                         {/* Premium Hero Section with Luxury Color Scheme */}
+             <div className="relative mb-8 sm:mb-12 lg:mb-20 overflow-hidden border-2 border-emerald-400/30 rounded-xl sm:rounded-2xl lg:rounded-3xl">
+               <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 animate-gradient-xy"></div>
+               <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/20 via-cyan-400/20 to-blue-400/20"></div>
+               <div className="absolute inset-0 bg-black/30"></div>
+              <div className="relative container mx-auto px-3 sm:px-4 md:px-6 py-12 sm:py-16 lg:py-20">
+                <div className="text-center max-w-4xl mx-auto">
+                  <div className="inline-flex items-center bg-gradient-to-r from-emerald-400/20 to-cyan-400/20 backdrop-blur-md text-emerald-300 px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold mb-6 sm:mb-8 lg:mb-10 border border-emerald-400/30 animate-pulse shadow-lg">
+                    <Zap size={16} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 mr-2 sm:mr-3 animate-bounce text-cyan-300" />
+                    <span className="text-xs sm:text-sm lg:text-base">PREMIUM PERSONAL DEVELOPMENT</span>
+                  </div>
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-white mb-4 sm:mb-6 lg:mb-8 leading-tight animate-fade-in-up">
+                    Elevate Your
+                    <span className="block bg-gradient-to-r from-emerald-300 via-cyan-300 to-blue-300 bg-clip-text text-transparent animate-text-shimmer">
+                      Professional Presence
                     </span>
-                    <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Shape Your Future <br />Starting Today</h2>
-                    <p className="text-blue-100 text-lg mb-8">Comprehensive development programs designed for students in classes 6-12 to discover their potential and build skills for tomorrow.</p>
-                    <button className="bg-white text-blue-900 py-4 px-8 rounded-xl font-medium hover:bg-blue-50 transition-colors">
-                      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform">
-                      Start Your Journey
-                      </a>
-                    </button>
-                  </div>
-                  <div className="relative">
-                    <div className="bg-white p-1 rounded-3xl shadow-2xl rotate-3 transform">
-                      <img src="/api/placeholder/600/400" alt="Students" className="rounded-2xl" />
-                    </div>
-                    <div className="absolute -bottom-6 -left-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-4 shadow-lg">
-                      <div className="flex items-center">
-                        <div className="bg-white p-2 rounded-lg">
-                          <Users size={24} className="text-blue-600" />
-                        </div>
-                        <div className="ml-3">
-                          <div className="text-xs text-blue-100">Our Community</div>
-                          <div className="font-medium text-white">50,000+ Students</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  </h1>
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-8 sm:mb-10 lg:mb-12 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed font-light px-2">
+                    Master the art of communication, leadership, and personal branding with our exclusive premium programs
+                  </p>
                 </div>
               </div>
+              
+                             {/* Premium Floating Elements */}
+        
             </div>
 
-            {/* Featured Programs */}
-            <div className="container mx-auto px-6 mb-20">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10">
-                <div>
-                  <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">SPECIALIZED PROGRAMS</span>
-                  <h2 className="text-3xl font-bold text-gray-800 mt-4 mb-2">Featured Student Programs</h2>
-                  <p className="text-gray-600 max-w-xl">Our most popular and effective programs designed to give students a competitive edge</p>
-                </div>
-                <button className="mt-4 md:mt-0 flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                  View All Programs
-                  <ArrowRight size={18} className="ml-1" />
-                </button>
+            {/* Premium Programs Section */}
+            <div className="container mx-auto px-3 sm:px-4 md:px-6 mb-12 sm:mb-16 lg:mb-20">
+              <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+                <span className="inline-flex items-center bg-gradient-to-r from-slate-100 to-gray-100 text-slate-700 px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:py-4 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold mb-6 sm:mb-8 shadow-lg border border-slate-200">
+                  <Star size={16} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 mr-2 sm:mr-3 text-emerald-500" />
+                  <span className="text-xs sm:text-sm lg:text-base">EXCLUSIVE PREMIUM PROGRAMS</span>
+                </span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-slate-800 mb-4 sm:mb-6 lg:mb-8">
+                  Transform Your
+                  <span className="block bg-gradient-to-r from-slate-700 via-purple-700 to-indigo-700 bg-clip-text text-transparent">
+                    Professional Identity
+                  </span>
+                </h2>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto leading-relaxed font-light px-2">
+                  Our meticulously crafted premium programs are designed to elevate your soft skills and create lasting professional impact
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
                 {studentPrograms.map((program, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-3xl shadow-xl overflow-hidden group hover:shadow-2xl transition-all duration-300"
+                    className="group relative"
                   >
-                    <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={program.image}
-                        alt={program.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                      <div className="absolute bottom-0 left-0 p-6">
-                        <h3 className="text-xl font-bold text-white">{program.title}</h3>
-                        <div className="flex items-center text-xs text-white/80 mt-1">
-                          <Clock size={14} className="mr-1" />
-                          {index === 0 ? '12 weeks' : index === 1 ? '8 weeks' : '16 weeks'}
-                          <span className="mx-2">•</span>
-                          <Users size={14} className="mr-1" />
-                          {index === 0 ? '40 students' : index === 1 ? '25 students' : '35 students'}
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 rounded-xl sm:rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div className="relative bg-gradient-to-br from-white to-slate-50 rounded-xl sm:rounded-2xl shadow-2xl overflow-hidden h-full transform transition-all duration-700 group-hover:-translate-y-4 sm:group-hover:-translate-y-6 group-hover:shadow-3xl border border-slate-200">
+                                             {/* Premium Program Header */}
+                       <div className="relative h-56 sm:h-64 lg:h-72 overflow-hidden">
+                         <div 
+                           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                           style={{ backgroundImage: `url(${program.image})` }}
+                         ></div>
+                                                  <div className="absolute top-4 sm:top-6 lg:top-8 right-4 sm:right-6 lg:right-8">
+                            <div className="bg-gradient-to-r from-emerald-400/20 to-cyan-400/20 backdrop-blur-md text-emerald-300 px-3 sm:px-4 lg:px-6 py-2 sm:py-2 lg:py-3 rounded-lg sm:rounded-xl text-xs font-bold border border-emerald-400/30 shadow-lg">
+                             <span className="text-xs sm:text-sm">{index === 0 ? 'BEST SELLER' : index === 1 ? 'PREMIUM' : 'ELITE'}</span>
+                           </div>
+                         </div>
+                       </div>
+
+                                             {/* Premium Program Content */}
+                       <div className="p-4 sm:p-6 lg:p-10">
+                         <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-800 mb-2 sm:mb-3">{program.title}</h3>
+                         <div className="flex items-center text-slate-600 text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+                           <Clock size={14} className="sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-1 sm:mr-2" />
+                           {index === 0 ? '12 weeks' : index === 1 ? '8 weeks' : '16 weeks'}
+                           <span className="mx-2 sm:mx-3 lg:mx-4">•</span>
+                           <Users size={14} className="sm:w-4 sm:h-4 lg:w-5 lg:h-5 mr-1 sm:mr-2" />
+                           {index === 0 ? '40 students' : index === 1 ? '25 students' : '35 students'}
+                         </div>
+                         <p className="text-slate-600 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base lg:text-lg font-light">{program.description}</p>
+
+                        <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-10">
+                          {program.features.slice(0, expandedPrograms[index] ? program.features.length : 3).map((feature, idx) => (
+                            <div key={idx} className="flex items-start text-slate-700 group/feature">
+                              <div className="mt-1 bg-gradient-to-r from-emerald-100 to-cyan-100 text-emerald-600 p-1.5 sm:p-2 rounded-lg mr-3 sm:mr-4 group-hover/feature:scale-110 transition-transform shadow-sm">
+                                <Check size={14} className="sm:w-4 sm:h-4 lg:w-5 lg:h-5" />
+                              </div>
+                              <span className="text-sm sm:text-base font-medium">{feature}</span>
+                            </div>
+                          ))}
                         </div>
-                      </div>
-                    </div>
 
-                    <div className="p-6">
-                      <p className="text-gray-600 mb-6 text-sm">{program.description}</p>
-
-                      <div className="space-y-2 mb-6">
-                        {program.features.slice(0, expandedPrograms[index] ? program.features.length : 3).map((feature, idx) => (
-                          <div key={idx} className="flex items-start text-gray-700">
-                            <div className="mt-1 bg-blue-100 text-blue-600 p-1 rounded-full mr-3">
-                              <Check size={12} />
-                            </div>
-                            <span className="text-sm">{feature}</span>
+                                                {/* Expandable Features */}
+                        {program.features.length > 3 && (
+                          <div 
+                            onClick={() => toggleFeatures(index)}
+                            className="text-emerald-600 font-bold text-sm sm:text-base mb-6 sm:mb-8 flex items-center cursor-pointer hover:text-emerald-700 transition-colors group/expand"
+                          >
+                            {expandedPrograms[index] ? 'Show Less' : `+${program.features.length - 3} more skills`}
+                                                         <ChevronRight 
+                               size={16}
+                               className={`sm:w-5 sm:h-5 lg:w-6 lg:h-6 ml-2 transition-transform duration-300 group-hover/expand:translate-x-1 ${expandedPrograms[index] ? 'rotate-90' : ''}`}
+                             />
                           </div>
-                        ))}
-                        <div className="flex justify-between items-center">
-                          {program.features.length > 3 && (
-                            <div 
-                              onClick={() => toggleFeatures(index)}
-                              className="text-blue-600 font-medium text-sm mt-2 flex items-center cursor-pointer hover:text-blue-800 transition-colors"
-                            >
-                              {expandedPrograms[index] ? 'Show Less' : `+${program.features.length - 3} more features`}
-                              <ChevronRight 
-                                size={16} 
-                                className={`ml-1 transition-transform duration-300 ${expandedPrograms[index] ? 'rotate-90' : ''}`}
-                              />
-                            </div>
-                          )}
-                          <button className="bg-blue-600 text-white py-2 px-4 rounded-xl font-medium hover:bg-blue-700 transition-colors text-sm">
-                          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform">
-                            Apply Now
-                          </a>
+                        )}
+
+                        {/* Premium Program Footer */}
+                        <div className="border-t border-slate-200 pt-6 sm:pt-8">
+                          <div className="flex justify-between items-center mb-4 sm:mb-6">
+                            <div className="text-slate-500 text-xs sm:text-sm font-medium">Program Level</div>
+                            <div className="text-emerald-600 font-bold text-sm sm:text-base lg:text-lg">{index === 0 ? 'Foundation' : index === 1 ? 'Advanced' : 'Mastery'}</div>
+                          </div>
+                                                      <button className="w-full bg-gradient-to-r from-slate-800 via-purple-800 to-indigo-800 text-white py-3 sm:py-4 lg:py-5 px-4 sm:px-6 lg:px-8 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base lg:text-xl hover:from-slate-900 hover:via-purple-900 hover:to-indigo-900 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl group/btn shadow-lg">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform" className="flex items-center justify-center">
+                              Enroll Now
+                              <ArrowRight size={18} className="sm:w-5 sm:h-5 lg:w-6 lg:h-6 ml-2 sm:ml-3 group-hover/btn:translate-x-2 transition-transform" />
+                            </a>
                           </button>
                         </div>
-
                       </div>
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Premium Call to Action Section */}
+            <div className="container mx-auto px-3 sm:px-4 md:px-6 mb-12 sm:mb-16 lg:mb-20">
+              <div className="relative bg-gradient-to-r from-slate-900 via-purple-900 to-indigo-900 rounded-xl sm:rounded-2xl p-8 sm:p-12 lg:p-16 overflow-hidden border-2 border-emerald-400/30">
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/10 via-cyan-400/10 to-blue-400/10"></div>
+                <div className="absolute inset-0 bg-black/20"></div>
+                <div className="relative text-center">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-6 sm:mb-8">
+                    Ready to Elevate Your Professional Journey?
+                  </h3>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-2xl text-white/90 mb-8 sm:mb-10 lg:mb-12 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed font-light px-2">
+                    Join an exclusive community of professionals who have transformed their careers with our premium soft skills programs
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+                                         <button className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white py-3 sm:py-4 lg:py-5 px-6 sm:px-8 lg:px-10 rounded-lg sm:rounded-xl font-bold text-sm sm:text-base lg:text-xl hover:from-emerald-600 hover:to-cyan-600 transition-all duration-500 transform hover:scale-110 shadow-2xl">
+                      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfdLjTgj3g04X3bb-oZM04FiFQVnDRdC87CsfMFznCcpDH96g/viewform">
+                        Start Your Transformation
+                      </a>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
